@@ -19,6 +19,7 @@
 		EA9C6913196ADAC1005B52B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68FB196ADAC1005B52B2 /* UIKit.framework */; };
 		EA9C691B196ADAC1005B52B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA9C6919196ADAC1005B52B2 /* InfoPlist.strings */; };
 		EA9C691D196ADAC1005B52B2 /* AirHackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C691C196ADAC1005B52B2 /* AirHackTests.m */; };
+		EA9C6927196ADB16005B52B2 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C6926196ADB16005B52B2 /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		EA9C6918196ADAC1005B52B2 /* AirHackTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AirHackTests-Info.plist"; sourceTree = "<group>"; };
 		EA9C691A196ADAC1005B52B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EA9C691C196ADAC1005B52B2 /* AirHackTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AirHackTests.m; sourceTree = "<group>"; };
+		EA9C6926196ADB16005B52B2 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA9C6927196ADB16005B52B2 /* MediaPlayer.framework in Frameworks */,
 				EA9C68FA196ADAC1005B52B2 /* CoreGraphics.framework in Frameworks */,
 				EA9C68FC196ADAC1005B52B2 /* UIKit.framework in Frameworks */,
 				EA9C68F8196ADAC1005B52B2 /* Foundation.framework in Frameworks */,
@@ -96,6 +99,7 @@
 		EA9C68F6196ADAC1005B52B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA9C6926196ADB16005B52B2 /* MediaPlayer.framework */,
 				EA9C68F7196ADAC1005B52B2 /* Foundation.framework */,
 				EA9C68F9196ADAC1005B52B2 /* CoreGraphics.framework */,
 				EA9C68FB196ADAC1005B52B2 /* UIKit.framework */,

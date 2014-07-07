@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+@import MediaPlayer;
+@import AVFoundation;
 
 @implementation AppDelegate
 
@@ -16,7 +18,34 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [self retrieveCurrentMediaItem];
+    
     return YES;
+}
+
+- (void)retrieveCurrentMediaItem
+{
+    MPMediaItem *item = [MPMusicPlayerController iPodMusicPlayer].nowPlayingItem;
+    NSLog(@"item = %@", item);
+    
+    NSURL *assetURL = [item valueForProperty:MPMediaItemPropertyAssetURL];
+    NSLog(@"assetURL = %@", assetURL);
+    
+    AVAsset *asset = [AVAsset assetWithURL:assetURL];
+    NSLog(@"asset = %@", asset);
+    
+    NSArray *presetNames = [AVAssetExportSession exportPresetsCompatibleWithAsset:asset];
+    NSLog(@"presetNames = %@", presetNames);
+    
+    AVAssetExportSession *session = [AVAssetExportSession exportSessionWithAsset:asset presetName:AVAssetExportPresetAppleM4A];
+    NSString *filename = [NSTemporaryDirectory() stringByAppendingPathComponent:@"export.m4a"];
+    session.outputURL = [NSURL fileURLWithPath:filename];
+    session.outputFileType = session.supportedFileTypes.firstObject;
+    [session exportAsynchronouslyWithCompletionHandler:^{
+        NSLog(@"export session completed.");
+    }];
+    NSLog(@"export session started: %@ (supportedFileTypes = %@)", session, session.supportedFileTypes);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
