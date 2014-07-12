@@ -17,6 +17,11 @@
 @property (nonatomic, readonly) MPMediaItem *mediaItem;
 @property (nonatomic, readonly) NSString *filePath;
 
+@property (nonatomic) NSProgress *uploadProgress;
+@property (nonatomic, copy) void (^onUploadProgress)(float progress);
+@property (nonatomic) BOOL uploadCompleted;
+@property (nonatomic) BOOL uploadCanceled;
+
 @property (nonatomic, readonly) NSString *title;
 
 @end

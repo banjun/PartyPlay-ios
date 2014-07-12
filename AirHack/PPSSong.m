@@ -34,4 +34,25 @@
     return [self.mediaItem valueForProperty:MPMediaItemPropertyTitle];
 }
 
+- (void)setUploadProgress:(NSProgress *)uploadProgress
+{
+    [_uploadProgress removeObserver:self forKeyPath:@"fractionCompleted"];
+    _uploadProgress = uploadProgress;
+    [_uploadProgress addObserver:self forKeyPath:@"fractionCompleted" options:0 context:nil];
+}
+
+#pragma mark Key-Value-Observing
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (object == self.uploadProgress) {
+        if (self.onUploadProgress) {
+            self.onUploadProgress(self.uploadProgress.fractionCompleted);
+        }
+        return;
+    }
+    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+}
+
+
 @end

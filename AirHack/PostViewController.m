@@ -101,57 +101,6 @@ static NSString * const kPostURLKey = @"PostURL";
     self.titleField.text = [item valueForProperty:MPMediaItemPropertyTitle];
 }
 
-- (IBAction)pushCurrentSong:(id)sender
-{
-    NSURL *url = [NSURL URLWithString:self.urlField.text];
-    if (!url) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"invalid url" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-        [alert show];
-        return;
-    }
-    
-    [SVProgressHUD appearance].backgroundColor = [UIColor blackColor];
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
-    [SVProgressHUD show];
-    
-    [self retrieveCurrentMediaItem:^(MPMediaItem *mediaItem, NSString *filePath){
-        PPSClient *client = [[PPSClient alloc] initWithBaseURL:url];
-        PPSSong *song = [[PPSSong alloc] initWithMedia:mediaItem filePath:filePath];
-        [client pushSongs:@[song] progress:^(float progress) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"progress = %f", progress);
-                [SVProgressHUD showProgress:progress];
-            });
-        } didPushSong:^(PPSSong *song) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"pushed %@", filePath);
-            });
-        } completion:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"pushed all request songs");
-                [SVProgressHUD showSuccessWithStatus:@"Pushed!"];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [SVProgressHUD dismiss];
-                });
-            });
-        } failure:^(NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [SVProgressHUD dismiss];
-                NSLog(@"push failed at some songs: %@", error);
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Push Song(s)" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
-            });
-        }];
-    } failure:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [SVProgressHUD dismiss];
-            NSLog(@"song export failed at some songs.");
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Export Song(s)" message:@"song export failed at some songs." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        });
-    }];
-}
-
 #pragma mark - Media Picker
 
 - (IBAction)showPicker:(id)sender
@@ -167,6 +116,7 @@ static NSString * const kPostURLKey = @"PostURL";
 - (void)mediaPicker:(MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection;
 {
     NSLog(@"picked %lu items", (unsigned long)mediaItemCollection.count);
+    [self exportMediaItemsAndPush:mediaItemCollection.items];
     [self.picker dismissViewControllerAnimated:YES completion:^{ self.picker = nil; }];
 }
 
@@ -177,37 +127,132 @@ static NSString * const kPostURLKey = @"PostURL";
 
 #pragma mark -
 
-- (void)retrieveCurrentMediaItem:(void (^)(MPMediaItem *mediaItem, NSString *filePath))completion failure:(void (^)())failure
+- (void)exportMediaItems:(NSArray *)mediaItems completion:(void (^)(NSArray *songs))completion failure:(void (^)(void))failure
 {
-    MPMediaItem *item = [MPMusicPlayerController iPodMusicPlayer].nowPlayingItem;
-    NSLog(@"item = %@", item);
+    [SVProgressHUD appearance].backgroundColor = [UIColor blackColor];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD show];
     
-    NSURL *assetURL = [item valueForProperty:MPMediaItemPropertyAssetURL];
-    NSLog(@"assetURL = %@", assetURL);
+    NSString *exportFolder = [NSTemporaryDirectory() stringByAppendingString:@"export"];
+    [[NSFileManager defaultManager] removeItemAtPath:exportFolder error:nil];
+    [[NSFileManager defaultManager] createDirectoryAtPath:exportFolder withIntermediateDirectories:YES attributes:nil error:nil];
     
-    AVAsset *asset = [AVAsset assetWithURL:assetURL];
-    NSLog(@"asset = %@", asset);
+    NSMutableArray *songs = [NSMutableArray array];
+    [mediaItems enumerateObjectsUsingBlock:^(MPMediaItem *item, NSUInteger idx, BOOL *stop) {
+        NSString *filePath = [exportFolder stringByAppendingFormat:@"/%lu.m4a", (unsigned long)idx];
+        PPSSong *song = [[PPSSong alloc] initWithMedia:item filePath:filePath];
+        [songs addObject:song];
+    }];
     
-    NSArray *presetNames = [AVAssetExportSession exportPresetsCompatibleWithAsset:asset];
-    NSLog(@"presetNames = %@", presetNames);
+    NSMutableArray *sessions = [NSMutableArray array];
     
-    AVAssetExportSession *session = [AVAssetExportSession exportSessionWithAsset:asset presetName:AVAssetExportPresetAppleM4A];
-    if (!session) {
-        failure();
+    [songs enumerateObjectsUsingBlock:^(PPSSong *song, NSUInteger idx, BOOL *stop) {
+        NSURL *assetURL = [song.mediaItem valueForProperty:MPMediaItemPropertyAssetURL];
+        AVAsset *asset = [AVAsset assetWithURL:assetURL];
+        
+        AVAssetExportSession *session = [AVAssetExportSession exportSessionWithAsset:asset presetName:AVAssetExportPresetAppleM4A];
+        if (!session) {
+            [sessions enumerateObjectsUsingBlock:^(AVAssetExportSession *s, NSUInteger idx, BOOL *stop) {
+                [s cancelExport];
+            }];
+            failure();
+            *stop = YES;
+            return;
+        }
+        session.outputURL = [NSURL fileURLWithPath:song.filePath];
+        session.outputFileType = session.supportedFileTypes.firstObject;
+        
+        [sessions addObject:session];
+        [session exportAsynchronouslyWithCompletionHandler:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [sessions removeObject:session];
+                NSLog(@"export session completed for song: %@", song.title);
+                if (sessions.count == 0) {
+                    NSLog(@"all export sessions completed.");
+                    completion(songs);
+                }
+            });
+        }];
+    }];
+}
+
+- (void)exportMediaItemsAndPush:(NSArray *)mediaItems
+{
+    [self exportMediaItems:mediaItems completion:^(NSArray *songs) {
+        [self pushSongs:songs];
+    } failure:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+            NSLog(@"song export failed at some songs.");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Export Song(s)" message:@"song export failed at some songs." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        });
+    }];
+}
+
+- (void)pushSongs:(NSArray *)songs
+{
+    NSURL *url = [NSURL URLWithString:self.urlField.text];
+    if (!url) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"invalid url" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alert show];
         return;
     }
     
-    NSString *filename = [NSTemporaryDirectory() stringByAppendingPathComponent:@"export.m4a"];
-    [[NSFileManager defaultManager] removeItemAtPath:filename error:nil];
-    session.outputURL = [NSURL fileURLWithPath:filename];
-    session.outputFileType = session.supportedFileTypes.firstObject;
-    [session exportAsynchronouslyWithCompletionHandler:^{
+    [SVProgressHUD appearance].backgroundColor = [UIColor blackColor];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD show];
+    
+    [songs enumerateObjectsUsingBlock:^(PPSSong *song, NSUInteger idx, BOOL *stop) {
+        __weak typeof(song) weakSong = song;
+        song.onUploadProgress = ^(float progress) {
+            __block float totalProgress = 0.0;
+            [songs enumerateObjectsUsingBlock:^(PPSSong *song, NSUInteger idx, BOOL *stop) {
+                totalProgress += song.uploadProgress.fractionCompleted / songs.count;
+            }];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"%@ progress = %f, total = %f", weakSong.title, progress, totalProgress);
+                [SVProgressHUD showProgress:totalProgress];
+            });
+        };
+    }];
+    
+    PPSClient *client = [[PPSClient alloc] initWithBaseURL:url];
+    [client pushSongs:songs progress:^(float progress) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"export session completed.");
-            completion(item, filename);
+            NSLog(@"progress = %f", progress);
+            [SVProgressHUD showProgress:progress];
+        });
+    } didPushSong:^(PPSSong *song) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"pushed %@", song.title);
+        });
+    } completion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"pushed all request songs");
+            [SVProgressHUD showSuccessWithStatus:@"Pushed!"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+            });
+        });
+    } failure:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+            NSLog(@"push failed at some songs: %@", error);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Push Song(s)" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
         });
     }];
-    NSLog(@"export session started: %@ (supportedFileTypes = %@)", session, session.supportedFileTypes);
+}
+
+- (IBAction)pushCurrentSong:(id)sender
+{
+    MPMediaItem *item = [MPMusicPlayerController iPodMusicPlayer].nowPlayingItem;
+    if (!item) {
+        NSLog(@"current item not found");
+        return;
+    }
+    [self exportMediaItemsAndPush:@[item]];
 }
 
 - (IBAction)showPPSSelectViewController:(id)sender
