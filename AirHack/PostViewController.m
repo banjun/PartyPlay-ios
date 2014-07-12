@@ -11,6 +11,8 @@
 @import AVFoundation;
 #import "PPSSelectViewController.h"
 #import "NSObject+BTKUtils.h"
+#import <AFNetworking.h>
+#import <SVProgressHUD.h>
 
 
 @interface PostViewController () <MPMediaPickerControllerDelegate>
@@ -22,6 +24,8 @@
 
 @property (nonatomic) UIButton *pickButton;
 @property (nonatomic) MPMediaPickerController *picker;
+
+@property (nonatomic) NSProgress *progress;
 
 @end
 
@@ -145,33 +149,66 @@ static NSString * const kPostURLKey = @"PostURL";
     session.outputURL = [NSURL fileURLWithPath:filename];
     session.outputFileType = session.supportedFileTypes.firstObject;
     [session exportAsynchronouslyWithCompletionHandler:^{
-        NSLog(@"export session completed.");
-        [self pushFile:filename];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"export session completed.");
+            [self pushFile:filename];
+        });
     }];
     NSLog(@"export session started: %@ (supportedFileTypes = %@)", session, session.supportedFileTypes);
 }
 
 - (void)pushFile:(NSString *)filename
 {
-    NSURL *url = [NSURL URLWithString:@"/songs/add" relativeToURL:[NSURL URLWithString:self.urlField.text]];
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
-    req.HTTPMethod = @"POST";
-    req.HTTPBody = [NSData dataWithContentsOfFile:filename];
-    [req addValue:[NSString stringWithFormat:@"%lu", (unsigned long)req.HTTPBody.length] forHTTPHeaderField:@"Content-Length"];
-    [req addValue:@"application/octet-stream" forHTTPHeaderField:@"Content-Type"];
+    [SVProgressHUD appearance].backgroundColor = [UIColor blackColor];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD show];
     
-    NSLog(@"will post %lu bytes body to %@", (unsigned long)req.HTTPBody.length, req.URL);
-    [NSURLConnection sendAsynchronousRequest:req queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:[self.urlField.text stringByAppendingString:@"/songs/add"] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:[NSData dataWithContentsOfFile:filename] name:@"file" fileName:filename.lastPathComponent mimeType:@"application/octet-stream"];
+    } error:nil];
+    
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
+    
+    NSProgress *progress = nil;
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        [self.progress removeObserver:self forKeyPath:@"fractionCompleted"];
+        
         NSHTTPURLResponse *res = (NSHTTPURLResponse *)response;
         NSInteger status = res.statusCode;
-        NSString *message = [NSString stringWithFormat:@"finish post with status = %ld. connectionError = %@", (long)status, connectionError];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"%@", message);
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Push Song" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        });
+        NSString *message = [NSString stringWithFormat:@"finish post with status = %ld. connectionError = %@", (long)status, error];
+        if (error || status != 200) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+                NSLog(@"%@", message);
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Push Song(s)" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            });
+        } else {
+            NSLog(@"%@", response);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD showSuccessWithStatus:@"Pushed!"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [SVProgressHUD dismiss];
+                });
+            });
+        }
     }];
+    self.progress = progress;
+    [self.progress addObserver:self forKeyPath:@"fractionCompleted" options:0 context:nil];
+    [uploadTask resume];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([object isKindOfClass:[NSProgress class]]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"progress = %f", self.progress.fractionCompleted);
+            [SVProgressHUD showProgress:self.progress.fractionCompleted];
+        });
+        return;
+    }
+    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
 - (IBAction)showPPSSelectViewController:(id)sender
