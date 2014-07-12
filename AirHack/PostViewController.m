@@ -186,10 +186,23 @@ static NSString * const kPostURLKey = @"PostURL";
         [session exportAsynchronouslyWithCompletionHandler:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [sessions removeObject:session];
-                NSLog(@"export session completed for song: %@", song.title);
-                if (sessions.count == 0) {
-                    NSLog(@"all export sessions completed.");
-                    completion(songs);
+                
+                NSUInteger length = [(NSData *)[NSData dataWithContentsOfFile:song.filePath] length];
+                
+                if (session.error || length == 0) {
+                    NSLog(@"export session failed for song: %@ (%lu bytes): %@", song.title, (unsigned long)length, session.error);
+                    [sessions enumerateObjectsUsingBlock:^(AVAssetExportSession *s, NSUInteger idx, BOOL *stop) {
+                        [s cancelExport];
+                    }];
+                    failure();
+                    *stop = YES;
+                    return;
+                } else {
+                    NSLog(@"export session completed for song: %@ (%lu bytes)", song.title, (unsigned long)length);
+                    if (sessions.count == 0) {
+                        NSLog(@"all export sessions completed.");
+                        completion(songs);
+                    }
                 }
             });
         }];
