@@ -13,12 +13,15 @@
 #import "NSObject+BTKUtils.h"
 
 
-@interface PostViewController ()
+@interface PostViewController () <MPMediaPickerControllerDelegate>
 
 @property (nonatomic) UIButton *ppsSelectButton;
 @property (nonatomic) UIButton *postButton;
 @property (nonatomic) UITextField *urlField;
 @property (nonatomic) UITextField *titleField;
+
+@property (nonatomic) UIButton *pickButton;
+@property (nonatomic) MPMediaPickerController *picker;
 
 @end
 
@@ -45,15 +48,22 @@ static NSString * const kPostURLKey = @"PostURL";
         t.borderStyle = UITextBorderStyleRoundedRect;
     }];
     
-    self.titleField = [[UITextField alloc] initWithFrame:CGRectZero];
+    self.titleField = [[[UITextField alloc] initWithFrame:CGRectZero] btk_scope:^(UITextField *t) {
+        t.enabled = NO;
+    }];
     
     self.postButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.postButton setTitle:@"Push Song" forState:UIControlStateNormal];
+    [self.postButton setTitle:@"Push Current Song" forState:UIControlStateNormal];
     [self.postButton addTarget:self action:@selector(retrieveCurrentMediaItem) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.pickButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] btk_scope:^(UIButton *b) {
+        [b setTitle:NSLocalizedString(@"Pick iPod Songs", @"") forState:UIControlStateNormal];
+        [b addTarget:self action:@selector(showPicker:) forControlEvents:UIControlEventTouchUpInside];
+    }];
     
     [self loadDefaults];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_ppsSelectButton, _urlField, _titleField, _postButton);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_ppsSelectButton, _urlField, _titleField, _postButton, _pickButton);
     for (UIView *v in views.allValues) {
         v.translatesAutoresizingMaskIntoConstraints = NO;
         [self.view addSubview:v];
@@ -62,7 +72,8 @@ static NSString * const kPostURLKey = @"PostURL";
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_urlField]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_titleField]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_postButton]-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_urlField]-20-[_ppsSelectButton]-20-[_titleField]-20-[_postButton]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_pickButton]-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_urlField]-20-[_ppsSelectButton]-20-[_titleField]-20-[_postButton]-20-[_pickButton]" options:0 metrics:nil views:views]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
@@ -87,6 +98,31 @@ static NSString * const kPostURLKey = @"PostURL";
     
     self.titleField.text = [item valueForProperty:MPMediaItemPropertyTitle];
 }
+
+#pragma mark - Media Picker
+
+- (IBAction)showPicker:(id)sender
+{
+    self.picker = [[[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAny] btk_scope:^(MPMediaPickerController *p) {
+        p.delegate = self;
+        p.allowsPickingMultipleItems = YES;
+        p.showsCloudItems = NO; // cannot export iCloud Items currently
+    }];
+    [self presentViewController:self.picker animated:YES completion:nil];
+}
+
+- (void)mediaPicker:(MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection;
+{
+    NSLog(@"picked %lu items", (unsigned long)mediaItemCollection.count);
+    [self.picker dismissViewControllerAnimated:YES completion:^{ self.picker = nil; }];
+}
+
+- (void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker;
+{
+    [self.picker dismissViewControllerAnimated:YES completion:^{ self.picker = nil; }];
+}
+
+#pragma mark -
 
 - (void)retrieveCurrentMediaItem
 {
