@@ -12,7 +12,6 @@
 
 @property (nonatomic) NSNetServiceBrowser *netServiceBrowser;
 @property (nonatomic) NSMutableArray *services;
-@property (nonatomic) NSMutableArray *resolvingServices;
 
 @end
 
@@ -22,7 +21,6 @@
 {
     [self.netServiceBrowser stop];
     self.services = [NSMutableArray array];
-    self.resolvingServices = [NSMutableArray array];
     
     self.netServiceBrowser = [[NSNetServiceBrowser alloc] init];
     self.netServiceBrowser.delegate = self;
@@ -61,6 +59,11 @@
 - (void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didRemoveService:(NSNetService *)aNetService moreComing:(BOOL)moreComing;
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
+    [self.services removeObject:aNetService];
+    
+    if (self.onServicesChange) {
+        self.onServicesChange();
+    }
 }
 
 - (void)netServiceBrowser:(NSNetServiceBrowser*)aNetServiceBrowser didFindService:(NSNetService*)service moreComing:(BOOL)moreComing
@@ -68,8 +71,17 @@
     NSLog(@"found service (moreComing = %d): %@ (%@ at %@)", moreComing, service, service.name, service.hostName);
     service.delegate = self;
     service.includesPeerToPeer = YES;
+    [self.services addObject:service];
     [service resolveWithTimeout:0];
-    [self.resolvingServices addObject:service];
+    
+    [self notifyServicesChange];
+}
+
+- (void)notifyServicesChange
+{
+    if (self.onServicesChange) {
+        self.onServicesChange();
+    }
 }
 
 #pragma NSNetService Delegate
@@ -82,22 +94,21 @@
 - (void)netServiceDidResolveAddress:(NSNetService *)sender
 {
     NSLog(@"resolve service: %@ (%@:%ld)", sender, sender.hostName, (long)sender.port);
-    [self.services addObject:sender];
-    [self.resolvingServices removeObject:sender];
-    
-    if (self.onServicesChange) {
-        self.onServicesChange();
-    }
+    [self notifyServicesChange];
 }
 
 - (void)netService:(NSNetService *)sender didNotResolve:(NSDictionary *)errorDict
 {
     NSLog(@"%s: %@", __PRETTY_FUNCTION__, errorDict);
+    [self.services removeObject:sender];
+    [self notifyServicesChange];
 }
 
 - (void)netServiceDidStop:(NSNetService *)sender;
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
+    [self.services removeObject:sender];
+    [self notifyServicesChange];
 }
 
 - (void)netService:(NSNetService *)sender didUpdateTXTRecordData:(NSData *)data;

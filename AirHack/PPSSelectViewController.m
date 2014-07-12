@@ -87,7 +87,9 @@ static NSString * const kCellID = @"Cell";
     NSNetService *service = self.bonjourFinder.services[indexPath.row];
     
     cell.textLabel.text = service.name;
+    cell.textLabel.enabled = (service.hostName.length > 0);
     cell.detailTextLabel.text = [self urlForService:service].absoluteString;
+    cell.detailTextLabel.enabled = cell.textLabel.enabled;
     
     return cell;
 }
@@ -96,8 +98,10 @@ static NSString * const kCellID = @"Cell";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    NSNetService *service = self.bonjourFinder.services[indexPath.row];
+    if (service.hostName.length <= 0) return;
+    
     if (self.didSelect) {
-        NSNetService *service = self.bonjourFinder.services[indexPath.row];
         self.didSelect([self urlForService:service]);
     }
     
