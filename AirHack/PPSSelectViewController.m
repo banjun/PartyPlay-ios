@@ -68,7 +68,7 @@ static NSString * const kCellID = @"Cell";
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;    // fixed font style. use custom view (UILabel) if you want something different
 {
-    return NSLocalizedString(@"Party Play Servers on near network will be listed...", @"");
+    return NSLocalizedString(@"Searching Party Play Servers on near network", @"");
 }
 
 - (NSURL *)urlForService:(NSNetService *)service
@@ -86,10 +86,13 @@ static NSString * const kCellID = @"Cell";
     
     NSNetService *service = self.bonjourFinder.services[indexPath.row];
     
+    BOOL resolved = (service.hostName.length > 0);
+    
     cell.textLabel.text = service.name;
-    cell.textLabel.enabled = (service.hostName.length > 0);
-    cell.detailTextLabel.text = [self urlForService:service].absoluteString;
-    cell.detailTextLabel.enabled = cell.textLabel.enabled;
+    cell.textLabel.enabled = resolved;
+    cell.detailTextLabel.text = (resolved ? [self urlForService:service].absoluteString : @"checking address...");
+    cell.detailTextLabel.enabled = resolved;
+    cell.selectionStyle = (resolved ? UITableViewCellSelectionStyleDefault : UITableViewCellSelectionStyleNone);
     
     return cell;
 }
