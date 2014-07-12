@@ -1,1 +1,2 @@
 pod 'SVProgressHUD'
+pod 'AFNetworking'
