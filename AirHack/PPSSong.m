@@ -7,6 +7,7 @@
 //
 
 #import "PPSSong.h"
+@import MediaPlayer;
 
 
 @interface PPSSong ()
@@ -26,6 +27,11 @@
         self.filePath = filePath;
     }
     return self;
+}
+
+- (NSString *)title
+{
+    return [self.mediaItem valueForProperty:MPMediaItemPropertyTitle];
 }
 
 @end

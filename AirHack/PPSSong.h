@@ -17,4 +17,6 @@
 @property (nonatomic, readonly) MPMediaItem *mediaItem;
 @property (nonatomic, readonly) NSString *filePath;
 
+@property (nonatomic, readonly) NSString *title;
+
 @end

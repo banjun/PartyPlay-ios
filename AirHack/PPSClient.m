@@ -14,6 +14,7 @@
 static NSString * const kPost = @"POST";
 static NSString * const kSongsAdd = @"/songs/add";
 static NSString * const kParamFile = @"file";
+static NSString * const kParamTitle = @"title";
 static NSString * const kContentTypeOctetStream = @"application/octet-stream";
 
 
@@ -42,7 +43,15 @@ static NSString * const kContentTypeOctetStream = @"application/octet-stream";
     PPSSong *song = songs.firstObject; // TODO: process all objects
     
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:kPost URLString:[self.baseURL.absoluteString stringByAppendingString:kSongsAdd] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        // song file content
         [formData appendPartWithFileData:[NSData dataWithContentsOfFile:song.filePath] name:kParamFile fileName:song.filePath.lastPathComponent mimeType:kContentTypeOctetStream];
+        
+        // metadata
+        void (^addText)(NSString *, NSString *) = ^(NSString *key, NSString *value) {
+            [formData appendPartWithFormData:[[value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] dataUsingEncoding:NSUTF8StringEncoding]
+                                        name:[key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        };
+        addText(kParamTitle, song.title);
     } error:nil];
     
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
