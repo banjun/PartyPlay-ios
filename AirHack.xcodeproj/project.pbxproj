@@ -23,6 +23,8 @@
 		EA9C691D196ADAC1005B52B2 /* AirHackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C691C196ADAC1005B52B2 /* AirHackTests.m */; };
 		EA9C6927196ADB16005B52B2 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C6926196ADB16005B52B2 /* MediaPlayer.framework */; };
 		EA9C692A196ADF7A005B52B2 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C6929196ADF7A005B52B2 /* PostViewController.m */; };
+		EAA2C1E6197167740031EDF8 /* PPSSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA2C1E5197167740031EDF8 /* PPSSelectViewController.m */; };
+		EAA2C1E9197168150031EDF8 /* NSObject+BTKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA2C1E8197168150031EDF8 /* NSObject+BTKUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,10 @@
 		EA9C6926196ADB16005B52B2 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		EA9C6928196ADF7A005B52B2 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		EA9C6929196ADF7A005B52B2 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		EAA2C1E4197167740031EDF8 /* PPSSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSSelectViewController.h; sourceTree = "<group>"; };
+		EAA2C1E5197167740031EDF8 /* PPSSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSSelectViewController.m; sourceTree = "<group>"; };
+		EAA2C1E7197168150031EDF8 /* NSObject+BTKUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BTKUtils.h"; sourceTree = "<group>"; };
+		EAA2C1E8197168150031EDF8 /* NSObject+BTKUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BTKUtils.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,8 +133,12 @@
 				EA9C6907196ADAC1005B52B2 /* AppDelegate.m */,
 				EA9C6928196ADF7A005B52B2 /* PostViewController.h */,
 				EA9C6929196ADF7A005B52B2 /* PostViewController.m */,
+				EAA2C1E4197167740031EDF8 /* PPSSelectViewController.h */,
+				EAA2C1E5197167740031EDF8 /* PPSSelectViewController.m */,
 				EA3682BA19715AC100E3285B /* BonjourFinder.h */,
 				EA3682BB19715AC100E3285B /* BonjourFinder.m */,
+				EAA2C1E7197168150031EDF8 /* NSObject+BTKUtils.h */,
+				EAA2C1E8197168150031EDF8 /* NSObject+BTKUtils.m */,
 				EA9C6909196ADAC1005B52B2 /* Images.xcassets */,
 				EA9C68FE196ADAC1005B52B2 /* Supporting Files */,
 			);
@@ -296,8 +306,10 @@
 			files = (
 				EA9C6908196ADAC1005B52B2 /* AppDelegate.m in Sources */,
 				EA3682BC19715AC100E3285B /* BonjourFinder.m in Sources */,
+				EAA2C1E6197167740031EDF8 /* PPSSelectViewController.m in Sources */,
 				EA9C6904196ADAC1005B52B2 /* main.m in Sources */,
 				EA9C692A196ADF7A005B52B2 /* PostViewController.m in Sources */,
+				EAA2C1E9197168150031EDF8 /* NSObject+BTKUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

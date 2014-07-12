@@ -31,6 +31,11 @@
     [self.netServiceBrowser searchForServicesOfType:type inDomain:@"local"];
 }
 
+- (void)stop
+{
+    [self.netServiceBrowser stop];
+}
+
 #pragma mark NSNetServiceBrowser Delegate
 
 - (void)netServiceBrowserWillSearch:(NSNetServiceBrowser *)aNetServiceBrowser;

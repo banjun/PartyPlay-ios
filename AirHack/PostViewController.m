@@ -7,23 +7,23 @@
 //
 
 #import "PostViewController.h"
-#import "BonjourFinder.h"
 @import MediaPlayer;
 @import AVFoundation;
+#import "PPSSelectViewController.h"
+#import "NSObject+BTKUtils.h"
 
 
 @interface PostViewController ()
 
+@property (nonatomic) UIButton *ppsSelectButton;
 @property (nonatomic) UIButton *postButton;
 @property (nonatomic) UITextField *urlField;
 @property (nonatomic) UITextField *titleField;
 
-@property (nonatomic) BonjourFinder *bonjourFinder;
-
 @end
 
 
-static NSString * const kPostURLKey = @"postURL";
+static NSString * const kPostURLKey = @"PostURL";
 
 
 @implementation PostViewController
@@ -32,18 +32,17 @@ static NSString * const kPostURLKey = @"postURL";
 {
     [super loadView];
     
-    __weak typeof(self) weakSelf = self;
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    self.bonjourFinder = [[BonjourFinder alloc] init];
-    self.bonjourFinder.onServicesChange = ^{
-        NSLog(@"services = %@", weakSelf.bonjourFinder.services);
-    };
-    [self.bonjourFinder searchForServicesOfType:@"_partyplay._tcp"];
+    self.ppsSelectButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] btk_scope:^(UIButton *b) {
+        [b setTitle:@"Select Party Play Server" forState:UIControlStateNormal];
+        [b addTarget:self action:@selector(showPPSSelectViewController:) forControlEvents:UIControlEventTouchUpInside];
+    }];
     
-    self.urlField = [[UITextField alloc] initWithFrame:CGRectZero];
-    self.urlField.placeholder = @"http://mzp-tv.local.:3000/request";
-    self.urlField.borderStyle = UITextBorderStyleRoundedRect;
-    self.urlField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kPostURLKey];
+    self.urlField = [[[UITextField alloc] initWithFrame:CGRectZero] btk_scope:^(UITextField *t) {
+        t.placeholder = @"http://mzp-tv.local.:3000/";
+        t.borderStyle = UITextBorderStyleRoundedRect;
+    }];
     
     self.titleField = [[UITextField alloc] initWithFrame:CGRectZero];
     
@@ -51,17 +50,33 @@ static NSString * const kPostURLKey = @"postURL";
     [self.postButton setTitle:@"Push Song" forState:UIControlStateNormal];
     [self.postButton addTarget:self action:@selector(retrieveCurrentMediaItem) forControlEvents:UIControlEventTouchUpInside];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_urlField, _titleField, _postButton);
+    [self loadDefaults];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_ppsSelectButton, _urlField, _titleField, _postButton);
     for (UIView *v in views.allValues) {
         v.translatesAutoresizingMaskIntoConstraints = NO;
         [self.view addSubview:v];
     }
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_ppsSelectButton]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_urlField]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_titleField]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_postButton]-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-64-[_urlField]-20-[_titleField]-20-[_postButton]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_urlField]-20-[_ppsSelectButton]-20-[_titleField]-20-[_postButton]" options:0 metrics:nil views:views]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+}
+
+- (void)loadDefaults
+{
+    self.urlField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kPostURLKey];
+}
+
+- (void)saveDefaults
+{
+    if (self.urlField.text.length > 0) {
+        [[NSUserDefaults standardUserDefaults] setObject:self.urlField.text forKey:kPostURLKey];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification
@@ -74,8 +89,6 @@ static NSString * const kPostURLKey = @"postURL";
 
 - (void)retrieveCurrentMediaItem
 {
-    [[NSUserDefaults standardUserDefaults] setObject:self.urlField.text forKey:kPostURLKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     MPMediaItem *item = [MPMusicPlayerController iPodMusicPlayer].nowPlayingItem;
     NSLog(@"item = %@", item);
@@ -103,7 +116,7 @@ static NSString * const kPostURLKey = @"postURL";
 
 - (void)pushFile:(NSString *)filename
 {
-    NSURL *url = [NSURL URLWithString:self.urlField.text];
+    NSURL *url = [NSURL URLWithString:@"/songs/add" relativeToURL:[NSURL URLWithString:self.urlField.text]];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
     req.HTTPMethod = @"POST";
     req.HTTPBody = [NSData dataWithContentsOfFile:filename];
@@ -122,6 +135,19 @@ static NSString * const kPostURLKey = @"postURL";
             [alert show];
         });
     }];
+}
+
+- (IBAction)showPPSSelectViewController:(id)sender
+{
+    __weak typeof(self) weakSelf = self;
+    
+    PPSSelectViewController *vc = [[PPSSelectViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    vc.didSelect = ^(NSURL *rootURL){
+        NSLog(@"rootURL = %@", rootURL);
+        weakSelf.urlField.text = rootURL.absoluteString;
+        [weakSelf saveDefaults];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
