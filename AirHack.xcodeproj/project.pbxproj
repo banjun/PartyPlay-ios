@@ -25,6 +25,8 @@
 		EA9C692A196ADF7A005B52B2 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C6929196ADF7A005B52B2 /* PostViewController.m */; };
 		EAA2C1E6197167740031EDF8 /* PPSSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA2C1E5197167740031EDF8 /* PPSSelectViewController.m */; };
 		EAA2C1E9197168150031EDF8 /* NSObject+BTKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA2C1E8197168150031EDF8 /* NSObject+BTKUtils.m */; };
+		EAD7AE2319718F00005F981C /* PPSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7AE2219718F00005F981C /* PPSClient.m */; };
+		EAD7AE261971904B005F981C /* PPSSong.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7AE251971904B005F981C /* PPSSong.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,10 @@
 		EAA2C1E5197167740031EDF8 /* PPSSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSSelectViewController.m; sourceTree = "<group>"; };
 		EAA2C1E7197168150031EDF8 /* NSObject+BTKUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BTKUtils.h"; sourceTree = "<group>"; };
 		EAA2C1E8197168150031EDF8 /* NSObject+BTKUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BTKUtils.m"; sourceTree = "<group>"; };
+		EAD7AE2119718F00005F981C /* PPSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSClient.h; sourceTree = "<group>"; };
+		EAD7AE2219718F00005F981C /* PPSClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSClient.m; sourceTree = "<group>"; };
+		EAD7AE241971904B005F981C /* PPSSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSSong.h; sourceTree = "<group>"; };
+		EAD7AE251971904B005F981C /* PPSSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSSong.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +141,7 @@
 				EA9C6929196ADF7A005B52B2 /* PostViewController.m */,
 				EAA2C1E4197167740031EDF8 /* PPSSelectViewController.h */,
 				EAA2C1E5197167740031EDF8 /* PPSSelectViewController.m */,
+				EAD7AE27197190AA005F981C /* Party Play Service Client */,
 				EA3682BA19715AC100E3285B /* BonjourFinder.h */,
 				EA3682BB19715AC100E3285B /* BonjourFinder.m */,
 				EAA2C1E7197168150031EDF8 /* NSObject+BTKUtils.h */,
@@ -172,6 +179,17 @@
 				EA9C6919196ADAC1005B52B2 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EAD7AE27197190AA005F981C /* Party Play Service Client */ = {
+			isa = PBXGroup;
+			children = (
+				EAD7AE2119718F00005F981C /* PPSClient.h */,
+				EAD7AE2219718F00005F981C /* PPSClient.m */,
+				EAD7AE241971904B005F981C /* PPSSong.h */,
+				EAD7AE251971904B005F981C /* PPSSong.m */,
+			);
+			name = "Party Play Service Client";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +327,8 @@
 				EAA2C1E6197167740031EDF8 /* PPSSelectViewController.m in Sources */,
 				EA9C6904196ADAC1005B52B2 /* main.m in Sources */,
 				EA9C692A196ADF7A005B52B2 /* PostViewController.m in Sources */,
+				EAD7AE2319718F00005F981C /* PPSClient.m in Sources */,
+				EAD7AE261971904B005F981C /* PPSSong.m in Sources */,
 				EAA2C1E9197168150031EDF8 /* NSObject+BTKUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

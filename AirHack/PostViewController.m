@@ -11,8 +11,8 @@
 @import AVFoundation;
 #import "PPSSelectViewController.h"
 #import "NSObject+BTKUtils.h"
-#import <AFNetworking.h>
 #import <SVProgressHUD.h>
+#import "PPSClient.h"
 
 
 @interface PostViewController () <MPMediaPickerControllerDelegate>
@@ -24,8 +24,6 @@
 
 @property (nonatomic) UIButton *pickButton;
 @property (nonatomic) MPMediaPickerController *picker;
-
-@property (nonatomic) NSProgress *progress;
 
 @end
 
@@ -58,7 +56,7 @@ static NSString * const kPostURLKey = @"PostURL";
     
     self.postButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [self.postButton setTitle:@"Push Current Song" forState:UIControlStateNormal];
-    [self.postButton addTarget:self action:@selector(retrieveCurrentMediaItem) forControlEvents:UIControlEventTouchUpInside];
+    [self.postButton addTarget:self action:@selector(pushCurrentSong:) forControlEvents:UIControlEventTouchUpInside];
     
     self.pickButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] btk_scope:^(UIButton *b) {
         [b setTitle:NSLocalizedString(@"Pick iPod Songs", @"") forState:UIControlStateNormal];
@@ -103,6 +101,57 @@ static NSString * const kPostURLKey = @"PostURL";
     self.titleField.text = [item valueForProperty:MPMediaItemPropertyTitle];
 }
 
+- (IBAction)pushCurrentSong:(id)sender
+{
+    NSURL *url = [NSURL URLWithString:self.urlField.text];
+    if (!url) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"invalid url" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
+    [SVProgressHUD appearance].backgroundColor = [UIColor blackColor];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD show];
+    
+    [self retrieveCurrentMediaItem:^(MPMediaItem *mediaItem, NSString *filePath){
+        PPSClient *client = [[PPSClient alloc] initWithBaseURL:url];
+        PPSSong *song = [[PPSSong alloc] initWithMedia:mediaItem filePath:filePath];
+        [client pushSongs:@[song] progress:^(float progress) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"progress = %f", progress);
+                [SVProgressHUD showProgress:progress];
+            });
+        } didPushSong:^(PPSSong *song) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"pushed %@", filePath);
+            });
+        } completion:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"pushed all request songs");
+                [SVProgressHUD showSuccessWithStatus:@"Pushed!"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [SVProgressHUD dismiss];
+                });
+            });
+        } failure:^(NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+                NSLog(@"push failed at some songs: %@", error);
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Push Song(s)" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            });
+        }];
+    } failure:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+            NSLog(@"song export failed at some songs.");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Export Song(s)" message:@"song export failed at some songs." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        });
+    }];
+}
+
 #pragma mark - Media Picker
 
 - (IBAction)showPicker:(id)sender
@@ -128,9 +177,8 @@ static NSString * const kPostURLKey = @"PostURL";
 
 #pragma mark -
 
-- (void)retrieveCurrentMediaItem
+- (void)retrieveCurrentMediaItem:(void (^)(MPMediaItem *mediaItem, NSString *filePath))completion failure:(void (^)())failure
 {
-    
     MPMediaItem *item = [MPMusicPlayerController iPodMusicPlayer].nowPlayingItem;
     NSLog(@"item = %@", item);
     
@@ -144,6 +192,11 @@ static NSString * const kPostURLKey = @"PostURL";
     NSLog(@"presetNames = %@", presetNames);
     
     AVAssetExportSession *session = [AVAssetExportSession exportSessionWithAsset:asset presetName:AVAssetExportPresetAppleM4A];
+    if (!session) {
+        failure();
+        return;
+    }
+    
     NSString *filename = [NSTemporaryDirectory() stringByAppendingPathComponent:@"export.m4a"];
     [[NSFileManager defaultManager] removeItemAtPath:filename error:nil];
     session.outputURL = [NSURL fileURLWithPath:filename];
@@ -151,64 +204,10 @@ static NSString * const kPostURLKey = @"PostURL";
     [session exportAsynchronouslyWithCompletionHandler:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"export session completed.");
-            [self pushFile:filename];
+            completion(item, filename);
         });
     }];
     NSLog(@"export session started: %@ (supportedFileTypes = %@)", session, session.supportedFileTypes);
-}
-
-- (void)pushFile:(NSString *)filename
-{
-    [SVProgressHUD appearance].backgroundColor = [UIColor blackColor];
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
-    [SVProgressHUD show];
-    
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:[self.urlField.text stringByAppendingString:@"/songs/add"] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:[NSData dataWithContentsOfFile:filename] name:@"file" fileName:filename.lastPathComponent mimeType:@"application/octet-stream"];
-    } error:nil];
-    
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
-    
-    NSProgress *progress = nil;
-    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        [self.progress removeObserver:self forKeyPath:@"fractionCompleted"];
-        
-        NSHTTPURLResponse *res = (NSHTTPURLResponse *)response;
-        NSInteger status = res.statusCode;
-        NSString *message = [NSString stringWithFormat:@"finish post with status = %ld. connectionError = %@", (long)status, error];
-        if (error || status != 200) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [SVProgressHUD dismiss];
-                NSLog(@"%@", message);
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Push Song(s)" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
-            });
-        } else {
-            NSLog(@"%@", response);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [SVProgressHUD showSuccessWithStatus:@"Pushed!"];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [SVProgressHUD dismiss];
-                });
-            });
-        }
-    }];
-    self.progress = progress;
-    [self.progress addObserver:self forKeyPath:@"fractionCompleted" options:0 context:nil];
-    [uploadTask resume];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([object isKindOfClass:[NSProgress class]]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"progress = %f", self.progress.fractionCompleted);
-            [SVProgressHUD showProgress:self.progress.fractionCompleted];
-        });
-        return;
-    }
-    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
 - (IBAction)showPPSSelectViewController:(id)sender
