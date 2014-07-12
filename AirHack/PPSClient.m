@@ -15,6 +15,7 @@
 static NSString * const kPost = @"POST";
 static NSString * const kSongsAdd = @"/songs/add";
 static NSString * const kSongsSkip = @"/songs/skip";
+static NSString * const kSongsIndexHTML = @"/songs/index.html";
 static NSString * const kParamFile = @"file";
 static NSString * const kParamTitle = @"title";
 static NSString * const kParamArtist = @"artist";
@@ -95,6 +96,11 @@ static NSString * const kContentTypeOctetStream = @"application/octet-stream";
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"skip failed: %@", error);
     }];
+}
+
+- (NSURL *)songsIndexHTMLURL
+{
+    return [NSURL URLWithString:kSongsIndexHTML relativeToURL:self.baseURL];
 }
 
 @end
