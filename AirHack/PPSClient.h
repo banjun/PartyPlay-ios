@@ -15,5 +15,6 @@
 
 - (instancetype)initWithBaseURL:(NSURL *)url;
 - (void)pushSongs:(NSArray *)songs progress:(void (^)(float progress))progress didPushSong:(void (^)(PPSSong *song))didPushSong completion:(void (^)())completion failure:(void (^)(NSError *error))failure; // Array<PPSSong>
+- (void)skip;
 
 @end

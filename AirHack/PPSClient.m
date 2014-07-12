@@ -14,6 +14,7 @@
 
 static NSString * const kPost = @"POST";
 static NSString * const kSongsAdd = @"/songs/add";
+static NSString * const kSongsSkip = @"/songs/skip";
 static NSString * const kParamFile = @"file";
 static NSString * const kParamTitle = @"title";
 static NSString * const kContentTypeOctetStream = @"application/octet-stream";
@@ -81,6 +82,17 @@ static NSString * const kContentTypeOctetStream = @"application/octet-stream";
         song.uploadProgress = progress;
         [uploadTask resume];
     }
+}
+
+- (void)skip
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
+    [manager POST:[self.baseURL.absoluteString stringByAppendingString:kSongsSkip] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"skip succeeded");
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"skip failed: %@", error);
+    }];
 }
 
 @end
