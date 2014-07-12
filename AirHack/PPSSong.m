@@ -34,6 +34,11 @@
     return [self.mediaItem valueForProperty:MPMediaItemPropertyTitle];
 }
 
+- (NSString *)artist
+{
+    return [self.mediaItem valueForProperty:MPMediaItemPropertyArtist];
+}
+
 - (void)setUploadProgress:(NSProgress *)uploadProgress
 {
     [_uploadProgress removeObserver:self forKeyPath:@"fractionCompleted"];

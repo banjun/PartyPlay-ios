@@ -17,6 +17,7 @@ static NSString * const kSongsAdd = @"/songs/add";
 static NSString * const kSongsSkip = @"/songs/skip";
 static NSString * const kParamFile = @"file";
 static NSString * const kParamTitle = @"title";
+static NSString * const kParamArtist = @"artist";
 static NSString * const kContentTypeOctetStream = @"application/octet-stream";
 
 
@@ -57,6 +58,7 @@ static NSString * const kContentTypeOctetStream = @"application/octet-stream";
                                             name:[key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             };
             addText(kParamTitle, song.title);
+            addText(kParamArtist, song.artist);
         } error:nil];
         
         NSProgress *progress = nil;

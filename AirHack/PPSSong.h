@@ -23,5 +23,6 @@
 @property (nonatomic) BOOL uploadCanceled;
 
 @property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly) NSString *artist;
 
 @end
