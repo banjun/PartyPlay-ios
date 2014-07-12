@@ -42,7 +42,7 @@
 - (UIImage *)artwork
 {
     MPMediaItemArtwork *artwork = [self.mediaItem valueForProperty:MPMediaItemPropertyArtwork];
-    return [artwork imageWithSize:CGSizeMake(128, 128)];
+    return [artwork imageWithSize:CGSizeMake(512, 512)];
 }
 
 - (NSData *)artworkJPEGData
