@@ -13,6 +13,7 @@
 #import "NSObject+BTKUtils.h"
 #import <SVProgressHUD.h>
 #import "PPSClient.h"
+#import <PromiseKit.h>
 
 
 @interface PostViewController () <MPMediaPickerControllerDelegate>
@@ -116,8 +117,18 @@ static NSString * const kPostURLKey = @"PostURL";
 - (void)mediaPicker:(MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection;
 {
     NSLog(@"picked %lu items", (unsigned long)mediaItemCollection.count);
-    [self exportMediaItemsAndPush:mediaItemCollection.items];
-    [self.picker dismissViewControllerAnimated:YES completion:^{ self.picker = nil; }];
+    
+    [self.picker dismissViewControllerAnimated:YES completion:^{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Push %lu Songs", (unsigned long)mediaItemCollection.count]
+                                                        message:nil delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Push", nil];
+        alert.promise.then(^(NSNumber *buttonIndex) {
+            if (buttonIndex.intValue != alert.cancelButtonIndex) {
+                [self exportMediaItemsAndPush:mediaItemCollection.items];
+            }
+        });
+        
+        self.picker = nil;
+    }];
 }
 
 - (void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker;
