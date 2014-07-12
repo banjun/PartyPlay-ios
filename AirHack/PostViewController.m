@@ -18,10 +18,12 @@
 
 @interface PostViewController () <MPMediaPickerControllerDelegate>
 
+@property (nonatomic) MPMusicPlayerController *iPodController;
+@property (nonatomic) MPMediaItem *nowPlayingItem;
+
 @property (nonatomic) UIButton *ppsSelectButton;
 @property (nonatomic) UIButton *postButton;
 @property (nonatomic) UITextField *urlField;
-@property (nonatomic) UITextField *titleField;
 
 @property (nonatomic) UIButton *pickButton;
 @property (nonatomic) MPMediaPickerController *picker;
@@ -53,10 +55,6 @@ static NSString * const kPostURLKey = @"PostURL";
         t.borderStyle = UITextBorderStyleRoundedRect;
     }];
     
-    self.titleField = [[[UITextField alloc] initWithFrame:CGRectZero] btk_scope:^(UITextField *t) {
-        t.enabled = NO;
-    }];
-    
     self.postButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [self.postButton setTitle:@"Push Current Song" forState:UIControlStateNormal];
     [self.postButton addTarget:self action:@selector(pushCurrentSong:) forControlEvents:UIControlEventTouchUpInside];
@@ -74,20 +72,22 @@ static NSString * const kPostURLKey = @"PostURL";
     
     [self loadDefaults];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_ppsSelectButton, _urlField, _titleField, _postButton, _pickButton, _skipButton);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_ppsSelectButton, _urlField, _postButton, _pickButton, _skipButton);
     for (UIView *v in views.allValues) {
         v.translatesAutoresizingMaskIntoConstraints = NO;
         [self.view addSubview:v];
     }
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_ppsSelectButton]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_urlField]-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_titleField]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_postButton]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_pickButton]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_skipButton]-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_urlField]-20-[_ppsSelectButton]-20-[_titleField]-20-[_postButton]-20-[_pickButton]-20-[_skipButton]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_urlField]-20-[_ppsSelectButton]-20-[_postButton]-20-[_pickButton]-40-[_skipButton]" options:0 metrics:nil views:views]];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+    self.iPodController = [[MPMusicPlayerController iPodMusicPlayer] btk_scope:^(MPMusicPlayerController *c) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nowPlayingChanged:) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:c];
+        [c beginGeneratingPlaybackNotifications];
+    }];
 }
 
 - (void)loadDefaults
@@ -103,12 +103,17 @@ static NSString * const kPostURLKey = @"PostURL";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void)applicationDidBecomeActive:(NSNotification *)notification
+#pragma mark - Music Player
+
+- (void)nowPlayingChanged:(NSNotification *)notification
 {
-    MPMediaItem *item = [MPMusicPlayerController iPodMusicPlayer].nowPlayingItem;
-    NSLog(@"item = %@", item);
-    
-    self.titleField.text = [item valueForProperty:MPMediaItemPropertyTitle];
+    self.nowPlayingItem = [MPMusicPlayerController iPodMusicPlayer].nowPlayingItem;
+    NSString *title = @"iPod Stopped";
+    if (self.nowPlayingItem) {
+        title = [NSString stringWithFormat:@"Push %@", [self.nowPlayingItem valueForProperty:MPMediaItemPropertyTitle]];
+    }
+    [self.postButton setTitle:title forState:UIControlStateNormal];
+    self.postButton.enabled = (self.nowPlayingItem != nil);
 }
 
 #pragma mark - Media Picker
@@ -280,12 +285,11 @@ static NSString * const kPostURLKey = @"PostURL";
 
 - (IBAction)pushCurrentSong:(id)sender
 {
-    MPMediaItem *item = [MPMusicPlayerController iPodMusicPlayer].nowPlayingItem;
-    if (!item) {
+    if (!self.nowPlayingItem) {
         NSLog(@"current item not found");
         return;
     }
-    [self exportMediaItemsAndPush:@[item]];
+    [self exportMediaItemsAndPush:@[self.nowPlayingItem]];
 }
 
 - (IBAction)showPPSSelectViewController:(id)sender
