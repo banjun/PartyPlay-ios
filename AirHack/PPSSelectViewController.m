@@ -26,6 +26,7 @@ static NSString * const kCellID = @"Cell";
 {
     self = [super initWithStyle:style];
     if (self) {
+        self.title = NSLocalizedString(@"Select Server", @"");
         self.view.backgroundColor = [UIColor whiteColor];
         
         __weak typeof(self) weakSelf = self;
@@ -64,6 +65,10 @@ static NSString * const kCellID = @"Cell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.bonjourFinder.services.count;
+}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;    // fixed font style. use custom view (UILabel) if you want something different
+{
+    return NSLocalizedString(@"Party Play Servers on near network will be listed...", @"");
 }
 
 - (NSURL *)urlForService:(NSNetService *)service

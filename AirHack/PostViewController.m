@@ -32,6 +32,7 @@ static NSString * const kPostURLKey = @"PostURL";
 {
     [super loadView];
     
+    self.title = NSLocalizedString(@"Party Play", @"");
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.ppsSelectButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] btk_scope:^(UIButton *b) {
