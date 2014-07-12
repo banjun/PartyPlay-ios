@@ -7,6 +7,7 @@
 //
 
 #import "PostViewController.h"
+#import "BonjourFinder.h"
 @import MediaPlayer;
 @import AVFoundation;
 
@@ -16,6 +17,8 @@
 @property (nonatomic) UIButton *postButton;
 @property (nonatomic) UITextField *urlField;
 @property (nonatomic) UITextField *titleField;
+
+@property (nonatomic) BonjourFinder *bonjourFinder;
 
 @end
 
@@ -28,6 +31,14 @@ static NSString * const kPostURLKey = @"postURL";
 - (void)loadView
 {
     [super loadView];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    self.bonjourFinder = [[BonjourFinder alloc] init];
+    self.bonjourFinder.onServicesChange = ^{
+        NSLog(@"services = %@", weakSelf.bonjourFinder.services);
+    };
+    [self.bonjourFinder searchForServicesOfType:@"_partyplay._tcp"];
     
     self.urlField = [[UITextField alloc] initWithFrame:CGRectZero];
     self.urlField.placeholder = @"http://mzp-tv.local.:3000/request";
