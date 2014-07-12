@@ -24,5 +24,7 @@
 
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) NSString *artist;
+@property (nonatomic, readonly) UIImage *artwork;
+@property (nonatomic, readonly) NSData *artworkJPEGData;
 
 @end

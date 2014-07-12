@@ -39,6 +39,17 @@
     return [self.mediaItem valueForProperty:MPMediaItemPropertyArtist];
 }
 
+- (UIImage *)artwork
+{
+    MPMediaItemArtwork *artwork = [self.mediaItem valueForProperty:MPMediaItemPropertyArtwork];
+    return [artwork imageWithSize:CGSizeMake(128, 128)];
+}
+
+- (NSData *)artworkJPEGData
+{
+    return UIImageJPEGRepresentation(self.artwork, 0.8);
+}
+
 - (void)setUploadProgress:(NSProgress *)uploadProgress
 {
     [_uploadProgress removeObserver:self forKeyPath:@"fractionCompleted"];

@@ -19,7 +19,9 @@ static NSString * const kSongsIndexHTML = @"/songs/index.html";
 static NSString * const kParamFile = @"file";
 static NSString * const kParamTitle = @"title";
 static NSString * const kParamArtist = @"artist";
+static NSString * const kParamArtwork = @"artwork";
 static NSString * const kContentTypeOctetStream = @"application/octet-stream";
+static NSString * const kContentTypeJpeg = @"image/jpeg";
 
 
 @interface PPSClient ()
@@ -60,6 +62,7 @@ static NSString * const kContentTypeOctetStream = @"application/octet-stream";
             };
             addText(kParamTitle, song.title);
             addText(kParamArtist, song.artist);
+            [formData appendPartWithFileData:song.artworkJPEGData name:kParamArtwork fileName:kParamArtwork mimeType:kContentTypeJpeg];
         } error:nil];
         
         NSProgress *progress = nil;
