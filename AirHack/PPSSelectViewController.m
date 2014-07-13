@@ -12,7 +12,9 @@
 
 @interface PPSSelectViewController ()
 
+@property (nonatomic) NSURL *initialBaseURL;
 @property (nonatomic) BonjourFinder *bonjourFinder;
+@property (nonatomic) NSNetService *selectedService;
 
 @end
 
@@ -22,14 +24,15 @@ static NSString * const kCellID = @"Cell";
 
 @implementation PPSSelectViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (instancetype)initWithCurrentBaseURL:(NSURL *)currentBaseURL
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        self.title = NSLocalizedString(@"Select Server", @"");
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+        self.title = NSLocalizedString(@"Settings", @"");
         self.view.backgroundColor = [UIColor whiteColor];
         
         __weak typeof(self) weakSelf = self;
+        
+        self.initialBaseURL = currentBaseURL;
         
         self.bonjourFinder = [[BonjourFinder alloc] init];
         self.bonjourFinder.onServicesChange = ^{
@@ -44,6 +47,12 @@ static NSString * const kCellID = @"Cell";
     [super viewDidLoad];
     
     self.tableView.delegate = self;
+    
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", @"") style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)] btk_scope:^(UIBarButtonItem *b) {
+    }];
+    
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)] btk_scope:^(UIBarButtonItem *b) {
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -58,6 +67,19 @@ static NSString * const kCellID = @"Cell";
     [super viewDidDisappear:animated];
     
     [self.bonjourFinder stop];
+}
+
+- (IBAction)done:(id)sender
+{
+    if (self.selectedService && self.didSelect) {
+        self.didSelect([self urlForService:self.selectedService]);
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)cancel:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -94,6 +116,11 @@ static NSString * const kCellID = @"Cell";
     cell.detailTextLabel.enabled = resolved;
     cell.selectionStyle = (resolved ? UITableViewCellSelectionStyleDefault : UITableViewCellSelectionStyleNone);
     
+    if (!self.selectedService && [self.initialBaseURL.absoluteString isEqualToString:[self urlForService:service].absoluteString]) {
+        self.selectedService = service;
+    }
+    cell.accessoryType = (self.selectedService == service ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+    
     return cell;
 }
 
@@ -103,12 +130,8 @@ static NSString * const kCellID = @"Cell";
     
     NSNetService *service = self.bonjourFinder.services[indexPath.row];
     if (service.hostName.length <= 0) return;
-    
-    if (self.didSelect) {
-        self.didSelect([self urlForService:service]);
-    }
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    self.selectedService = service;
+    [tableView reloadData];
 }
 
 @end

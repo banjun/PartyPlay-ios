@@ -10,6 +10,8 @@
 
 @interface PPSSelectViewController : UITableViewController
 
+- (instancetype)initWithCurrentBaseURL:(NSURL *)currentBaseURL;
+
 @property (nonatomic, copy) void (^didSelect)(NSURL *rootURL);
 
 @end

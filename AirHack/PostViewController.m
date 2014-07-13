@@ -22,7 +22,6 @@
 @property (nonatomic) MPMusicPlayerController *iPodController;
 @property (nonatomic) MPMediaItem *nowPlayingItem;
 
-@property (nonatomic) UIButton *ppsSelectButton;
 @property (nonatomic) UIButton *postButton;
 @property (nonatomic) UITextField *urlField;
 
@@ -44,11 +43,6 @@ static NSString * const kPostURLKey = @"PostURL";
     self.title = NSLocalizedString(@"Party Play", @"");
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.ppsSelectButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] btk_scope:^(UIButton *b) {
-        [b setTitle:@"Select Party Play Server" forState:UIControlStateNormal];
-        [b addTarget:self action:@selector(showPPSSelectViewController:) forControlEvents:UIControlEventTouchUpInside];
-    }];
-    
     self.urlField = [[[UITextField alloc] initWithFrame:CGRectZero] btk_scope:^(UITextField *t) {
         t.placeholder = @"http://mzp-tv.local.:3000/";
         t.borderStyle = UITextBorderStyleRoundedRect;
@@ -65,20 +59,23 @@ static NSString * const kPostURLKey = @"PostURL";
     
     [self loadDefaults];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_ppsSelectButton, _urlField, _postButton, _pickButton);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_urlField, _postButton, _pickButton);
     for (UIView *v in views.allValues) {
         v.translatesAutoresizingMaskIntoConstraints = NO;
         [self.view addSubview:v];
     }
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_ppsSelectButton]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_urlField]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_postButton]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_pickButton]-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_urlField]-20-[_ppsSelectButton]-20-[_postButton]-20-[_pickButton]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_urlField]-20-[_postButton]-20-[_pickButton]" options:0 metrics:nil views:views]];
     
     self.iPodController = [[MPMusicPlayerController iPodMusicPlayer] btk_scope:^(MPMusicPlayerController *c) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nowPlayingChanged:) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:c];
         [c beginGeneratingPlaybackNotifications];
+    }];
+    
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Settings", @"") style:UIBarButtonItemStylePlain target:self action:@selector(showSettings:)] btk_scope:^(UIBarButtonItem *b) {
+        b.tintColor = [UIColor grayColor];
     }];
     
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Now Playing", @"") style:UIBarButtonItemStylePlain target:self action:@selector(showNowPlaying:)] btk_scope:^(UIBarButtonItem *b) {
@@ -288,19 +285,6 @@ static NSString * const kPostURLKey = @"PostURL";
     [self exportMediaItemsAndPush:@[self.nowPlayingItem]];
 }
 
-- (IBAction)showPPSSelectViewController:(id)sender
-{
-    __weak typeof(self) weakSelf = self;
-    
-    PPSSelectViewController *vc = [[PPSSelectViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    vc.didSelect = ^(NSURL *rootURL){
-        NSLog(@"rootURL = %@", rootURL);
-        weakSelf.urlField.text = rootURL.absoluteString;
-        [weakSelf saveDefaults];
-    };
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 - (PPSClient *)ppsClient
 {
     NSURL *url = [NSURL URLWithString:self.urlField.text];
@@ -311,6 +295,21 @@ static NSString * const kPostURLKey = @"PostURL";
     }
     
     return [[PPSClient alloc] initWithBaseURL:url];
+}
+
+- (IBAction)showSettings:(id)sender
+{
+    __weak typeof(self) weakSelf = self;
+    
+    PPSSelectViewController *vc = [[PPSSelectViewController alloc] initWithCurrentBaseURL:[NSURL URLWithString:self.urlField.text]];
+    vc.didSelect = ^(NSURL *rootURL){
+        NSLog(@"rootURL = %@", rootURL);
+        weakSelf.urlField.text = rootURL.absoluteString;
+        [weakSelf saveDefaults];
+    };
+    
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nc animated:YES completion:nil];
 }
 
 - (IBAction)showNowPlaying:(id)sender
