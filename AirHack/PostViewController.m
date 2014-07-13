@@ -21,10 +21,10 @@
 
 @property (nonatomic) MPMusicPlayerController *iPodController;
 @property (nonatomic) MPMediaItem *nowPlayingItem;
+@property (nonatomic) NSString *serverURLString;
 
+@property (nonatomic) UILabel *serverLabel;
 @property (nonatomic) UIButton *postButton;
-@property (nonatomic) UITextField *urlField;
-
 @property (nonatomic) UIButton *pickButton;
 @property (nonatomic) MPMediaPickerController *picker;
 
@@ -43,9 +43,7 @@ static NSString * const kPostURLKey = @"PostURL";
     self.title = NSLocalizedString(@"Party Play", @"");
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.urlField = [[[UITextField alloc] initWithFrame:CGRectZero] btk_scope:^(UITextField *t) {
-        t.placeholder = @"http://mzp-tv.local.:3000/";
-        t.borderStyle = UITextBorderStyleRoundedRect;
+    self.serverLabel = [[[UILabel alloc] initWithFrame:CGRectZero] btk_scope:^(UILabel *l) {
     }];
     
     self.postButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -59,15 +57,15 @@ static NSString * const kPostURLKey = @"PostURL";
     
     [self loadDefaults];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_urlField, _postButton, _pickButton);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_serverLabel, _postButton, _pickButton);
     for (UIView *v in views.allValues) {
         v.translatesAutoresizingMaskIntoConstraints = NO;
         [self.view addSubview:v];
     }
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_urlField]-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_serverLabel]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_postButton]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_pickButton]-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_urlField]-20-[_postButton]-20-[_pickButton]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_serverLabel]-20-[_postButton]-20-[_pickButton]" options:0 metrics:nil views:views]];
     
     self.iPodController = [[MPMusicPlayerController iPodMusicPlayer] btk_scope:^(MPMusicPlayerController *c) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nowPlayingChanged:) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:c];
@@ -85,15 +83,21 @@ static NSString * const kPostURLKey = @"PostURL";
 
 - (void)loadDefaults
 {
-    self.urlField.text = [[NSUserDefaults standardUserDefaults] stringForKey:kPostURLKey];
+    self.serverURLString = [[NSUserDefaults standardUserDefaults] stringForKey:kPostURLKey];
 }
 
 - (void)saveDefaults
 {
-    if (self.urlField.text.length > 0) {
-        [[NSUserDefaults standardUserDefaults] setObject:self.urlField.text forKey:kPostURLKey];
+    if (self.serverURLString.length > 0) {
+        [[NSUserDefaults standardUserDefaults] setObject:self.serverURLString forKey:kPostURLKey];
     }
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)setServerURLString:(NSString *)serverURLString
+{
+    _serverURLString = serverURLString;
+    self.serverLabel.text = (serverURLString.length > 0 ? serverURLString : NSLocalizedString(@"Settings Required", @""));
 }
 
 #pragma mark - Music Player
@@ -223,7 +227,7 @@ static NSString * const kPostURLKey = @"PostURL";
 
 - (void)pushSongs:(NSArray *)songs
 {
-    NSURL *url = [NSURL URLWithString:self.urlField.text];
+    NSURL *url = [NSURL URLWithString:self.serverURLString];
     if (!url) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"invalid url" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
         [alert show];
@@ -287,7 +291,7 @@ static NSString * const kPostURLKey = @"PostURL";
 
 - (PPSClient *)ppsClient
 {
-    NSURL *url = [NSURL URLWithString:self.urlField.text];
+    NSURL *url = [NSURL URLWithString:self.serverURLString];
     if (!url) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"invalid url" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
         [alert show];
@@ -301,10 +305,10 @@ static NSString * const kPostURLKey = @"PostURL";
 {
     __weak typeof(self) weakSelf = self;
     
-    PPSSelectViewController *vc = [[PPSSelectViewController alloc] initWithCurrentBaseURL:[NSURL URLWithString:self.urlField.text]];
+    PPSSelectViewController *vc = [[PPSSelectViewController alloc] initWithCurrentBaseURL:[NSURL URLWithString:self.serverURLString]];
     vc.didSelect = ^(NSURL *baseURL){
         NSLog(@"baseURL = %@", baseURL);
-        weakSelf.urlField.text = baseURL.absoluteString;
+        weakSelf.serverURLString = baseURL.absoluteString;
         [weakSelf saveDefaults];
     };
     
