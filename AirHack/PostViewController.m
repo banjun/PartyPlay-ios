@@ -72,6 +72,8 @@ static NSString * const kPostURLKey = @"PostURL";
     }];
     
     self.serverLabel = [[[UILabel alloc] initWithFrame:CGRectZero] btk_scope:^(UILabel *l) {
+        l.font = [UIFont systemFontOfSize:14.0];
+        l.textColor = [UIColor colorWithWhite:0 alpha:0.9];
     }];
     
     self.iPodArtworkView = [[[UIImageView alloc] initWithImage:nil] btk_scope:^(UIImageView *v) {
@@ -82,7 +84,7 @@ static NSString * const kPostURLKey = @"PostURL";
     CenteringView *iPodArtworkCenteringView = [[CenteringView alloc] initWithFrame:CGRectZero contentView:self.iPodArtworkView];
     
     void (^applyButtonAppearance)(UIButton *) = ^(UIButton *b) {
-        b.backgroundColor = [UIColor colorWithHue:215/360.0 saturation:0.8 brightness:0.8 alpha:1.0];
+        b.backgroundColor = [UIColor colorWithHue:215/360.0 saturation:0.8 brightness:0.8 alpha:0.9];
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [b setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
         b.titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
