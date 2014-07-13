@@ -82,8 +82,8 @@ static NSString * const kPostURLKey = @"PostURL";
     CenteringView *iPodArtworkCenteringView = [[CenteringView alloc] initWithFrame:CGRectZero contentView:self.iPodArtworkView];
     
     self.postButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.postButton setTitle:@"Push Current Song" forState:UIControlStateNormal];
     [self.postButton addTarget:self action:@selector(pushCurrentSong:) forControlEvents:UIControlEventTouchUpInside];
+    [self iPodNowPlayingChanged:nil]; // update title and enabled
     
     self.pickButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] btk_scope:^(UIButton *b) {
         [b setTitle:NSLocalizedString(@"Pick iPod Songs", @"") forState:UIControlStateNormal];
@@ -192,6 +192,8 @@ static NSString * const kPostURLKey = @"PostURL";
     if (self.nowPlayingItem) {
         title = [NSString stringWithFormat:@"Push %@", [self.nowPlayingItem valueForProperty:MPMediaItemPropertyTitle]];
         self.iPodArtworkView.image = [[self.nowPlayingItem valueForProperty:MPMediaItemPropertyArtwork] imageWithSize:CGSizeMake(256, 256)];
+    } else {
+        self.iPodArtworkView.image = nil;
     }
     [self.postButton setTitle:title forState:UIControlStateNormal];
     self.postButton.enabled = (self.nowPlayingItem != nil);
