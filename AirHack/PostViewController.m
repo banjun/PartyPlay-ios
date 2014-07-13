@@ -23,6 +23,8 @@
 @property (nonatomic) MPMediaItem *nowPlayingItem;
 @property (nonatomic) NSString *serverURLString;
 
+@property (nonatomic) PPSClient *client;
+
 @property (nonatomic) UILabel *serverLabel;
 @property (nonatomic) UIButton *postButton;
 @property (nonatomic) UIButton *pickButton;
@@ -98,6 +100,14 @@ static NSString * const kPostURLKey = @"PostURL";
 {
     _serverURLString = serverURLString;
     self.serverLabel.text = (serverURLString.length > 0 ? serverURLString : NSLocalizedString(@"Settings Required", @""));
+    [self setupPPSClient];
+}
+
+- (PPSClient *)setupPPSClient
+{
+    NSURL *url = [NSURL URLWithString:self.serverURLString];
+    self.client = (url ? [[PPSClient alloc] initWithBaseURL:url] : nil);
+    return self.client;
 }
 
 #pragma mark - Music Player
@@ -117,6 +127,11 @@ static NSString * const kPostURLKey = @"PostURL";
 
 - (IBAction)showPicker:(id)sender
 {
+    if (!self.client) {
+        [self showInvalidURLAlert];
+        return;
+    }
+    
     self.picker = [[[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAny] btk_scope:^(MPMediaPickerController *p) {
         p.delegate = self;
         p.allowsPickingMultipleItems = YES;
@@ -151,6 +166,11 @@ static NSString * const kPostURLKey = @"PostURL";
 
 - (void)exportMediaItems:(NSArray *)mediaItems completion:(void (^)(NSArray *songs))completion failure:(void (^)(void))failure
 {
+    if (!self.client) {
+        [self showInvalidURLAlert];
+        return;
+    }
+    
     [SVProgressHUD appearance].backgroundColor = [UIColor blackColor];
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
     [SVProgressHUD show];
@@ -227,10 +247,8 @@ static NSString * const kPostURLKey = @"PostURL";
 
 - (void)pushSongs:(NSArray *)songs
 {
-    NSURL *url = [NSURL URLWithString:self.serverURLString];
-    if (!url) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"invalid url" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-        [alert show];
+    if (!self.client) {
+        [self showInvalidURLAlert];
         return;
     }
     
@@ -252,8 +270,7 @@ static NSString * const kPostURLKey = @"PostURL";
         };
     }];
     
-    PPSClient *client = [[PPSClient alloc] initWithBaseURL:url];
-    [client pushSongs:songs progress:^(float progress) {
+    [self.client pushSongs:songs progress:^(float progress) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"progress = %f", progress);
             [SVProgressHUD showProgress:progress];
@@ -289,18 +306,6 @@ static NSString * const kPostURLKey = @"PostURL";
     [self exportMediaItemsAndPush:@[self.nowPlayingItem]];
 }
 
-- (PPSClient *)ppsClient
-{
-    NSURL *url = [NSURL URLWithString:self.serverURLString];
-    if (!url) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"invalid url" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-        [alert show];
-        return nil;
-    }
-    
-    return [[PPSClient alloc] initWithBaseURL:url];
-}
-
 - (IBAction)showSettings:(id)sender
 {
     __weak typeof(self) weakSelf = self;
@@ -316,12 +321,20 @@ static NSString * const kPostURLKey = @"PostURL";
     [self presentViewController:nc animated:YES completion:nil];
 }
 
+- (void)showInvalidURLAlert
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"Cannot connect to the server.", @"") delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+    [alert show];
+}
+
 - (IBAction)showNowPlaying:(id)sender
 {
-    PPSClient *client = [self ppsClient];
-    if (!client) return;
+    if (!self.client) {
+        [self showInvalidURLAlert];
+        return;
+    }
     
-    PlayingsViewController *vc = [[PlayingsViewController alloc] initWithClient:client];
+    PlayingsViewController *vc = [[PlayingsViewController alloc] initWithClient:self.client];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
