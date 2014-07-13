@@ -7,6 +7,7 @@
 //
 
 #import "Appearance.h"
+#import <SVProgressHUD.h>
 
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
 #define HSB(h, s, b) [UIColor colorWithHue:h/360.0 saturation:s/100.0 brightness:b/100.0 alpha:1.0]
@@ -34,6 +35,8 @@
         [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: self.honokaOrangeBlack};
         
         [UITabBar appearance].tintColor = self.honokaOrange;
+        
+        [SVProgressHUD appearance].tintColor = self.honokaOrange;
     }
     return self;
 }
