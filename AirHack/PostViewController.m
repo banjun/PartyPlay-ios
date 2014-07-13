@@ -17,6 +17,7 @@
 #import <PromiseKit.h>
 #import "PlayingsViewController.h"
 #import "UIImage+ImageEffects.h"
+#import <Haneke.h>
 
 
 @interface PostViewController () <MPMediaPickerControllerDelegate>
@@ -32,13 +33,6 @@
 @property (nonatomic) UIButton *pickButton;
 @property (nonatomic) MPMediaPickerController *picker;
 @property (nonatomic) UIImageView *nowPlayingImageView;
-
-@end
-
-
-@interface UIImage (ResizedImage)
-
-- (UIImage *)resizedDisplayImage:(CGSize)ptSize;
 
 @end
 
@@ -59,6 +53,17 @@ static NSString * const kPostURLKey = @"PostURL";
         v.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         v.contentMode = UIViewContentModeScaleAspectFill;
         v.frame = self.view.bounds;
+        v.alpha = 0.5;
+        v.hnk_cacheFormat = [[[HNKCacheFormat alloc] initWithName:@"FullScreenBlur"] btk_scope:^(HNKCacheFormat *f) {
+            f.size = [UIScreen mainScreen].bounds.size;
+            f.scaleMode = HNKScaleModeAspectFill;
+            f.compressionQuality = 0.5;
+            f.diskCapacity = 1 * 1024 * 1024; // 1MB
+            f.preloadPolicy = HNKPreloadPolicyNone;
+            f.postResizeBlock = ^(NSString *key, UIImage *image) {
+                return [image applyBlurWithRadius:15 tintColor:nil saturationDeltaFactor:2.0 maskImage:nil];
+            };
+        }];
         [self.view addSubview:v];
     }];
     
@@ -147,11 +152,7 @@ static NSString * const kPostURLKey = @"PostURL";
 - (void)ppsClientNowPlayingChanged:(NSNotification *)notification
 {
     NSLog(@"nowPlaying = %@", self.client.nowPlaying);
-//    self.nowPlayingImageView.image = nil;
-    [self.client.nowPlaying.currentSong loadArtwork:^(UIImage *artwork) {
-        self.nowPlayingImageView.image = [[artwork resizedDisplayImage:self.nowPlayingImageView.bounds.size] applyBlurWithRadius:15 tintColor:nil saturationDeltaFactor:2.0 maskImage:nil];
-        self.nowPlayingImageView.alpha = 0.5;
-    }];
+    [self.nowPlayingImageView hnk_setImageFromURL:self.client.nowPlaying.currentSong.artworkURL];
 }
 
 #pragma mark - Music Player
@@ -380,28 +381,6 @@ static NSString * const kPostURLKey = @"PostURL";
     
     PlayingsViewController *vc = [[PlayingsViewController alloc] initWithClient:self.client];
     [self.navigationController pushViewController:vc animated:YES];
-}
-
-@end
-
-
-
-@implementation UIImage (ResizedImage)
-
-- (UIImage *)resizedDisplayImage:(CGSize)ptSize;
-{
-    const CGFloat screenScale = [UIScreen mainScreen].scale;
-    const CGFloat aspectFitScale = MIN(ptSize.width * screenScale / self.size.width,
-                                       ptSize.height * screenScale / self.size.height);
-    if (aspectFitScale >= 1.0) return self;
-    
-    const CGSize size = CGSizeMake(self.size.width * aspectFitScale,
-                                   self.size.height * aspectFitScale);
-    UIGraphicsBeginImageContext(size);
-    [self drawInRect:CGRectMake(0, 0, size.width, size.height) blendMode:kCGBlendModeCopy alpha:1.0];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
 }
 
 @end

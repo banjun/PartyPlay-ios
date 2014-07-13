@@ -32,17 +32,4 @@ static NSString * const kKeyArtwork = @"artwork";
     return [NSString stringWithFormat:@"%@ (%@)", [super description], self.title];
 }
 
-- (void)loadArtwork:(void (^)(UIImage *artwork))completion
-{
-    if (!self.artworkURL) {
-        completion(nil);
-        return;
-    }
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSData *data = [NSData dataWithContentsOfURL:self.artworkURL];
-        completion([UIImage imageWithData:data]);
-    });
-}
-
 @end

@@ -15,6 +15,5 @@
 @property (nonatomic) NSString *title;
 @property (nonatomic) NSString *artist;
 @property (nonatomic) NSURL *artworkURL;
-- (void)loadArtwork:(void (^)(UIImage *artwork))completion;
 
 @end
