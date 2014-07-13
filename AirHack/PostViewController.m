@@ -14,7 +14,7 @@
 #import <SVProgressHUD.h>
 #import "PPSClient.h"
 #import <PromiseKit.h>
-#import "WebViewController.h"
+#import "PlayingsViewController.h"
 
 
 @interface PostViewController () <MPMediaPickerControllerDelegate>
@@ -30,7 +30,6 @@
 @property (nonatomic) MPMediaPickerController *picker;
 
 @property (nonatomic) UIButton *songsViewButton;
-@property (nonatomic) UIButton *skipButton;
 
 @end
 
@@ -71,15 +70,9 @@ static NSString * const kPostURLKey = @"PostURL";
         [b addTarget:self action:@selector(viewSongsIndex:) forControlEvents:UIControlEventTouchUpInside];
     }];
     
-    self.skipButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] btk_scope:^(UIButton *b) {
-        [b setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        [b setTitle:NSLocalizedString(@"Skip", @"") forState:UIControlStateNormal];
-        [b addTarget:self action:@selector(skip:) forControlEvents:UIControlEventTouchUpInside];
-    }];
-    
     [self loadDefaults];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_ppsSelectButton, _urlField, _postButton, _pickButton, _songsViewButton, _skipButton);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_ppsSelectButton, _urlField, _postButton, _pickButton, _songsViewButton);
     for (UIView *v in views.allValues) {
         v.translatesAutoresizingMaskIntoConstraints = NO;
         [self.view addSubview:v];
@@ -89,8 +82,7 @@ static NSString * const kPostURLKey = @"PostURL";
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_postButton]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_pickButton]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_songsViewButton]-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_skipButton]-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_urlField]-20-[_ppsSelectButton]-20-[_postButton]-20-[_pickButton]-20-[_songsViewButton]-40-[_skipButton]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_urlField]-20-[_ppsSelectButton]-20-[_postButton]-20-[_pickButton]-20-[_songsViewButton]" options:0 metrics:nil views:views]];
     
     self.iPodController = [[MPMusicPlayerController iPodMusicPlayer] btk_scope:^(MPMusicPlayerController *c) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nowPlayingChanged:) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:c];
@@ -327,13 +319,11 @@ static NSString * const kPostURLKey = @"PostURL";
 
 - (IBAction)viewSongsIndex:(id)sender
 {
-    WebViewController *vc = [[WebViewController alloc] initWithURL:[self ppsClient].songsIndexHTMLURL];
+    PPSClient *client = [self ppsClient];
+    if (!client) return;
+    
+    PlayingsViewController *vc = [[PlayingsViewController alloc] initWithClient:client];
     [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (IBAction)skip:(id)sender
-{
-    [[self ppsClient] skip];
 }
 
 @end
