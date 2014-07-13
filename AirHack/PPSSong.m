@@ -42,7 +42,21 @@
 - (UIImage *)artwork
 {
     MPMediaItemArtwork *artwork = [self.mediaItem valueForProperty:MPMediaItemPropertyArtwork];
-    return [artwork imageWithSize:CGSizeMake(512, 512)];
+    UIImage *thumbnail = [artwork imageWithSize:CGSizeMake(512, 512)];
+    if (thumbnail) {
+        return thumbnail;
+    }
+    return [self stubArtworkImage];
+}
+
+- (UIImage *)stubArtworkImage
+{
+    UIGraphicsBeginImageContext(CGSizeMake(512, 512));
+    [[UIColor blackColor] setFill];
+    UIRectFill(CGRectMake(0, 0, 512, 512));
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 - (NSData *)artworkJPEGData
