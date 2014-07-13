@@ -14,6 +14,8 @@
 		EA716A0619721A1200834939 /* PlayingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA716A0519721A1200834939 /* PlayingsViewController.m */; };
 		EA7F23961972C1AF00998614 /* CenteringView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F23951972C1AF00998614 /* CenteringView.m */; };
 		EA7F23991972D62700998614 /* Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F23981972D62700998614 /* Appearance.m */; };
+		EA7F23A01972E04300998614 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = EA7F239E1972E04300998614 /* iTunesArtwork */; };
+		EA7F23A11972E04300998614 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = EA7F239F1972E04300998614 /* iTunesArtwork@2x */; };
 		EA9C68F8196ADAC1005B52B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68F7196ADAC1005B52B2 /* Foundation.framework */; };
 		EA9C68FA196ADAC1005B52B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68F9196ADAC1005B52B2 /* CoreGraphics.framework */; };
 		EA9C68FC196ADAC1005B52B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68FB196ADAC1005B52B2 /* UIKit.framework */; };
@@ -62,6 +64,8 @@
 		EA7F23951972C1AF00998614 /* CenteringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenteringView.m; sourceTree = "<group>"; };
 		EA7F23971972D62700998614 /* Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appearance.h; sourceTree = "<group>"; };
 		EA7F23981972D62700998614 /* Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appearance.m; sourceTree = "<group>"; };
+		EA7F239E1972E04300998614 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = "partyplay-icons/iTunesArtwork"; sourceTree = SOURCE_ROOT; };
+		EA7F239F1972E04300998614 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iTunesArtwork@2x"; path = "partyplay-icons/iTunesArtwork@2x"; sourceTree = SOURCE_ROOT; };
 		EA9C68F4196ADAC1005B52B2 /* AirHack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirHack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA9C68F7196ADAC1005B52B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA9C68F9196ADAC1005B52B2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -192,6 +196,8 @@
 			children = (
 				EA9C68FF196ADAC1005B52B2 /* AirHack-Info.plist */,
 				EA9C6900196ADAC1005B52B2 /* InfoPlist.strings */,
+				EA7F239E1972E04300998614 /* iTunesArtwork */,
+				EA7F239F1972E04300998614 /* iTunesArtwork@2x */,
 				EA9C6903196ADAC1005B52B2 /* main.m */,
 				EA9C6905196ADAC1005B52B2 /* AirHack-Prefix.pch */,
 			);
@@ -317,7 +323,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA7F23A11972E04300998614 /* iTunesArtwork@2x in Resources */,
 				EA9C6902196ADAC1005B52B2 /* InfoPlist.strings in Resources */,
+				EA7F23A01972E04300998614 /* iTunesArtwork in Resources */,
 				EA9C690A196ADAC1005B52B2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
