@@ -8,6 +8,7 @@
 
 #import "PlayingsViewController.h"
 #import "NSObject+BTKUtils.h"
+#import <PromiseKit.h>
 
 @interface PlayingsViewController ()
 
@@ -29,9 +30,19 @@
 {
     [super loadView];
     
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Skip", @"") style:UIBarButtonItemStylePlain target:self.client action:@selector(skip)] btk_scope:^(UIBarButtonItem *b) {
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Skip", @"") style:UIBarButtonItemStylePlain target:self action:@selector(skip:)] btk_scope:^(UIBarButtonItem *b) {
         b.tintColor = [UIColor redColor];
     }];
+}
+
+- (IBAction)skip:(id)sender
+{
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"Cancel", @"") destructiveButtonTitle:NSLocalizedString(@"Skip", @"") otherButtonTitles:nil];
+    [sheet promiseInView:self.webView].then(^(NSNumber *index){
+        if (index.intValue == sheet.destructiveButtonIndex) {
+            [self.client skip];
+        }
+    });
 }
 
 @end

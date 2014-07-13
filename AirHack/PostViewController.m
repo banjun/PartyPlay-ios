@@ -29,8 +29,6 @@
 @property (nonatomic) UIButton *pickButton;
 @property (nonatomic) MPMediaPickerController *picker;
 
-@property (nonatomic) UIButton *songsViewButton;
-
 @end
 
 
@@ -65,14 +63,9 @@ static NSString * const kPostURLKey = @"PostURL";
         [b addTarget:self action:@selector(showPicker:) forControlEvents:UIControlEventTouchUpInside];
     }];
     
-    self.songsViewButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] btk_scope:^(UIButton *b) {
-        [b setTitle:NSLocalizedString(@"View Current Playing", @"") forState:UIControlStateNormal];
-        [b addTarget:self action:@selector(viewSongsIndex:) forControlEvents:UIControlEventTouchUpInside];
-    }];
-    
     [self loadDefaults];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_ppsSelectButton, _urlField, _postButton, _pickButton, _songsViewButton);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_ppsSelectButton, _urlField, _postButton, _pickButton);
     for (UIView *v in views.allValues) {
         v.translatesAutoresizingMaskIntoConstraints = NO;
         [self.view addSubview:v];
@@ -81,12 +74,15 @@ static NSString * const kPostURLKey = @"PostURL";
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_urlField]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_postButton]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_pickButton]-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_songsViewButton]-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_urlField]-20-[_ppsSelectButton]-20-[_postButton]-20-[_pickButton]-20-[_songsViewButton]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_urlField]-20-[_ppsSelectButton]-20-[_postButton]-20-[_pickButton]" options:0 metrics:nil views:views]];
     
     self.iPodController = [[MPMusicPlayerController iPodMusicPlayer] btk_scope:^(MPMusicPlayerController *c) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nowPlayingChanged:) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:c];
         [c beginGeneratingPlaybackNotifications];
+    }];
+    
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Now Playing", @"") style:UIBarButtonItemStylePlain target:self action:@selector(showNowPlaying:)] btk_scope:^(UIBarButtonItem *b) {
+        b.tintColor = [UIColor colorWithRed:0 green:160/255.0 blue:0 alpha:1.0];
     }];
 }
 
@@ -317,7 +313,7 @@ static NSString * const kPostURLKey = @"PostURL";
     return [[PPSClient alloc] initWithBaseURL:url];
 }
 
-- (IBAction)viewSongsIndex:(id)sender
+- (IBAction)showNowPlaying:(id)sender
 {
     PPSClient *client = [self ppsClient];
     if (!client) return;

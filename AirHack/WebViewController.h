@@ -12,4 +12,6 @@
 
 - (instancetype)initWithURL:(NSURL *)url;
 
+@property (nonatomic, readonly) UIWebView *webView;
+
 @end
