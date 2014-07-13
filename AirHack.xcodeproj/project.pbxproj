@@ -233,9 +233,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EA9C68F3196ADAC1005B52B2 /* AirHack */ = {
+		EA9C68F3196ADAC1005B52B2 /* PartyPlay */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EA9C6920196ADAC1005B52B2 /* Build configuration list for PBXNativeTarget "AirHack" */;
+			buildConfigurationList = EA9C6920196ADAC1005B52B2 /* Build configuration list for PBXNativeTarget "PartyPlay" */;
 			buildPhases = (
 				6A5E7456D3CB4D54848EE2DF /* Check Pods Manifest.lock */,
 				EA9C68F0196ADAC1005B52B2 /* Sources */,
@@ -247,7 +247,7 @@
 			);
 			dependencies = (
 			);
-			name = AirHack;
+			name = PartyPlay;
 			productName = AirHack;
 			productReference = EA9C68F4196ADAC1005B52B2 /* AirHack.app */;
 			productType = "com.apple.product-type.application";
@@ -296,7 +296,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EA9C68F3196ADAC1005B52B2 /* AirHack */,
+				EA9C68F3196ADAC1005B52B2 /* PartyPlay */,
 				EA9C690E196ADAC1005B52B2 /* AirHackTests */,
 			);
 		};
@@ -390,7 +390,7 @@
 /* Begin PBXTargetDependency section */
 		EA9C6915196ADAC1005B52B2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EA9C68F3196ADAC1005B52B2 /* AirHack */;
+			target = EA9C68F3196ADAC1005B52B2 /* PartyPlay */;
 			targetProxy = EA9C6914196ADAC1005B52B2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -567,7 +567,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EA9C6920196ADAC1005B52B2 /* Build configuration list for PBXNativeTarget "AirHack" */ = {
+		EA9C6920196ADAC1005B52B2 /* Build configuration list for PBXNativeTarget "PartyPlay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EA9C6921196ADAC1005B52B2 /* Debug */,

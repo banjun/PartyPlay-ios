@@ -302,14 +302,14 @@ static NSString * const kPostURLKey = @"PostURL";
     [SVProgressHUD show];
     
     [songs enumerateObjectsUsingBlock:^(PPSLocalSong *song, NSUInteger idx, BOOL *stop) {
-        __weak typeof(song) weakSong = song;
+//        __weak typeof(song) weakSong = song;
         song.onUploadProgress = ^(float progress) {
             __block float totalProgress = 0.0;
             [songs enumerateObjectsUsingBlock:^(PPSLocalSong *song, NSUInteger idx, BOOL *stop) {
                 totalProgress += song.uploadProgress.fractionCompleted / songs.count;
             }];
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"%@ progress = %f, total = %f", weakSong.title, progress, totalProgress);
+//                NSLog(@"%@ progress = %f, total = %f", weakSong.title, progress, totalProgress);
                 [SVProgressHUD showProgress:totalProgress];
             });
         };
