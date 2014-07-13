@@ -19,6 +19,7 @@
 #import "UIImage+ImageEffects.h"
 #import <Haneke.h>
 #import "CenteringView.h"
+#import "Appearance.h"
 
 
 @interface PostViewController () <MPMediaPickerControllerDelegate>
@@ -84,7 +85,7 @@ static NSString * const kPostURLKey = @"PostURL";
     CenteringView *iPodArtworkCenteringView = [[CenteringView alloc] initWithFrame:CGRectZero contentView:self.iPodArtworkView];
     
     void (^applyButtonAppearance)(UIButton *) = ^(UIButton *b) {
-        b.backgroundColor = [UIColor colorWithHue:215/360.0 saturation:0.8 brightness:0.8 alpha:0.9];
+        b.backgroundColor = [[Appearance sharedInstance].honokaOrange colorWithAlphaComponent:0.9];
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [b setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
         b.titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
@@ -128,11 +129,11 @@ static NSString * const kPostURLKey = @"PostURL";
     }];
     
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Settings", @"") style:UIBarButtonItemStylePlain target:self action:@selector(showSettings:)] btk_scope:^(UIBarButtonItem *b) {
-        b.tintColor = [UIColor grayColor];
+        [b setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0]} forState:UIControlStateNormal];
     }];
     
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Now Playing", @"") style:UIBarButtonItemStylePlain target:self action:@selector(showNowPlaying:)] btk_scope:^(UIBarButtonItem *b) {
-        b.tintColor = [UIColor colorWithRed:0 green:160/255.0 blue:0 alpha:1.0];
+        [b setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:16.0]} forState:UIControlStateNormal];
     }];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ppsClientNowPlayingChanged:) name:PPSClientNowPlayingDidChangeNotification object:nil];

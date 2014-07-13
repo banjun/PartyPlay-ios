@@ -13,6 +13,7 @@
 		EA54723E197259070023AE3D /* PPSNowPlaying.m in Sources */ = {isa = PBXBuildFile; fileRef = EA54723D197259070023AE3D /* PPSNowPlaying.m */; };
 		EA716A0619721A1200834939 /* PlayingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA716A0519721A1200834939 /* PlayingsViewController.m */; };
 		EA7F23961972C1AF00998614 /* CenteringView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F23951972C1AF00998614 /* CenteringView.m */; };
+		EA7F23991972D62700998614 /* Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F23981972D62700998614 /* Appearance.m */; };
 		EA9C68F8196ADAC1005B52B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68F7196ADAC1005B52B2 /* Foundation.framework */; };
 		EA9C68FA196ADAC1005B52B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68F9196ADAC1005B52B2 /* CoreGraphics.framework */; };
 		EA9C68FC196ADAC1005B52B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68FB196ADAC1005B52B2 /* UIKit.framework */; };
@@ -59,6 +60,8 @@
 		EA716A0519721A1200834939 /* PlayingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingsViewController.m; sourceTree = "<group>"; };
 		EA7F23941972C1AF00998614 /* CenteringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenteringView.h; sourceTree = "<group>"; };
 		EA7F23951972C1AF00998614 /* CenteringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenteringView.m; sourceTree = "<group>"; };
+		EA7F23971972D62700998614 /* Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appearance.h; sourceTree = "<group>"; };
+		EA7F23981972D62700998614 /* Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appearance.m; sourceTree = "<group>"; };
 		EA9C68F4196ADAC1005B52B2 /* AirHack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirHack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA9C68F7196ADAC1005B52B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA9C68F9196ADAC1005B52B2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -158,6 +161,8 @@
 			children = (
 				EA9C6906196ADAC1005B52B2 /* AppDelegate.h */,
 				EA9C6907196ADAC1005B52B2 /* AppDelegate.m */,
+				EA7F23971972D62700998614 /* Appearance.h */,
+				EA7F23981972D62700998614 /* Appearance.m */,
 				EA9C6928196ADF7A005B52B2 /* PostViewController.h */,
 				EA9C6929196ADF7A005B52B2 /* PostViewController.m */,
 				EAA2C1E4197167740031EDF8 /* PPSSelectViewController.h */,
@@ -372,6 +377,7 @@
 				EA3682BC19715AC100E3285B /* BonjourFinder.m in Sources */,
 				EAA2C1E6197167740031EDF8 /* PPSSelectViewController.m in Sources */,
 				EA9C6904196ADAC1005B52B2 /* main.m in Sources */,
+				EA7F23991972D62700998614 /* Appearance.m in Sources */,
 				EA9C692A196ADF7A005B52B2 /* PostViewController.m in Sources */,
 				EAD7AE2319718F00005F981C /* PPSClient.m in Sources */,
 				EA54723E197259070023AE3D /* PPSNowPlaying.m in Sources */,
