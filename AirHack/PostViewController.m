@@ -18,6 +18,7 @@
 #import "PlayingsViewController.h"
 #import "UIImage+ImageEffects.h"
 #import <Haneke.h>
+#import "CenteringView.h"
 
 
 @interface PostViewController () <MPMediaPickerControllerDelegate>
@@ -29,6 +30,7 @@
 @property (nonatomic) PPSClient *client;
 
 @property (nonatomic) UILabel *serverLabel;
+@property (nonatomic) UIImageView *iPodArtworkView;
 @property (nonatomic) UIButton *postButton;
 @property (nonatomic) UIButton *pickButton;
 @property (nonatomic) MPMediaPickerController *picker;
@@ -72,6 +74,13 @@ static NSString * const kPostURLKey = @"PostURL";
     self.serverLabel = [[[UILabel alloc] initWithFrame:CGRectZero] btk_scope:^(UILabel *l) {
     }];
     
+    self.iPodArtworkView = [[[UIImageView alloc] initWithImage:nil] btk_scope:^(UIImageView *v) {
+        v.contentMode = UIViewContentModeScaleAspectFit;
+        [v setContentCompressionResistancePriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisHorizontal];
+        [v setContentCompressionResistancePriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisVertical];
+    }];
+    CenteringView *iPodArtworkCenteringView = [[CenteringView alloc] initWithFrame:CGRectZero contentView:self.iPodArtworkView];
+    
     self.postButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [self.postButton setTitle:@"Push Current Song" forState:UIControlStateNormal];
     [self.postButton addTarget:self action:@selector(pushCurrentSong:) forControlEvents:UIControlEventTouchUpInside];
@@ -83,15 +92,16 @@ static NSString * const kPostURLKey = @"PostURL";
     
     [self loadDefaults];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_serverLabel, _postButton, _pickButton);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_serverLabel, iPodArtworkCenteringView, _postButton, _pickButton);
     for (UIView *v in views.allValues) {
         v.translatesAutoresizingMaskIntoConstraints = NO;
         [self.view addSubview:v];
     }
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_serverLabel]-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[iPodArtworkCenteringView]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_postButton]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_pickButton]-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_serverLabel]-20-[_postButton]-20-[_pickButton]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_serverLabel]-20-[iPodArtworkCenteringView(<=128)]-8-[_postButton]-20-[_pickButton]-(>=20)-|" options:0 metrics:nil views:views]];
     
     self.iPodController = [[MPMusicPlayerController iPodMusicPlayer] btk_scope:^(MPMusicPlayerController *c) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iPodNowPlayingChanged:) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:c];
@@ -181,6 +191,7 @@ static NSString * const kPostURLKey = @"PostURL";
     NSString *title = @"iPod Stopped";
     if (self.nowPlayingItem) {
         title = [NSString stringWithFormat:@"Push %@", [self.nowPlayingItem valueForProperty:MPMediaItemPropertyTitle]];
+        self.iPodArtworkView.image = [[self.nowPlayingItem valueForProperty:MPMediaItemPropertyArtwork] imageWithSize:CGSizeMake(256, 256)];
     }
     [self.postButton setTitle:title forState:UIControlStateNormal];
     self.postButton.enabled = (self.nowPlayingItem != nil);
