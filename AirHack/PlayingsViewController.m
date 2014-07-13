@@ -32,6 +32,7 @@
     
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Skip", @"") style:UIBarButtonItemStylePlain target:self action:@selector(skip:)] btk_scope:^(UIBarButtonItem *b) {
         b.tintColor = [UIColor redColor];
+        [b setTitleTextAttributes:@{NSForegroundColorAttributeName: b.tintColor} forState:UIControlStateNormal];
     }];
 }
 
