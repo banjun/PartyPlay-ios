@@ -81,27 +81,44 @@ static NSString * const kPostURLKey = @"PostURL";
     }];
     CenteringView *iPodArtworkCenteringView = [[CenteringView alloc] initWithFrame:CGRectZero contentView:self.iPodArtworkView];
     
-    self.postButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.postButton addTarget:self action:@selector(pushCurrentSong:) forControlEvents:UIControlEventTouchUpInside];
+    void (^applyButtonAppearance)(UIButton *) = ^(UIButton *b) {
+        b.backgroundColor = [UIColor colorWithHue:215/360.0 saturation:0.8 brightness:0.8 alpha:1.0];
+        [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [b setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        b.titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
+        b.layer.cornerRadius = 4.0;
+        b.contentEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
+        
+        [b setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    };
+    
+    self.postButton = [[UIButton buttonWithType:UIButtonTypeSystem] btk_scope:^(UIButton *b) {
+        [b addTarget:self action:@selector(pushCurrentSong:) forControlEvents:UIControlEventTouchUpInside];
+        applyButtonAppearance(b);
+    }];
     [self iPodNowPlayingChanged:nil]; // update title and enabled
     
-    self.pickButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] btk_scope:^(UIButton *b) {
-        [b setTitle:NSLocalizedString(@"Pick iPod Songs", @"") forState:UIControlStateNormal];
+    self.pickButton = [[UIButton buttonWithType:UIButtonTypeSystem] btk_scope:^(UIButton *b) {
+        [b setTitle:NSLocalizedString(@"Choose Other Songs", @"") forState:UIControlStateNormal];
         [b addTarget:self action:@selector(showPicker:) forControlEvents:UIControlEventTouchUpInside];
+        applyButtonAppearance(b);
     }];
     
     [self loadDefaults];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_serverLabel, iPodArtworkCenteringView, _postButton, _pickButton);
+    UIView *buttonSpacerLeft = [AutoLayoutMinView spacer];
+    UIView *buttonSpacerRight = [AutoLayoutMinView spacer];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_serverLabel, iPodArtworkCenteringView, _postButton, _pickButton, buttonSpacerLeft, buttonSpacerRight);
     for (UIView *v in views.allValues) {
         v.translatesAutoresizingMaskIntoConstraints = NO;
         [self.view addSubview:v];
     }
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_serverLabel]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[iPodArtworkCenteringView]-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_postButton]-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_pickButton]-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_serverLabel]-20-[iPodArtworkCenteringView(<=128)]-8-[_postButton]-20-[_pickButton]-(>=20)-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-8-[buttonSpacerLeft][_postButton][buttonSpacerRight(==buttonSpacerLeft)]-8-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-8-[buttonSpacerLeft][_pickButton][buttonSpacerRight]-8-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_serverLabel]-20-[iPodArtworkCenteringView(<=128)]-8-[_postButton]-40-[_pickButton]-(>=20)-|" options:0 metrics:nil views:views]];
     
     self.iPodController = [[MPMusicPlayerController iPodMusicPlayer] btk_scope:^(MPMusicPlayerController *c) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iPodNowPlayingChanged:) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:c];
@@ -197,6 +214,7 @@ static NSString * const kPostURLKey = @"PostURL";
     }
     [self.postButton setTitle:title forState:UIControlStateNormal];
     self.postButton.enabled = (self.nowPlayingItem != nil);
+    self.postButton.alpha = (self.nowPlayingItem != nil ? 1.0 : 0.5);
 }
 
 #pragma mark - Media Picker

@@ -9,12 +9,17 @@
 #import "CenteringView.h"
 
 
-@interface AutoLayoutMinView : UIView
-
-@end
-
-
 @implementation AutoLayoutMinView
+
++ (instancetype)spacer;
+{
+    AutoLayoutMinView *v = [[AutoLayoutMinView alloc] init];
+    [v setContentCompressionResistancePriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisHorizontal];
+    [v setContentCompressionResistancePriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisVertical];
+    [v setContentHuggingPriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisHorizontal];
+    [v setContentHuggingPriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisVertical];
+    return v;
+}
 
 - (CGSize)intrinsicContentSize
 {
@@ -37,11 +42,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         UIView *(^spacer)() = ^{
-            UIView *v = [[AutoLayoutMinView alloc] init];
-            [v setContentCompressionResistancePriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisHorizontal];
-            [v setContentCompressionResistancePriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisVertical];
-            [v setContentHuggingPriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisHorizontal];
-            [v setContentHuggingPriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisVertical];
+            UIView *v = [AutoLayoutMinView spacer];
             [self addSubview:v];
             return v;
         };

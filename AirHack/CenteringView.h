@@ -14,3 +14,13 @@
 @property (nonatomic, readonly) UIView *contentView;
 
 @end
+
+
+
+
+@interface AutoLayoutMinView : UIView
+
++ (instancetype)spacer;
+
+@end
+
