@@ -10,12 +10,17 @@
 #import "PPSLocalSong.h"
 #import <AFNetworking.h>
 #import "Functional.h"
+#import "PPSNowPlaying.h"
+
+
+NSString * const PPSClientNowPlayingDidChangeNotification = @"PPSClientNowPlayingDidChangeNotification";
 
 
 static NSString * const kPost = @"POST";
 static NSString * const kSongsAdd = @"/songs/add";
 static NSString * const kSongsSkip = @"/songs/skip";
 static NSString * const kSongsIndexHTML = @"/songs/index.html";
+static NSString * const kSongsIndexJSON = @"/songs/index.json";
 static NSString * const kParamFile = @"file";
 static NSString * const kParamTitle = @"title";
 static NSString * const kParamArtist = @"artist";
@@ -27,8 +32,7 @@ static NSString * const kContentTypeJpeg = @"image/jpeg";
 @interface PPSClient ()
 
 @property (nonatomic) NSURL *baseURL;
-
-@property (nonatomic, copy) void (^currentProgressHandler)(float progress);
+@property (nonatomic) PPSNowPlaying *nowPlaying;
 
 @end
 
@@ -45,8 +49,6 @@ static NSString * const kContentTypeJpeg = @"image/jpeg";
 
 - (void)pushSongs:(NSArray *)songs progress:(void (^)(float progress))progressHandler didPushSong:(void (^)(PPSLocalSong *song))didPushSong completion:(void (^)())completion failure:(void (^)(NSError *error))failure; // Array<PPSSong>
 {
-    self.currentProgressHandler = progressHandler;
-    
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     
@@ -99,6 +101,43 @@ static NSString * const kContentTypeJpeg = @"image/jpeg";
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"skip failed: %@", error);
     }];
+}
+
+- (void)loadNowPlaying
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [[AFJSONResponseSerializer alloc] init];
+    [manager GET:[self.baseURL.absoluteString stringByAppendingString:kSongsIndexJSON] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        PPSNowPlaying *np = [[PPSNowPlaying alloc] initWithJSON:responseObject];
+        if (np) {
+            self.nowPlaying = np;
+        } else {
+            NSLog(@"cannot get nowPlaying from json: %@", responseObject);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@ failed: %@", kSongsIndexJSON, error);
+    }];
+}
+
+#pragma mark - Accessors
+
+- (PPSSong *)currentSong
+{
+    return self.nowPlaying.currentSong;
+}
+
+- (PPSNowPlaying *)playing
+{
+    if (_nowPlaying) {
+        [self loadNowPlaying];
+    }
+    return _nowPlaying;
+}
+
+- (void)setNowPlaying:(PPSNowPlaying *)nowPlayings
+{
+    _nowPlaying = nowPlayings;
+    [[NSNotificationCenter defaultCenter] postNotificationName:PPSClientNowPlayingDidChangeNotification object:self userInfo:nil];
 }
 
 - (NSURL *)songsIndexHTMLURL

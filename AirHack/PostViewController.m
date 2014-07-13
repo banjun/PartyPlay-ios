@@ -13,8 +13,10 @@
 #import "NSObject+BTKUtils.h"
 #import <SVProgressHUD.h>
 #import "PPSClient.h"
+#import "PPSNowPlaying.h"
 #import <PromiseKit.h>
 #import "PlayingsViewController.h"
+#import "UIImage+ImageEffects.h"
 
 
 @interface PostViewController () <MPMediaPickerControllerDelegate>
@@ -29,6 +31,14 @@
 @property (nonatomic) UIButton *postButton;
 @property (nonatomic) UIButton *pickButton;
 @property (nonatomic) MPMediaPickerController *picker;
+@property (nonatomic) UIImageView *nowPlayingImageView;
+
+@end
+
+
+@interface UIImage (ResizedImage)
+
+- (UIImage *)resizedDisplayImage:(CGSize)ptSize;
 
 @end
 
@@ -44,6 +54,13 @@ static NSString * const kPostURLKey = @"PostURL";
     
     self.title = NSLocalizedString(@"Party Play", @"");
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.nowPlayingImageView = [[[UIImageView alloc] initWithImage:nil] btk_scope:^(UIImageView *v) {
+        v.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        v.contentMode = UIViewContentModeScaleAspectFill;
+        v.frame = self.view.bounds;
+        [self.view addSubview:v];
+    }];
     
     self.serverLabel = [[[UILabel alloc] initWithFrame:CGRectZero] btk_scope:^(UILabel *l) {
     }];
@@ -70,7 +87,7 @@ static NSString * const kPostURLKey = @"PostURL";
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_serverLabel]-20-[_postButton]-20-[_pickButton]" options:0 metrics:nil views:views]];
     
     self.iPodController = [[MPMusicPlayerController iPodMusicPlayer] btk_scope:^(MPMusicPlayerController *c) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nowPlayingChanged:) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:c];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iPodNowPlayingChanged:) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:c];
         [c beginGeneratingPlaybackNotifications];
     }];
     
@@ -81,6 +98,13 @@ static NSString * const kPostURLKey = @"PostURL";
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Now Playing", @"") style:UIBarButtonItemStylePlain target:self action:@selector(showNowPlaying:)] btk_scope:^(UIBarButtonItem *b) {
         b.tintColor = [UIColor colorWithRed:0 green:160/255.0 blue:0 alpha:1.0];
     }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ppsClientNowPlayingChanged:) name:PPSClientNowPlayingDidChangeNotification object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)loadDefaults
@@ -107,12 +131,25 @@ static NSString * const kPostURLKey = @"PostURL";
 {
     NSURL *url = [NSURL URLWithString:self.serverURLString];
     self.client = (url ? [[PPSClient alloc] initWithBaseURL:url] : nil);
+    [self.client loadNowPlaying];
     return self.client;
+}
+
+#pragma mark - PPSClient
+
+- (void)ppsClientNowPlayingChanged:(NSNotification *)notification
+{
+    NSLog(@"nowPlaying = %@", self.client.nowPlaying);
+    self.nowPlayingImageView.image = nil;
+    [self.client.nowPlaying.currentSong loadArtwork:^(UIImage *artwork) {
+        self.nowPlayingImageView.image = [[artwork resizedDisplayImage:self.nowPlayingImageView.bounds.size] applyBlurWithRadius:15 tintColor:nil saturationDeltaFactor:2.0 maskImage:nil];
+        self.nowPlayingImageView.alpha = 0.5;
+    }];
 }
 
 #pragma mark - Music Player
 
-- (void)nowPlayingChanged:(NSNotification *)notification
+- (void)iPodNowPlayingChanged:(NSNotification *)notification
 {
     self.nowPlayingItem = [MPMusicPlayerController iPodMusicPlayer].nowPlayingItem;
     NSString *title = @"iPod Stopped";
@@ -336,6 +373,28 @@ static NSString * const kPostURLKey = @"PostURL";
     
     PlayingsViewController *vc = [[PlayingsViewController alloc] initWithClient:self.client];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+@end
+
+
+
+@implementation UIImage (ResizedImage)
+
+- (UIImage *)resizedDisplayImage:(CGSize)ptSize;
+{
+    const CGFloat screenScale = [UIScreen mainScreen].scale;
+    const CGFloat aspectFitScale = MIN(ptSize.width * screenScale / self.size.width,
+                                       ptSize.height * screenScale / self.size.height);
+    if (aspectFitScale >= 1.0) return self;
+    
+    const CGSize size = CGSizeMake(self.size.width * aspectFitScale,
+                                   self.size.height * aspectFitScale);
+    UIGraphicsBeginImageContext(size);
+    [self drawInRect:CGRectMake(0, 0, size.width, size.height) blendMode:kCGBlendModeCopy alpha:1.0];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 @end

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4A808F1F0315413CB2EA3E09 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9F0007486D4D5F904157AD /* libPods.a */; };
 		EA3682BC19715AC100E3285B /* BonjourFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3682BB19715AC100E3285B /* BonjourFinder.m */; };
+		EA54723B197258C10023AE3D /* PPSSong.m in Sources */ = {isa = PBXBuildFile; fileRef = EA54723A197258C10023AE3D /* PPSSong.m */; };
+		EA54723E197259070023AE3D /* PPSNowPlaying.m in Sources */ = {isa = PBXBuildFile; fileRef = EA54723D197259070023AE3D /* PPSNowPlaying.m */; };
 		EA716A0619721A1200834939 /* PlayingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA716A0519721A1200834939 /* PlayingsViewController.m */; };
 		EA9C68F8196ADAC1005B52B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68F7196ADAC1005B52B2 /* Foundation.framework */; };
 		EA9C68FA196ADAC1005B52B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68F9196ADAC1005B52B2 /* CoreGraphics.framework */; };
@@ -26,6 +28,7 @@
 		EA9C692A196ADF7A005B52B2 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C6929196ADF7A005B52B2 /* PostViewController.m */; };
 		EAA2C1E6197167740031EDF8 /* PPSSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA2C1E5197167740031EDF8 /* PPSSelectViewController.m */; };
 		EAA2C1E9197168150031EDF8 /* NSObject+BTKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA2C1E8197168150031EDF8 /* NSObject+BTKUtils.m */; };
+		EAAA769019726658004FFCA6 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA768F19726658004FFCA6 /* UIImage+ImageEffects.m */; };
 		EAD7AE2319718F00005F981C /* PPSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7AE2219718F00005F981C /* PPSClient.m */; };
 		EAD7AE261971904B005F981C /* PPSLocalSong.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7AE251971904B005F981C /* PPSLocalSong.m */; };
 		EAD7AE2A1971AC0F005F981C /* Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7AE291971AC0F005F981C /* Functional.m */; };
@@ -47,6 +50,10 @@
 		3623BD9117C74807A2880434 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		EA3682BA19715AC100E3285B /* BonjourFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonjourFinder.h; sourceTree = "<group>"; };
 		EA3682BB19715AC100E3285B /* BonjourFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BonjourFinder.m; sourceTree = "<group>"; };
+		EA547239197258C10023AE3D /* PPSSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSSong.h; sourceTree = "<group>"; };
+		EA54723A197258C10023AE3D /* PPSSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSSong.m; sourceTree = "<group>"; };
+		EA54723C197259070023AE3D /* PPSNowPlaying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSNowPlaying.h; sourceTree = "<group>"; };
+		EA54723D197259070023AE3D /* PPSNowPlaying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSNowPlaying.m; sourceTree = "<group>"; };
 		EA716A0419721A1200834939 /* PlayingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingsViewController.h; sourceTree = "<group>"; };
 		EA716A0519721A1200834939 /* PlayingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingsViewController.m; sourceTree = "<group>"; };
 		EA9C68F4196ADAC1005B52B2 /* AirHack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirHack.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +79,8 @@
 		EAA2C1E5197167740031EDF8 /* PPSSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSSelectViewController.m; sourceTree = "<group>"; };
 		EAA2C1E7197168150031EDF8 /* NSObject+BTKUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BTKUtils.h"; sourceTree = "<group>"; };
 		EAA2C1E8197168150031EDF8 /* NSObject+BTKUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BTKUtils.m"; sourceTree = "<group>"; };
+		EAAA768E19726658004FFCA6 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		EAAA768F19726658004FFCA6 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		EAD7AE2119718F00005F981C /* PPSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSClient.h; sourceTree = "<group>"; };
 		EAD7AE2219718F00005F981C /* PPSClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSClient.m; sourceTree = "<group>"; };
 		EAD7AE241971904B005F981C /* PPSLocalSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSLocalSong.h; sourceTree = "<group>"; };
@@ -161,6 +170,7 @@
 				EAA2C1E8197168150031EDF8 /* NSObject+BTKUtils.m */,
 				EAD7AE281971AC0F005F981C /* Functional.h */,
 				EAD7AE291971AC0F005F981C /* Functional.m */,
+				EAAA76911972665C004FFCA6 /* Apple Sample Code */,
 				EA9C6909196ADAC1005B52B2 /* Images.xcassets */,
 				EA9C68FE196ADAC1005B52B2 /* Supporting Files */,
 			);
@@ -196,11 +206,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EAAA76911972665C004FFCA6 /* Apple Sample Code */ = {
+			isa = PBXGroup;
+			children = (
+				EAAA768E19726658004FFCA6 /* UIImage+ImageEffects.h */,
+				EAAA768F19726658004FFCA6 /* UIImage+ImageEffects.m */,
+			);
+			name = "Apple Sample Code";
+			sourceTree = "<group>";
+		};
 		EAD7AE27197190AA005F981C /* Party Play Service Client */ = {
 			isa = PBXGroup;
 			children = (
 				EAD7AE2119718F00005F981C /* PPSClient.h */,
 				EAD7AE2219718F00005F981C /* PPSClient.m */,
+				EA547239197258C10023AE3D /* PPSSong.h */,
+				EA54723A197258C10023AE3D /* PPSSong.m */,
+				EA54723C197259070023AE3D /* PPSNowPlaying.h */,
+				EA54723D197259070023AE3D /* PPSNowPlaying.m */,
 				EAD7AE241971904B005F981C /* PPSLocalSong.h */,
 				EAD7AE251971904B005F981C /* PPSLocalSong.m */,
 			);
@@ -339,14 +362,17 @@
 			files = (
 				EA9C6908196ADAC1005B52B2 /* AppDelegate.m in Sources */,
 				EAD7AE2D1971BB9E005F981C /* WebViewController.m in Sources */,
+				EAAA769019726658004FFCA6 /* UIImage+ImageEffects.m in Sources */,
 				EA3682BC19715AC100E3285B /* BonjourFinder.m in Sources */,
 				EAA2C1E6197167740031EDF8 /* PPSSelectViewController.m in Sources */,
 				EA9C6904196ADAC1005B52B2 /* main.m in Sources */,
 				EA9C692A196ADF7A005B52B2 /* PostViewController.m in Sources */,
 				EAD7AE2319718F00005F981C /* PPSClient.m in Sources */,
+				EA54723E197259070023AE3D /* PPSNowPlaying.m in Sources */,
 				EAD7AE261971904B005F981C /* PPSLocalSong.m in Sources */,
 				EA716A0619721A1200834939 /* PlayingsViewController.m in Sources */,
 				EAD7AE2A1971AC0F005F981C /* Functional.m in Sources */,
+				EA54723B197258C10023AE3D /* PPSSong.m in Sources */,
 				EAA2C1E9197168150031EDF8 /* NSObject+BTKUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

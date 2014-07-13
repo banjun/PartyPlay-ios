@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "PPSLocalSong.h"
 
+@class PPSSong, PPSNowPlaying;
+
 @interface PPSClient : NSObject
 
 @property (nonatomic, readonly) NSURL *baseURL;
@@ -17,5 +19,13 @@
 - (instancetype)initWithBaseURL:(NSURL *)url;
 - (void)pushSongs:(NSArray *)songs progress:(void (^)(float progress))progress didPushSong:(void (^)(PPSLocalSong *song))didPushSong completion:(void (^)())completion failure:(void (^)(NSError *error))failure; // Array<PPSSong>
 - (void)skip;
+- (void)loadNowPlaying;
+
+@property (nonatomic, readonly) PPSSong *currentSong;
+@property (nonatomic, readonly) PPSNowPlaying *nowPlaying;
 
 @end
+
+
+extern NSString * const PPSClientNowPlayingDidChangeNotification;
+
