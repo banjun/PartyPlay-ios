@@ -34,6 +34,8 @@
 @property (nonatomic) MPMediaPickerController *picker;
 @property (nonatomic) UIImageView *nowPlayingImageView;
 
+@property (nonatomic) NSTimer *pollingTimer;
+
 @end
 
 
@@ -117,6 +119,22 @@ static NSString * const kPostURLKey = @"PostURL";
     [super viewDidAppear:animated];
     
     [self.client loadNowPlaying];
+    
+    [self.pollingTimer invalidate];
+    self.pollingTimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(pollingFired) userInfo:nil repeats:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.pollingTimer invalidate];
+    self.pollingTimer = nil;
+}
+
+- (void)pollingFired
+{
+    [self.client loadNowPlaying];
 }
 
 - (void)loadDefaults
@@ -151,7 +169,7 @@ static NSString * const kPostURLKey = @"PostURL";
 
 - (void)ppsClientNowPlayingChanged:(NSNotification *)notification
 {
-    NSLog(@"nowPlaying = %@", self.client.nowPlaying);
+//    NSLog(@"nowPlaying = %@", self.client.nowPlaying);
     [self.nowPlayingImageView hnk_setImageFromURL:self.client.nowPlaying.currentSong.artworkURL];
 }
 
