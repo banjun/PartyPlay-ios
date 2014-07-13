@@ -302,9 +302,9 @@ static NSString * const kPostURLKey = @"PostURL";
     __weak typeof(self) weakSelf = self;
     
     PPSSelectViewController *vc = [[PPSSelectViewController alloc] initWithCurrentBaseURL:[NSURL URLWithString:self.urlField.text]];
-    vc.didSelect = ^(NSURL *rootURL){
-        NSLog(@"rootURL = %@", rootURL);
-        weakSelf.urlField.text = rootURL.absoluteString;
+    vc.didSelect = ^(NSURL *baseURL){
+        NSLog(@"baseURL = %@", baseURL);
+        weakSelf.urlField.text = baseURL.absoluteString;
         [weakSelf saveDefaults];
     };
     

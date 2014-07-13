@@ -25,6 +25,14 @@
     }]];
 }
 
+- (id)findFirst:(BOOL (^)(id))f;
+{
+    for (id obj in self) {
+        if(f(obj)) return obj;
+    }
+    return nil;
+}
+
 - (BOOL)all:(BOOL (^)(id))f
 {
     for (id obj in self) {

@@ -12,6 +12,6 @@
 
 - (instancetype)initWithCurrentBaseURL:(NSURL *)currentBaseURL;
 
-@property (nonatomic, copy) void (^didSelect)(NSURL *rootURL);
+@property (nonatomic, copy) void (^didSelect)(NSURL *baseURL);
 
 @end

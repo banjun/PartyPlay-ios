@@ -12,6 +12,7 @@
 
 - (NSArray *)map:(id (^)(id))f;
 - (NSArray *)filter:(BOOL (^)(id))f;
+- (id)findFirst:(BOOL (^)(id))f;
 
 - (BOOL)all:(BOOL (^)(id))f;
 - (BOOL)any:(BOOL (^)(id))f;
