@@ -107,6 +107,13 @@ static NSString * const kPostURLKey = @"PostURL";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.client loadNowPlaying];
+}
+
 - (void)loadDefaults
 {
     self.serverURLString = [[NSUserDefaults standardUserDefaults] stringForKey:kPostURLKey];
@@ -140,7 +147,7 @@ static NSString * const kPostURLKey = @"PostURL";
 - (void)ppsClientNowPlayingChanged:(NSNotification *)notification
 {
     NSLog(@"nowPlaying = %@", self.client.nowPlaying);
-    self.nowPlayingImageView.image = nil;
+//    self.nowPlayingImageView.image = nil;
     [self.client.nowPlaying.currentSong loadArtwork:^(UIImage *artwork) {
         self.nowPlayingImageView.image = [[artwork resizedDisplayImage:self.nowPlayingImageView.bounds.size] applyBlurWithRadius:15 tintColor:nil saturationDeltaFactor:2.0 maskImage:nil];
         self.nowPlayingImageView.alpha = 0.5;
