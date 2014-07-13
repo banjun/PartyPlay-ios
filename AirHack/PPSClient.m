@@ -7,7 +7,7 @@
 //
 
 #import "PPSClient.h"
-#import "PPSSong.h"
+#import "PPSLocalSong.h"
 #import <AFNetworking.h>
 #import "Functional.h"
 
@@ -43,14 +43,14 @@ static NSString * const kContentTypeJpeg = @"image/jpeg";
     return self;
 }
 
-- (void)pushSongs:(NSArray *)songs progress:(void (^)(float progress))progressHandler didPushSong:(void (^)(PPSSong *song))didPushSong completion:(void (^)())completion failure:(void (^)(NSError *error))failure; // Array<PPSSong>
+- (void)pushSongs:(NSArray *)songs progress:(void (^)(float progress))progressHandler didPushSong:(void (^)(PPSLocalSong *song))didPushSong completion:(void (^)())completion failure:(void (^)(NSError *error))failure; // Array<PPSSong>
 {
     self.currentProgressHandler = progressHandler;
     
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     
-    for (PPSSong *song in songs) {
+    for (PPSLocalSong *song in songs) {
         NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:kPost URLString:[self.baseURL.absoluteString stringByAppendingString:kSongsAdd] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             // song file content
             [formData appendPartWithFileData:[NSData dataWithContentsOfFile:song.filePath] name:kParamFile fileName:song.filePath.lastPathComponent mimeType:kContentTypeOctetStream];
@@ -79,7 +79,7 @@ static NSString * const kContentTypeJpeg = @"image/jpeg";
                 if (didPushSong) {
                     didPushSong(song);
                 }
-                BOOL hasAllDone = [songs all:^BOOL(PPSSong *s){ return s.uploadCompleted; }];
+                BOOL hasAllDone = [songs all:^BOOL(PPSLocalSong *s){ return s.uploadCompleted; }];
                 if (hasAllDone && completion) {
                     completion();
                 }

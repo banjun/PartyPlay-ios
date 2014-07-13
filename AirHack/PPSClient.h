@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PPSSong.h"
+#import "PPSLocalSong.h"
 
 @interface PPSClient : NSObject
 
@@ -15,7 +15,7 @@
 @property (nonatomic, readonly) NSURL *songsIndexHTMLURL; // songs view url
 
 - (instancetype)initWithBaseURL:(NSURL *)url;
-- (void)pushSongs:(NSArray *)songs progress:(void (^)(float progress))progress didPushSong:(void (^)(PPSSong *song))didPushSong completion:(void (^)())completion failure:(void (^)(NSError *error))failure; // Array<PPSSong>
+- (void)pushSongs:(NSArray *)songs progress:(void (^)(float progress))progress didPushSong:(void (^)(PPSLocalSong *song))didPushSong completion:(void (^)())completion failure:(void (^)(NSError *error))failure; // Array<PPSSong>
 - (void)skip;
 
 @end

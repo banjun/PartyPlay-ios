@@ -6,11 +6,11 @@
 //  Copyright (c) 2014年 banjun. All rights reserved.
 //
 
-#import "PPSSong.h"
+#import "PPSLocalSong.h"
 @import MediaPlayer;
 
 
-@interface PPSSong ()
+@interface PPSLocalSong ()
 
 @property (nonatomic) MPMediaItem *mediaItem;
 @property (nonatomic) NSString *filePath;
@@ -18,7 +18,7 @@
 @end
 
 
-@implementation PPSSong
+@implementation PPSLocalSong
 
 - (instancetype)initWithMedia:(MPMediaItem *)mediaItem filePath:(NSString *)filePath;
 {

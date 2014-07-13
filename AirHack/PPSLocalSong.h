@@ -10,7 +10,7 @@
 
 @class MPMediaItem;
 
-@interface PPSSong : NSObject
+@interface PPSLocalSong : NSObject
 
 - (instancetype)initWithMedia:(MPMediaItem *)mediaItem filePath:(NSString *)filePath;
 

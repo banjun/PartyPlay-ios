@@ -182,13 +182,13 @@ static NSString * const kPostURLKey = @"PostURL";
     NSMutableArray *songs = [NSMutableArray array];
     [mediaItems enumerateObjectsUsingBlock:^(MPMediaItem *item, NSUInteger idx, BOOL *stop) {
         NSString *filePath = [exportFolder stringByAppendingFormat:@"/%lu.m4a", (unsigned long)idx];
-        PPSSong *song = [[PPSSong alloc] initWithMedia:item filePath:filePath];
+        PPSLocalSong *song = [[PPSLocalSong alloc] initWithMedia:item filePath:filePath];
         [songs addObject:song];
     }];
     
     NSMutableArray *sessions = [NSMutableArray array];
     
-    [songs enumerateObjectsUsingBlock:^(PPSSong *song, NSUInteger idx, BOOL *stop) {
+    [songs enumerateObjectsUsingBlock:^(PPSLocalSong *song, NSUInteger idx, BOOL *stop) {
         NSURL *assetURL = [song.mediaItem valueForProperty:MPMediaItemPropertyAssetURL];
         AVAsset *asset = [AVAsset assetWithURL:assetURL];
         
@@ -256,11 +256,11 @@ static NSString * const kPostURLKey = @"PostURL";
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
     [SVProgressHUD show];
     
-    [songs enumerateObjectsUsingBlock:^(PPSSong *song, NSUInteger idx, BOOL *stop) {
+    [songs enumerateObjectsUsingBlock:^(PPSLocalSong *song, NSUInteger idx, BOOL *stop) {
         __weak typeof(song) weakSong = song;
         song.onUploadProgress = ^(float progress) {
             __block float totalProgress = 0.0;
-            [songs enumerateObjectsUsingBlock:^(PPSSong *song, NSUInteger idx, BOOL *stop) {
+            [songs enumerateObjectsUsingBlock:^(PPSLocalSong *song, NSUInteger idx, BOOL *stop) {
                 totalProgress += song.uploadProgress.fractionCompleted / songs.count;
             }];
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -275,7 +275,7 @@ static NSString * const kPostURLKey = @"PostURL";
             NSLog(@"progress = %f", progress);
             [SVProgressHUD showProgress:progress];
         });
-    } didPushSong:^(PPSSong *song) {
+    } didPushSong:^(PPSLocalSong *song) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"pushed %@", song.title);
         });
