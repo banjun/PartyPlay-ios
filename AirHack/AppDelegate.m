@@ -8,11 +8,14 @@
 
 #import "AppDelegate.h"
 #import "PostViewController.h"
+#import "Appearance.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Appearance sharedInstance];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[PostViewController alloc] initWithNibName:nil bundle:nil]];
