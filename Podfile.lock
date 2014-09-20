@@ -1,43 +1,65 @@
 PODS:
-  - AFNetworking (2.3.1):
+  - AFNetworking (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.3.1):
+  - AFNetworking/NSURLConnection (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.3.1):
+  - AFNetworking/NSURLSession (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.3.1)
-  - AFNetworking/Security (2.3.1)
-  - AFNetworking/Serialization (2.3.1)
-  - AFNetworking/UIKit (2.3.1):
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - ChuzzleKit (1.0.3)
-  - Haneke (0.1.1)
-  - OMGHTTPURLRQ (1.1.3):
-    - ChuzzleKit
-  - PromiseKit (0.9.11.1):
-    - PromiseKit/defaults
-  - PromiseKit/base (0.9.11.1)
-  - PromiseKit/defaults (0.9.11.1):
-    - PromiseKit/Foundation
-    - PromiseKit/UIKit
-  - PromiseKit/Foundation (0.9.11.1):
-    - ChuzzleKit
+  - Haneke (1.0.0)
+  - OMGHTTPURLRQ (2.0.1):
+    - OMGHTTPURLRQ/RQ
+    - OMGHTTPURLRQ/UserAgent
+    - OMGHTTPURLRQ/UserAgent
+  - OMGHTTPURLRQ/RQ (2.0.1):
+    - OMGHTTPURLRQ/UserAgent
+  - OMGHTTPURLRQ/UserAgent (2.0.1):
+    - OMGHTTPURLRQ/UserAgent
+  - PromiseKit (0.9.17):
+    - PromiseKit/NSNotificationCenter
+    - PromiseKit/NSURLConnection
+    - PromiseKit/Pause
+    - PromiseKit/UIActionSheet
+    - PromiseKit/UIAlertView
+    - PromiseKit/UIView
+    - PromiseKit/UIViewController
+    - PromiseKit/Until
+    - PromiseKit/When
+  - PromiseKit/NSNotificationCenter (0.9.17):
+    - PromiseKit/Promise
+  - PromiseKit/NSURLConnection (0.9.17):
     - OMGHTTPURLRQ
-    - PromiseKit/base
-  - PromiseKit/private (0.9.11.1)
-  - PromiseKit/UIKit (0.9.11.1):
-    - PromiseKit/base
-    - PromiseKit/private
+    - PromiseKit/Promise
+  - PromiseKit/Pause (0.9.17):
+    - PromiseKit/Promise
+  - PromiseKit/Promise (0.9.17)
+  - PromiseKit/UIActionSheet (0.9.17):
+    - PromiseKit/Promise
+  - PromiseKit/UIAlertView (0.9.17):
+    - PromiseKit/Promise
+  - PromiseKit/UIView (0.9.17):
+    - PromiseKit/Promise
+  - PromiseKit/UIViewController (0.9.17):
+    - PromiseKit/Promise
+  - PromiseKit/Until (0.9.17):
+    - PromiseKit/Promise
+    - PromiseKit/When
+  - PromiseKit/When (0.9.17):
+    - PromiseKit/Promise
   - SVProgressHUD (1.0)
 
 DEPENDENCIES:
@@ -47,11 +69,10 @@ DEPENDENCIES:
   - SVProgressHUD
 
 SPEC CHECKSUMS:
-  AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
-  ChuzzleKit: 2d6a1f9ba844ebca126642990106b8c24de117f7
-  Haneke: 4e41a0e891e139553e647df90c10c5429da231f4
-  OMGHTTPURLRQ: ca3a7daf1e86d6b1be34ff8f14606cd503891098
-  PromiseKit: 88cc9c62635d929a556b6c91cc96dcbfa16e692d
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  Haneke: be4a384cc205809d181f86d50ace2580ee58d94d
+  OMGHTTPURLRQ: 4297af2a7f7ca7adb3f8331203001e0fd2dae16f
+  PromiseKit: 7a18d7b8d41a156cda0268c3cb065d272d5aa554
   SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
 
 COCOAPODS: 0.33.1
