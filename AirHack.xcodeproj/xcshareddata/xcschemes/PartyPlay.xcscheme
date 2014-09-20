@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EA9C68F3196ADAC1005B52B2"
-               BuildableName = "AirHack.app"
+               BuildableName = "PartyPlay.app"
                BlueprintName = "PartyPlay"
                ReferencedContainer = "container:AirHack.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EA9C68F3196ADAC1005B52B2"
-            BuildableName = "AirHack.app"
+            BuildableName = "PartyPlay.app"
             BlueprintName = "PartyPlay"
             ReferencedContainer = "container:AirHack.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EA9C68F3196ADAC1005B52B2"
-            BuildableName = "AirHack.app"
+            BuildableName = "PartyPlay.app"
             BlueprintName = "PartyPlay"
             ReferencedContainer = "container:AirHack.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EA9C68F3196ADAC1005B52B2"
-            BuildableName = "AirHack.app"
+            BuildableName = "PartyPlay.app"
             BlueprintName = "PartyPlay"
             ReferencedContainer = "container:AirHack.xcodeproj">
          </BuildableReference>
