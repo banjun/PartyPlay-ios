@@ -227,10 +227,7 @@ static NSString * const kPostURLKey = @"PostURL";
 
 - (IBAction)showPicker:(id)sender
 {
-    if (!self.client) {
-        [self showInvalidURLAlert];
-        return;
-    }
+    if ([self showInvalidURLAlertIfNeeded]) return;
     
     self.picker = [[[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAny] btk_scope:^(MPMediaPickerController *p) {
         p.delegate = self;
@@ -249,12 +246,8 @@ static NSString * const kPostURLKey = @"PostURL";
                                                         message:nil delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Push", nil];
         alert.promise.then(^(NSNumber *buttonIndex) {
             if (buttonIndex.intValue != alert.cancelButtonIndex) {
+                [self addMediaItemsToPostQueue:mediaItemCollection.items];
                 [self.postQueue addSongsWithMediaItems:mediaItemCollection.items];
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.navigationController pushViewController:[[PostQueueViewController alloc] initWithQueue:self.postQueue] animated:YES];
-                });
-//                [self exportMediaItemsAndPush:mediaItemCollection.items];
             }
         });
         
@@ -269,146 +262,25 @@ static NSString * const kPostURLKey = @"PostURL";
 
 #pragma mark -
 
-- (void)exportMediaItems:(NSArray *)mediaItems completion:(void (^)(NSArray *songs))completion failure:(void (^)(void))failure
+- (void)addMediaItemsToPostQueue:(NSArray *)mediaItems
 {
-    if (!self.client) {
-        [self showInvalidURLAlert];
-        return;
-    }
+    [self.postQueue addSongsWithMediaItems:mediaItems];
     
-    [SVProgressHUD appearance].backgroundColor = [UIColor blackColor];
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
-    [SVProgressHUD show];
-    
-    NSString *exportFolder = [NSTemporaryDirectory() stringByAppendingString:@"export"];
-    [[NSFileManager defaultManager] removeItemAtPath:exportFolder error:nil];
-    [[NSFileManager defaultManager] createDirectoryAtPath:exportFolder withIntermediateDirectories:YES attributes:nil error:nil];
-    
-    NSMutableArray *songs = [NSMutableArray array];
-    [mediaItems enumerateObjectsUsingBlock:^(MPMediaItem *item, NSUInteger idx, BOOL *stop) {
-        NSString *filePath = [exportFolder stringByAppendingFormat:@"/%lu.m4a", (unsigned long)idx];
-        PPSLocalSong *song = [[PPSLocalSong alloc] initWithMedia:item filePath:filePath];
-        [songs addObject:song];
-    }];
-    
-    NSMutableArray *sessions = [NSMutableArray array];
-    
-    [songs enumerateObjectsUsingBlock:^(PPSLocalSong *song, NSUInteger idx, BOOL *stop) {
-        NSURL *assetURL = [song.mediaItem valueForProperty:MPMediaItemPropertyAssetURL];
-        AVAsset *asset = [AVAsset assetWithURL:assetURL];
-        
-        AVAssetExportSession *session = [AVAssetExportSession exportSessionWithAsset:asset presetName:AVAssetExportPresetAppleM4A];
-        if (!session) {
-            [sessions enumerateObjectsUsingBlock:^(AVAssetExportSession *s, NSUInteger idx, BOOL *stop) {
-                [s cancelExport];
-            }];
-            failure();
-            *stop = YES;
-            return;
-        }
-        session.outputURL = [NSURL fileURLWithPath:song.filePath];
-        session.outputFileType = session.supportedFileTypes.firstObject;
-        
-        [sessions addObject:session];
-        [session exportAsynchronouslyWithCompletionHandler:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [sessions removeObject:session];
-                
-                NSUInteger length = [(NSData *)[NSData dataWithContentsOfFile:song.filePath] length];
-                
-                if (session.error || length == 0) {
-                    NSLog(@"export session failed for song: %@ (%lu bytes): %@", song.title, (unsigned long)length, session.error);
-                    [sessions enumerateObjectsUsingBlock:^(AVAssetExportSession *s, NSUInteger idx, BOOL *stop) {
-                        [s cancelExport];
-                    }];
-                    failure();
-                    *stop = YES;
-                    return;
-                } else {
-                    NSLog(@"export session completed for song: %@ (%lu bytes)", song.title, (unsigned long)length);
-                    if (sessions.count == 0) {
-                        NSLog(@"all export sessions completed.");
-                        completion(songs);
-                    }
-                }
-            });
-        }];
-    }];
-}
-
-- (void)exportMediaItemsAndPush:(NSArray *)mediaItems
-{
-    [self exportMediaItems:mediaItems completion:^(NSArray *songs) {
-        [self pushSongs:songs];
-    } failure:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [SVProgressHUD dismiss];
-            NSLog(@"song export failed at some songs.");
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Export Song(s)" message:@"song export failed at some songs." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        });
-    }];
-}
-
-- (void)pushSongs:(NSArray *)songs
-{
-    if (!self.client) {
-        [self showInvalidURLAlert];
-        return;
-    }
-    
-    [SVProgressHUD appearance].backgroundColor = [UIColor blackColor];
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
-    [SVProgressHUD show];
-    
-    [songs enumerateObjectsUsingBlock:^(PPSLocalSong *song, NSUInteger idx, BOOL *stop) {
-//        __weak typeof(song) weakSong = song;
-        song.onUploadProgress = ^(float progress) {
-            __block float totalProgress = 0.0;
-            [songs enumerateObjectsUsingBlock:^(PPSLocalSong *song, NSUInteger idx, BOOL *stop) {
-                totalProgress += song.uploadProgress.fractionCompleted / songs.count;
-            }];
-            dispatch_async(dispatch_get_main_queue(), ^{
-//                NSLog(@"%@ progress = %f, total = %f", weakSong.title, progress, totalProgress);
-                [SVProgressHUD showProgress:totalProgress];
-            });
-        };
-    }];
-    
-//    [self.client pushSongs:songs progress:^(float progress) {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            NSLog(@"progress = %f", progress);
-//            [SVProgressHUD showProgress:progress];
-//        });
-//    } didPushSong:^(PPSLocalSong *song) {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            NSLog(@"pushed %@", song.title);
-//        });
-//    } completion:^{
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            NSLog(@"pushed all request songs");
-//            [SVProgressHUD showSuccessWithStatus:@"Pushed!"];
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                [SVProgressHUD dismiss];
-//            });
-//        });
-//    } failure:^(NSError *error) {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [SVProgressHUD dismiss];
-//            NSLog(@"push failed at some songs: %@", error);
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Push Song(s)" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            [alert show];
-//        });
-//    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.navigationController pushViewController:[[PostQueueViewController alloc] initWithQueue:self.postQueue] animated:YES];
+    });
 }
 
 - (IBAction)pushCurrentSong:(id)sender
 {
+    if ([self showInvalidURLAlertIfNeeded]) return;
+    
     if (!self.nowPlayingItem) {
         NSLog(@"current item not found");
         return;
     }
-    [self exportMediaItemsAndPush:@[self.nowPlayingItem]];
+    
+    [self addMediaItemsToPostQueue:@[self.nowPlayingItem]];
 }
 
 - (IBAction)showSettings:(id)sender
@@ -426,18 +298,19 @@ static NSString * const kPostURLKey = @"PostURL";
     [self presentViewController:nc animated:YES completion:nil];
 }
 
-- (void)showInvalidURLAlert
+- (BOOL)showInvalidURLAlertIfNeeded
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"Cannot connect to the server.", @"") delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-    [alert show];
+    if (!self.client) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"Cannot connect to the server.", @"") delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alert show];
+        return YES;
+    }
+    return NO;
 }
 
 - (IBAction)showNowPlaying:(id)sender
 {
-    if (!self.client) {
-        [self showInvalidURLAlert];
-        return;
-    }
+    if ([self showInvalidURLAlertIfNeeded]) return;
     
     PlayingsViewController *vc = [[PlayingsViewController alloc] initWithClient:self.client];
     [self.navigationController pushViewController:vc animated:YES];
