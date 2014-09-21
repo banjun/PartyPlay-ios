@@ -15,11 +15,15 @@ class PostQueueViewController: UITableViewController {
     private var timer: NSTimer? = nil
     var songs: [LocalSong]
     
+    let clearErrorsButton: UIBarButtonItem
+    
     init(queue: PostQueue) {
         self.queue = queue
         self.songs = []
+        self.clearErrorsButton = UIBarButtonItem()
         super.init(style: .Plain)
         self.queue = queue // See below fix
+        self.clearErrorsButton = UIBarButtonItem(title: NSLocalizedString("Clear Errors", comment: ""), style: UIBarButtonItemStyle.Plain, target: self, action: "clearErrors")
     }
     
     // Need this to prevent runtime error:
@@ -27,6 +31,7 @@ class PostQueueViewController: UITableViewController {
     private override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
         self.queue = PostQueue(client: PPSClient(baseURL: NSURL(string: "http://localhost/"))) // dummy
         self.songs = []
+        self.clearErrorsButton = UIBarButtonItem()
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
@@ -42,6 +47,8 @@ class PostQueueViewController: UITableViewController {
         super.loadView()
         
         tableView.registerClass(PostQueueTableViewCell.self, forCellReuseIdentifier: kCellID)
+        
+        self.navigationItem.rightBarButtonItem = self.clearErrorsButton
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -59,6 +66,11 @@ class PostQueueViewController: UITableViewController {
     func updateViews() {
         songs = queue.localSongs // copy array
         self.tableView.reloadData()
+        self.clearErrorsButton.enabled = queue.hasErrors
+    }
+    
+    func clearErrors() {
+        queue.clearErrors()
     }
     
     // MARK: Table View

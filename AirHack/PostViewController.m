@@ -36,10 +36,14 @@
 @property (nonatomic) UIButton *pickButton;
 @property (nonatomic) MPMediaPickerController *picker;
 @property (nonatomic) UIImageView *nowPlayingImageView;
+@property (nonatomic) UIButton *postQueueButton;
+@property (nonatomic) NSArray *postQueueButtonShowConstraints;
+@property (nonatomic) NSArray *postQueueButtonHideConstraints;
 
 @property (nonatomic) NSTimer *pollingTimer;
 
 @property (nonatomic) PostQueue *postQueue;
+@property (nonatomic) NSTimer *postQueueTimer;
 
 @end
 
@@ -109,12 +113,18 @@ static NSString * const kPostURLKey = @"PostURL";
         applyButtonAppearance(b);
     }];
     
+    self.postQueueButton = [[UIButton buttonWithType:UIButtonTypeSystem] btk_scope:^(UIButton *b) {
+        [b addTarget:self action:@selector(showPostQueue:) forControlEvents:UIControlEventTouchUpInside];
+        applyButtonAppearance(b);
+        b.layer.cornerRadius = 0.0;
+    }];
+    
     [self loadDefaults];
     
     UIView *buttonSpacerLeft = [AutoLayoutMinView spacer];
     UIView *buttonSpacerRight = [AutoLayoutMinView spacer];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_serverLabel, iPodArtworkCenteringView, _postButton, _pickButton, buttonSpacerLeft, buttonSpacerRight);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_serverLabel, iPodArtworkCenteringView, _postButton, _pickButton, _postQueueButton, buttonSpacerLeft, buttonSpacerRight);
     for (UIView *v in views.allValues) {
         v.translatesAutoresizingMaskIntoConstraints = NO;
         [self.view addSubview:v];
@@ -123,7 +133,25 @@ static NSString * const kPostURLKey = @"PostURL";
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[iPodArtworkCenteringView]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-8-[buttonSpacerLeft][_postButton][buttonSpacerRight(==buttonSpacerLeft)]-8-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-8-[buttonSpacerLeft][_pickButton][buttonSpacerRight]-8-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_postQueueButton]|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-84-[_serverLabel]-20-[iPodArtworkCenteringView(<=128)]-8-[_postButton]-40-[_pickButton]-(>=20)-|" options:0 metrics:nil views:views]];
+    
+    self.postQueueButtonShowConstraints = @[[NSLayoutConstraint constraintWithItem:self.postQueueButton
+                                                                         attribute:NSLayoutAttributeBottom
+                                                                         relatedBy:NSLayoutRelationEqual
+                                                                            toItem:self.view
+                                                                         attribute:NSLayoutAttributeBottom
+                                                                        multiplier:1
+                                                                          constant:0]];
+    self.postQueueButtonHideConstraints = @[[NSLayoutConstraint constraintWithItem:self.postQueueButton
+                                                                         attribute:NSLayoutAttributeTop
+                                                                         relatedBy:NSLayoutRelationEqual
+                                                                            toItem:self.view
+                                                                         attribute:NSLayoutAttributeBottom
+                                                                        multiplier:1
+                                                                          constant:0]];
+    [self hidePostQueueButtonAnimated:NO];
+    
     
     self.iPodController = [[MPMusicPlayerController iPodMusicPlayer] btk_scope:^(MPMusicPlayerController *c) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iPodNowPlayingChanged:) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:c];
@@ -247,7 +275,6 @@ static NSString * const kPostURLKey = @"PostURL";
         alert.promise.then(^(NSNumber *buttonIndex) {
             if (buttonIndex.intValue != alert.cancelButtonIndex) {
                 [self addMediaItemsToPostQueue:mediaItemCollection.items];
-                [self.postQueue addSongsWithMediaItems:mediaItemCollection.items];
             }
         });
         
@@ -265,10 +292,11 @@ static NSString * const kPostURLKey = @"PostURL";
 - (void)addMediaItemsToPostQueue:(NSArray *)mediaItems
 {
     [self.postQueue addSongsWithMediaItems:mediaItems];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.navigationController pushViewController:[[PostQueueViewController alloc] initWithQueue:self.postQueue] animated:YES];
-    });
+    if (self.postQueueTimer) {
+        [self.postQueueTimer invalidate];
+    }
+    self.postQueueTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePostQueueButton) userInfo:nil repeats:YES];
+    [self updatePostQueueButton];
 }
 
 - (IBAction)pushCurrentSong:(id)sender
@@ -281,6 +309,11 @@ static NSString * const kPostURLKey = @"PostURL";
     }
     
     [self addMediaItemsToPostQueue:@[self.nowPlayingItem]];
+}
+
+- (IBAction)showPostQueue:(id)sender
+{
+    [self.navigationController pushViewController:[[PostQueueViewController alloc] initWithQueue:self.postQueue] animated:YES];
 }
 
 - (IBAction)showSettings:(id)sender
@@ -314,6 +347,45 @@ static NSString * const kPostURLKey = @"PostURL";
     
     PlayingsViewController *vc = [[PlayingsViewController alloc] initWithClient:self.client];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)updatePostQueueButton
+{
+    if (self.postQueue.localSongs.count == 0) {
+        [self.postQueueTimer invalidate];
+        self.postQueueTimer = nil;
+        [self hidePostQueueButtonAnimated:YES];
+        return;
+    }
+    
+    [self.postQueueButton setTitle:self.postQueue.statusText forState:UIControlStateNormal];
+    if (self.postQueueButton.hidden) [self showPostQueueButtonAnimated:YES];
+}
+
+- (void)showPostQueueButtonAnimated:(BOOL)animated
+{
+    [self.view removeConstraints:self.postQueueButtonHideConstraints];
+    [self.view addConstraints:self.postQueueButtonShowConstraints];
+    self.postQueueButton.hidden = NO;
+    if (animated) {
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.view layoutIfNeeded];
+        }];
+    }
+}
+- (void)hidePostQueueButtonAnimated:(BOOL)animated
+{
+    [self.view removeConstraints:self.postQueueButtonShowConstraints];
+    [self.view addConstraints:self.postQueueButtonHideConstraints];
+    if (animated) {
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            self.postQueueButton.hidden = YES;
+        }];
+    } else {
+        self.postQueueButton.hidden = YES;
+    }
 }
 
 @end

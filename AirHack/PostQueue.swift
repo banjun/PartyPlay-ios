@@ -129,9 +129,9 @@ func == (l: LocalSong.Status, r: LocalSong.Status) -> Bool {
     case (.WaitingExport, .WaitingExport): return true
     case (.Exporting, .Exporting): return true
     case (.WaitingPost, .WaitingPost): return true
-    case let (.Posting(lv), .Posting(rv)): return lv == rv
+    case let (.Posting(lv), .Posting(rv)): return true
     case (.Posted, .Posted): return true
-    case let (.Failed(lv), .Failed(rv)): return lv == rv
+    case let (.Failed(lv), .Failed(rv)): return true
     default: return false
     }
 }
@@ -183,6 +183,32 @@ class PostQueue: NSObject {
             }
         }
     }
+    
+    func clearErrors() {
+        localSongs = localSongs.filter { !($0.status == .Failed("")) }
+    }
+    
+    var hasErrors: Bool {
+        return (localSongs.filter { $0.status == .Failed("") }).count > 0
+    }
+    
+    var statusText: String {
+        let failures = localSongs.filter { $0.status == .Failed("") }
+        let remainings = localSongs.filter { !$0.status.stopped }
+        
+            if failures.count > 0 && remainings.count > 0 {
+                return String(format: NSLocalizedString("Sending %d songs with %d errors...", comment: ""), remainings.count, failures.count)
+            }
+            
+            if failures.count > 0 {
+                return String(format: NSLocalizedString("%d songs failed to send", comment: ""), failures.count)
+            }
+        
+            if remainings.count > 0 {
+                return String(format: NSLocalizedString("Sending %d songs...", comment: ""), remainings.count)
+            }
+            
+            return NSLocalizedString("Completed", comment: "")
+    }
 }
-
 
