@@ -7,7 +7,7 @@
 //
 
 #import "WebViewController.h"
-#import "PPSClient.h"
+#import "PartyPlay-Swift.h"
 
 @interface PlayingsViewController : WebViewController
 

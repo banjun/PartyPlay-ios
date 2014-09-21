@@ -12,7 +12,6 @@
 #import "PPSSelectViewController.h"
 #import "NSObject+BTKUtils.h"
 #import <SVProgressHUD.h>
-#import "PPSClient.h"
 #import "PPSNowPlaying.h"
 #import <PromiseKit.h>
 #import "PlayingsViewController.h"
@@ -20,7 +19,8 @@
 #import <Haneke.h>
 #import "CenteringView.h"
 #import "Appearance.h"
-
+#import "PartyPlay-Swift.h"
+#import "PPSLocalSong.h"
 
 @interface PostViewController () <MPMediaPickerControllerDelegate>
 
@@ -38,6 +38,8 @@
 @property (nonatomic) UIImageView *nowPlayingImageView;
 
 @property (nonatomic) NSTimer *pollingTimer;
+
+@property (nonatomic) PostQueue *postQueue;
 
 @end
 
@@ -85,7 +87,7 @@ static NSString * const kPostURLKey = @"PostURL";
     CenteringView *iPodArtworkCenteringView = [[CenteringView alloc] initWithFrame:CGRectZero contentView:self.iPodArtworkView];
     
     void (^applyButtonAppearance)(UIButton *) = ^(UIButton *b) {
-        b.backgroundColor = [[Appearance sharedInstance].honokaOrange colorWithAlphaComponent:0.9];
+        b.backgroundColor = [[Appearance sharedInstance].tintColor colorWithAlphaComponent:0.9];
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [b setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
         b.titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
@@ -136,7 +138,7 @@ static NSString * const kPostURLKey = @"PostURL";
         [b setTitleTextAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:16.0]} forState:UIControlStateNormal];
     }];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ppsClientNowPlayingChanged:) name:PPSClientNowPlayingDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ppsClientNowPlayingChanged:) name:PPSClient.nowPlayingDidChangeNotificationName object:nil];
 }
 
 - (void)dealloc
@@ -191,6 +193,7 @@ static NSString * const kPostURLKey = @"PostURL";
 {
     NSURL *url = [NSURL URLWithString:self.serverURLString];
     self.client = (url ? [[PPSClient alloc] initWithBaseURL:url] : nil);
+    self.postQueue = [[PostQueue alloc] initWithClient:self.client];
     [self.client loadNowPlaying];
     return self.client;
 }
@@ -246,7 +249,12 @@ static NSString * const kPostURLKey = @"PostURL";
                                                         message:nil delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Push", nil];
         alert.promise.then(^(NSNumber *buttonIndex) {
             if (buttonIndex.intValue != alert.cancelButtonIndex) {
-                [self exportMediaItemsAndPush:mediaItemCollection.items];
+                [self.postQueue addSongsWithMediaItems:mediaItemCollection.items];
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController pushViewController:[[PostQueueViewController alloc] initWithQueue:self.postQueue] animated:YES];
+                });
+//                [self exportMediaItemsAndPush:mediaItemCollection.items];
             }
         });
         
@@ -367,31 +375,31 @@ static NSString * const kPostURLKey = @"PostURL";
         };
     }];
     
-    [self.client pushSongs:songs progress:^(float progress) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"progress = %f", progress);
-            [SVProgressHUD showProgress:progress];
-        });
-    } didPushSong:^(PPSLocalSong *song) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"pushed %@", song.title);
-        });
-    } completion:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"pushed all request songs");
-            [SVProgressHUD showSuccessWithStatus:@"Pushed!"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [SVProgressHUD dismiss];
-            });
-        });
-    } failure:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [SVProgressHUD dismiss];
-            NSLog(@"push failed at some songs: %@", error);
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Push Song(s)" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        });
-    }];
+//    [self.client pushSongs:songs progress:^(float progress) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            NSLog(@"progress = %f", progress);
+//            [SVProgressHUD showProgress:progress];
+//        });
+//    } didPushSong:^(PPSLocalSong *song) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            NSLog(@"pushed %@", song.title);
+//        });
+//    } completion:^{
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            NSLog(@"pushed all request songs");
+//            [SVProgressHUD showSuccessWithStatus:@"Pushed!"];
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                [SVProgressHUD dismiss];
+//            });
+//        });
+//    } failure:^(NSError *error) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [SVProgressHUD dismiss];
+//            NSLog(@"push failed at some songs: %@", error);
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Push Song(s)" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            [alert show];
+//        });
+//    }];
 }
 
 - (IBAction)pushCurrentSong:(id)sender

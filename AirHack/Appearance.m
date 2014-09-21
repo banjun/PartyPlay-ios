@@ -13,6 +13,14 @@
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
 #define HSB(h, s, b) [UIColor colorWithHue:h/360.0 saturation:s/100.0 brightness:b/100.0 alpha:1.0]
 
+@interface Appearance ()
+
+@property (nonatomic) UIColor *honokaOrange;
+@property (nonatomic) UIColor *honokaOrangeBlack;
+
+@end
+
+
 @implementation Appearance
 
 + (instancetype)sharedInstance;
@@ -31,17 +39,22 @@
         self.honokaOrange = RGB(255, 146, 40); // == HSB(30, 84, 100)
         self.honokaOrangeBlack = HSB(30, 84, 25);
         
-        [UINavigationBar appearance].barTintColor = self.honokaOrange;
+        [UINavigationBar appearance].barTintColor = self.tintColor;
         [UINavigationBar appearance].tintColor = [UIColor whiteColor];
         [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: self.honokaOrangeBlack};
         
-        [UITabBar appearance].tintColor = self.honokaOrange;
-        [UITableView appearance].tintColor = self.honokaOrange;
-        [UITableViewCell appearance].tintColor = self.honokaOrange;
+        [UITabBar appearance].tintColor = self.tintColor;
+        [UITableView appearance].tintColor = self.tintColor;
+        [UITableViewCell appearance].tintColor = self.tintColor;
         
-        [SVProgressHUD appearance].tintColor = self.honokaOrange;
+        [SVProgressHUD appearance].tintColor = self.tintColor;
     }
     return self;
+}
+
+- (UIColor *)tintColor
+{
+    return self.honokaOrange;
 }
 
 @end

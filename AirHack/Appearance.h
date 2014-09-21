@@ -6,13 +6,12 @@
 //  Copyright (c) 2014年 banjun. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface Appearance : NSObject
 
 + (instancetype)sharedInstance;
 
-@property (nonatomic) UIColor *honokaOrange;
-@property (nonatomic) UIColor *honokaOrangeBlack;
+@property (nonatomic, readonly) UIColor *tintColor;
 
 @end

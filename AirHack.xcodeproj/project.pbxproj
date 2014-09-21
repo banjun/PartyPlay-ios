@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4A808F1F0315413CB2EA3E09 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9F0007486D4D5F904157AD /* libPods.a */; };
 		EA3682BC19715AC100E3285B /* BonjourFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3682BB19715AC100E3285B /* BonjourFinder.m */; };
+		EA3A547D19CDA76000DCFDE8 /* PostQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3A547C19CDA76000DCFDE8 /* PostQueue.swift */; };
 		EA54723B197258C10023AE3D /* PPSSong.m in Sources */ = {isa = PBXBuildFile; fileRef = EA54723A197258C10023AE3D /* PPSSong.m */; };
 		EA54723E197259070023AE3D /* PPSNowPlaying.m in Sources */ = {isa = PBXBuildFile; fileRef = EA54723D197259070023AE3D /* PPSNowPlaying.m */; };
 		EA716A0619721A1200834939 /* PlayingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA716A0519721A1200834939 /* PlayingsViewController.m */; };
@@ -16,6 +17,7 @@
 		EA7F23991972D62700998614 /* Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F23981972D62700998614 /* Appearance.m */; };
 		EA7F23A01972E04300998614 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = EA7F239E1972E04300998614 /* iTunesArtwork */; };
 		EA7F23A11972E04300998614 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = EA7F239F1972E04300998614 /* iTunesArtwork@2x */; };
+		EA97A62819CDD85C00959966 /* PostQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA97A62719CDD85C00959966 /* PostQueueViewController.swift */; };
 		EA9C68F8196ADAC1005B52B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68F7196ADAC1005B52B2 /* Foundation.framework */; };
 		EA9C68FA196ADAC1005B52B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68F9196ADAC1005B52B2 /* CoreGraphics.framework */; };
 		EA9C68FC196ADAC1005B52B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68FB196ADAC1005B52B2 /* UIKit.framework */; };
@@ -33,10 +35,10 @@
 		EAA2C1E6197167740031EDF8 /* PPSSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA2C1E5197167740031EDF8 /* PPSSelectViewController.m */; };
 		EAA2C1E9197168150031EDF8 /* NSObject+BTKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA2C1E8197168150031EDF8 /* NSObject+BTKUtils.m */; };
 		EAAA769019726658004FFCA6 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA768F19726658004FFCA6 /* UIImage+ImageEffects.m */; };
-		EAD7AE2319718F00005F981C /* PPSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7AE2219718F00005F981C /* PPSClient.m */; };
 		EAD7AE261971904B005F981C /* PPSLocalSong.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7AE251971904B005F981C /* PPSLocalSong.m */; };
 		EAD7AE2A1971AC0F005F981C /* Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7AE291971AC0F005F981C /* Functional.m */; };
 		EAD7AE2D1971BB9E005F981C /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7AE2C1971BB9E005F981C /* WebViewController.m */; };
+		EADD7B0019CEC06A00793814 /* PPSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD7AFF19CEC06A00793814 /* PPSClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		3623BD9117C74807A2880434 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		EA3682BA19715AC100E3285B /* BonjourFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonjourFinder.h; sourceTree = "<group>"; };
 		EA3682BB19715AC100E3285B /* BonjourFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BonjourFinder.m; sourceTree = "<group>"; };
+		EA3A547B19CDA75F00DCFDE8 /* PartyPlay-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PartyPlay-Bridging-Header.h"; sourceTree = "<group>"; };
+		EA3A547C19CDA76000DCFDE8 /* PostQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostQueue.swift; sourceTree = "<group>"; };
 		EA547239197258C10023AE3D /* PPSSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSSong.h; sourceTree = "<group>"; };
 		EA54723A197258C10023AE3D /* PPSSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSSong.m; sourceTree = "<group>"; };
 		EA54723C197259070023AE3D /* PPSNowPlaying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSNowPlaying.h; sourceTree = "<group>"; };
@@ -66,7 +70,8 @@
 		EA7F23981972D62700998614 /* Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appearance.m; sourceTree = "<group>"; };
 		EA7F239E1972E04300998614 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = "partyplay-icons/iTunesArtwork"; sourceTree = SOURCE_ROOT; };
 		EA7F239F1972E04300998614 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iTunesArtwork@2x"; path = "partyplay-icons/iTunesArtwork@2x"; sourceTree = SOURCE_ROOT; };
-		EA9C68F4196ADAC1005B52B2 /* AirHack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirHack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA97A62719CDD85C00959966 /* PostQueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostQueueViewController.swift; sourceTree = "<group>"; };
+		EA9C68F4196ADAC1005B52B2 /* PartyPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartyPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA9C68F7196ADAC1005B52B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA9C68F9196ADAC1005B52B2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EA9C68FB196ADAC1005B52B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -91,14 +96,13 @@
 		EAA2C1E8197168150031EDF8 /* NSObject+BTKUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BTKUtils.m"; sourceTree = "<group>"; };
 		EAAA768E19726658004FFCA6 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		EAAA768F19726658004FFCA6 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
-		EAD7AE2119718F00005F981C /* PPSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSClient.h; sourceTree = "<group>"; };
-		EAD7AE2219718F00005F981C /* PPSClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSClient.m; sourceTree = "<group>"; };
 		EAD7AE241971904B005F981C /* PPSLocalSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSLocalSong.h; sourceTree = "<group>"; };
 		EAD7AE251971904B005F981C /* PPSLocalSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSLocalSong.m; sourceTree = "<group>"; };
 		EAD7AE281971AC0F005F981C /* Functional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functional.h; sourceTree = "<group>"; };
 		EAD7AE291971AC0F005F981C /* Functional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Functional.m; sourceTree = "<group>"; };
 		EAD7AE2B1971BB9E005F981C /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		EAD7AE2C1971BB9E005F981C /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		EADD7AFF19CEC06A00793814 /* PPSClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPSClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +145,7 @@
 		EA9C68F5196ADAC1005B52B2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EA9C68F4196ADAC1005B52B2 /* AirHack.app */,
+				EA9C68F4196ADAC1005B52B2 /* PartyPlay.app */,
 				EA9C690F196ADAC1005B52B2 /* AirHackTests.xctest */,
 			);
 			name = Products;
@@ -169,6 +173,8 @@
 				EA7F23981972D62700998614 /* Appearance.m */,
 				EA9C6928196ADF7A005B52B2 /* PostViewController.h */,
 				EA9C6929196ADF7A005B52B2 /* PostViewController.m */,
+				EA3A547C19CDA76000DCFDE8 /* PostQueue.swift */,
+				EA97A62719CDD85C00959966 /* PostQueueViewController.swift */,
 				EAA2C1E4197167740031EDF8 /* PPSSelectViewController.h */,
 				EAA2C1E5197167740031EDF8 /* PPSSelectViewController.m */,
 				EA716A0419721A1200834939 /* PlayingsViewController.h */,
@@ -187,6 +193,7 @@
 				EAAA76911972665C004FFCA6 /* Apple Sample Code */,
 				EA9C6909196ADAC1005B52B2 /* Images.xcassets */,
 				EA9C68FE196ADAC1005B52B2 /* Supporting Files */,
+				EA3A547B19CDA75F00DCFDE8 /* PartyPlay-Bridging-Header.h */,
 			);
 			path = AirHack;
 			sourceTree = "<group>";
@@ -234,8 +241,7 @@
 		EAD7AE27197190AA005F981C /* Party Play Service Client */ = {
 			isa = PBXGroup;
 			children = (
-				EAD7AE2119718F00005F981C /* PPSClient.h */,
-				EAD7AE2219718F00005F981C /* PPSClient.m */,
+				EADD7AFF19CEC06A00793814 /* PPSClient.swift */,
 				EA547239197258C10023AE3D /* PPSSong.h */,
 				EA54723A197258C10023AE3D /* PPSSong.m */,
 				EA54723C197259070023AE3D /* PPSNowPlaying.h */,
@@ -265,7 +271,7 @@
 			);
 			name = PartyPlay;
 			productName = AirHack;
-			productReference = EA9C68F4196ADAC1005B52B2 /* AirHack.app */;
+			productReference = EA9C68F4196ADAC1005B52B2 /* PartyPlay.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EA9C690E196ADAC1005B52B2 /* AirHackTests */ = {
@@ -382,18 +388,20 @@
 				EAD7AE2D1971BB9E005F981C /* WebViewController.m in Sources */,
 				EA7F23961972C1AF00998614 /* CenteringView.m in Sources */,
 				EAAA769019726658004FFCA6 /* UIImage+ImageEffects.m in Sources */,
+				EADD7B0019CEC06A00793814 /* PPSClient.swift in Sources */,
 				EA3682BC19715AC100E3285B /* BonjourFinder.m in Sources */,
 				EAA2C1E6197167740031EDF8 /* PPSSelectViewController.m in Sources */,
 				EA9C6904196ADAC1005B52B2 /* main.m in Sources */,
 				EA7F23991972D62700998614 /* Appearance.m in Sources */,
 				EA9C692A196ADF7A005B52B2 /* PostViewController.m in Sources */,
-				EAD7AE2319718F00005F981C /* PPSClient.m in Sources */,
 				EA54723E197259070023AE3D /* PPSNowPlaying.m in Sources */,
 				EAD7AE261971904B005F981C /* PPSLocalSong.m in Sources */,
 				EA716A0619721A1200834939 /* PlayingsViewController.m in Sources */,
 				EAD7AE2A1971AC0F005F981C /* Functional.m in Sources */,
 				EA54723B197258C10023AE3D /* PPSSong.m in Sources */,
 				EAA2C1E9197168150031EDF8 /* NSObject+BTKUtils.m in Sources */,
+				EA97A62819CDD85C00959966 /* PostQueueViewController.swift in Sources */,
+				EA3A547D19CDA76000DCFDE8 /* PostQueue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,10 +521,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AirHack/AirHack-Prefix.pch";
 				INFOPLIST_FILE = "AirHack/AirHack-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AirHack/PartyPlay-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -527,10 +539,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AirHack/AirHack-Prefix.pch";
 				INFOPLIST_FILE = "AirHack/AirHack-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AirHack/PartyPlay-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
