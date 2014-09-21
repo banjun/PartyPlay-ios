@@ -158,12 +158,14 @@ class PostQueue: NSObject {
         for s in localSongs.filter({$0.status == .WaitingExport}) {
             s.status = .Exporting
             dispatch_async(exportQueue) {
-                let sem = dispatch_semaphore_create(0)
-                s.export {
-                    dispatch_semaphore_signal(sem)
-                    self.addToPostQueue(s)
+                autoreleasepool {
+                    let sem = dispatch_semaphore_create(0)
+                    s.export {
+                        dispatch_semaphore_signal(sem)
+                        self.addToPostQueue(s)
+                    }
+                    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER)
                 }
-                dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER)
             }
         }
     }
@@ -171,15 +173,20 @@ class PostQueue: NSObject {
     func addToPostQueue(song: LocalSong) {
         if !(song.status == .WaitingPost) { return }
         dispatch_async(self.postQueue) {
-            self.client.songsAdd(song) {
-                println("post finished: \(song)")
-                if (song.status == .Posted) {
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-                        if let index = find(self.localSongs, song) {
-                            self.localSongs.removeAtIndex(index)
+            autoreleasepool {
+                let sem = dispatch_semaphore_create(0)
+                self.client.songsAdd(song) {
+                    dispatch_semaphore_signal(sem)
+                    println("post finished: \(song)")
+                    if (song.status == .Posted) {
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+                            if let index = find(self.localSongs, song) {
+                                self.localSongs.removeAtIndex(index)
+                            }
                         }
                     }
                 }
+                dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER)
             }
         }
     }

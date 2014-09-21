@@ -134,7 +134,7 @@ class CircleProgressView : UIView {
                 shapeLayer.lineWidth = 1
                 shapeLayer.strokeStart = 0.1
                 shapeLayer.strokeEnd = 1.0
-                rotate()
+//                rotate()
             case (true, false):
                 shapeLayer.lineWidth = 4
                 shapeLayer.strokeStart = 0.0
