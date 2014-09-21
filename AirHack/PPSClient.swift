@@ -75,7 +75,9 @@ class PPSClient : NSObject {
             (response: NSURLResponse!, responseObject: AnyObject!, error: NSError!) -> Void in
             let status = (response as? NSHTTPURLResponse)?.statusCode ?? 0
             if error != nil || status != 200 {
-                song.status = .Failed("Send: \(error)")
+//                println("error: \(error), underlying error: \(error.userInfo?[NSUnderlyingErrorKey])")
+                let reason = (error.userInfo?[NSUnderlyingErrorKey] ?? error).localizedDescription
+                song.status = .Failed(reason)
             } else {
                 song.status = .Posted
             }

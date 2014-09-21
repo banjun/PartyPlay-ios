@@ -98,7 +98,7 @@ class PostQueueTableViewCell : UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .Subtitle, reuseIdentifier: reuseIdentifier)
-        self.accessoryView = progressView
+//        self.accessoryView = progressView // we cannot get progress frequently
     }
 
     required init(coder aDecoder: NSCoder) {

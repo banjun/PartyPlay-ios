@@ -35,7 +35,7 @@ class LocalSong : Printable, Equatable {
             case WaitingPost: return "WaitingPost"
             case let Posting(p): return "Sending... \(Int(round(100 * p)))%"
             case Posted: return "Posted"
-            case let Failed(r): return "Failed(\(r))"
+            case let Failed(r): return "Failed (\(r))"
                 }
         }
         
@@ -93,7 +93,7 @@ class LocalSong : Printable, Equatable {
         
         let asset = AVAsset.assetWithURL(mediaItem.assetURL) as? AVAsset
         if asset == nil {
-            self.status = .Failed("invalid url \(mediaItem.assetURL)")
+            self.status = .Failed("content is protected or not found")
             completion?()
             return
         }
