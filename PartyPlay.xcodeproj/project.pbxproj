@@ -18,6 +18,7 @@
 		EA7F23A01972E04300998614 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = EA7F239E1972E04300998614 /* iTunesArtwork */; };
 		EA7F23A11972E04300998614 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = EA7F239F1972E04300998614 /* iTunesArtwork@2x */; };
 		EA97A62819CDD85C00959966 /* PostQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA97A62719CDD85C00959966 /* PostQueueViewController.swift */; };
+		EA9AA4051AFD039900CAB060 /* SafeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9AA4041AFD039900CAB060 /* SafeTableViewController.swift */; };
 		EA9C68F8196ADAC1005B52B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68F7196ADAC1005B52B2 /* Foundation.framework */; };
 		EA9C68FA196ADAC1005B52B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68F9196ADAC1005B52B2 /* CoreGraphics.framework */; };
 		EA9C68FC196ADAC1005B52B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68FB196ADAC1005B52B2 /* UIKit.framework */; };
@@ -72,6 +73,7 @@
 		EA7F239E1972E04300998614 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = "partyplay-icons/iTunesArtwork"; sourceTree = SOURCE_ROOT; };
 		EA7F239F1972E04300998614 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iTunesArtwork@2x"; path = "partyplay-icons/iTunesArtwork@2x"; sourceTree = SOURCE_ROOT; };
 		EA97A62719CDD85C00959966 /* PostQueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostQueueViewController.swift; sourceTree = "<group>"; };
+		EA9AA4041AFD039900CAB060 /* SafeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeTableViewController.swift; sourceTree = "<group>"; };
 		EA9C68F4196ADAC1005B52B2 /* PartyPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartyPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA9C68F7196ADAC1005B52B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA9C68F9196ADAC1005B52B2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -83,7 +85,7 @@
 		EA9C6906196ADAC1005B52B2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EA9C6907196ADAC1005B52B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EA9C6909196ADAC1005B52B2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		EA9C690F196ADAC1005B52B2 /* AirHackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AirHackTests.xctest; path = PartyPlayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA9C690F196ADAC1005B52B2 /* PartyPlayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PartyPlayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA9C6910196ADAC1005B52B2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		EA9C6918196ADAC1005B52B2 /* PartyPlayTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PartyPlayTests-Info.plist"; sourceTree = "<group>"; };
 		EA9C691A196ADAC1005B52B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -156,7 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				EA9C68F4196ADAC1005B52B2 /* PartyPlay.app */,
-				EA9C690F196ADAC1005B52B2 /* AirHackTests.xctest */,
+				EA9C690F196ADAC1005B52B2 /* PartyPlayTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -201,6 +203,7 @@
 				EAD7AE281971AC0F005F981C /* Functional.h */,
 				EAD7AE291971AC0F005F981C /* Functional.m */,
 				EAAA76911972665C004FFCA6 /* Apple Sample Code */,
+				EA9AA4041AFD039900CAB060 /* SafeTableViewController.swift */,
 				EA9C6909196ADAC1005B52B2 /* Images.xcassets */,
 				EA9C68FE196ADAC1005B52B2 /* Supporting Files */,
 				EA3A547B19CDA75F00DCFDE8 /* PartyPlay-Bridging-Header.h */,
@@ -299,7 +302,7 @@
 			);
 			name = PartyPlayTests;
 			productName = AirHackTests;
-			productReference = EA9C690F196ADAC1005B52B2 /* AirHackTests.xctest */;
+			productReference = EA9C690F196ADAC1005B52B2 /* PartyPlayTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -400,6 +403,7 @@
 				EAAA769019726658004FFCA6 /* UIImage+ImageEffects.m in Sources */,
 				EADD7B0019CEC06A00793814 /* PPSClient.swift in Sources */,
 				EA3682BC19715AC100E3285B /* BonjourFinder.m in Sources */,
+				EA9AA4051AFD039900CAB060 /* SafeTableViewController.swift in Sources */,
 				EAA2C1E6197167740031EDF8 /* PPSSelectViewController.m in Sources */,
 				EA9C6904196ADAC1005B52B2 /* main.m in Sources */,
 				EA7F23991972D62700998614 /* Appearance.m in Sources */,
@@ -563,19 +567,19 @@
 		EA9C6924196ADAC1005B52B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AirHack.app/AirHack";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PartyPlay.app/PartyPlay";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AirHack/AirHack-Prefix.pch";
+				GCC_PREFIX_HEADER = "PartyPlay/PartyPlay-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "AirHackTests/AirHackTests-Info.plist";
+				INFOPLIST_FILE = "PartyPlay/PartyPlay-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -585,15 +589,15 @@
 		EA9C6925196ADAC1005B52B2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AirHack.app/AirHack";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PartyPlay.app/PartyPlay";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AirHack/AirHack-Prefix.pch";
-				INFOPLIST_FILE = "AirHackTests/AirHackTests-Info.plist";
+				GCC_PREFIX_HEADER = "PartyPlay/PartyPlay-Prefix.pch";
+				INFOPLIST_FILE = "PartyPlay/PartyPlay-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
