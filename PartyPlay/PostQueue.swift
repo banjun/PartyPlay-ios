@@ -102,13 +102,13 @@ class LocalSong : Printable, Equatable {
         
         let session = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetAppleM4A)
         session.outputURL = NSURL(fileURLWithPath: self.exportFilePath!)
-        session.outputFileType = session.supportedFileTypes.first as String
+        session.outputFileType = session.supportedFileTypes.first as! String
         session.exportAsynchronouslyWithCompletionHandler { () -> Void in
             if session.status == .Completed {
                 self.status = .WaitingPost
             } else {
-                println("session completed with status = \(session.status.toRaw()), error = \(session.error)")
-                self.status = .Failed("\(session.status.toRaw()),\(session.error.code)")
+                println("session completed with status = \(session.status.rawValue), error = \(session.error)")
+                self.status = .Failed("\(session.status.rawValue),\(session.error.code)")
             }
             self.status = .WaitingPost // success with failed??
             completion?()

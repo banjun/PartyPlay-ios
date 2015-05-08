@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0630"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -17,7 +17,21 @@
                BlueprintIdentifier = "EA9C68F3196ADAC1005B52B2"
                BuildableName = "PartyPlay.app"
                BlueprintName = "PartyPlay"
-               ReferencedContainer = "container:AirHack.xcodeproj">
+               ReferencedContainer = "container:PartyPlay.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EA9C690E196ADAC1005B52B2"
+               BuildableName = "PartyPlayTests.xctest"
+               BlueprintName = "PartyPlayTests"
+               ReferencedContainer = "container:PartyPlay.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EA9C690E196ADAC1005B52B2"
-               BuildableName = "AirHackTests.xctest"
-               BlueprintName = "AirHackTests"
-               ReferencedContainer = "container:AirHack.xcodeproj">
+               BuildableName = "PartyPlayTests.xctest"
+               BlueprintName = "PartyPlayTests"
+               ReferencedContainer = "container:PartyPlay.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +59,7 @@
             BlueprintIdentifier = "EA9C68F3196ADAC1005B52B2"
             BuildableName = "PartyPlay.app"
             BlueprintName = "PartyPlay"
-            ReferencedContainer = "container:AirHack.xcodeproj">
+            ReferencedContainer = "container:PartyPlay.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -58,13 +72,14 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EA9C68F3196ADAC1005B52B2"
             BuildableName = "PartyPlay.app"
             BlueprintName = "PartyPlay"
-            ReferencedContainer = "container:AirHack.xcodeproj">
+            ReferencedContainer = "container:PartyPlay.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -76,13 +91,14 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EA9C68F3196ADAC1005B52B2"
             BuildableName = "PartyPlay.app"
             BlueprintName = "PartyPlay"
-            ReferencedContainer = "container:AirHack.xcodeproj">
+            ReferencedContainer = "container:PartyPlay.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

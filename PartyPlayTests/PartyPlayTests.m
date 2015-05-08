@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface AirHackTests : XCTestCase
+@interface PartyPlayTests : XCTestCase
 
 @end
 
-@implementation AirHackTests
+@implementation PartyPlayTests
 
 - (void)setUp
 {

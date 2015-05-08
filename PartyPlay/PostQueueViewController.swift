@@ -9,30 +9,18 @@
 import UIKit
 
 
-class PostQueueViewController: UITableViewController {
+class PostQueueViewController: SafeTableViewController {
     let queue: PostQueue
     private let kCellID = "Cell"
     private var timer: NSTimer? = nil
     var songs: [LocalSong]
     
-    let clearErrorsButton: UIBarButtonItem
+    lazy var clearErrorsButton: UIBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Clear Errors", comment: ""), style: UIBarButtonItemStyle.Plain, target: self, action: "clearErrors")
     
     init(queue: PostQueue) {
         self.queue = queue
         self.songs = []
-        self.clearErrorsButton = UIBarButtonItem()
         super.init(style: .Plain)
-        self.queue = queue // See below fix
-        self.clearErrorsButton = UIBarButtonItem(title: NSLocalizedString("Clear Errors", comment: ""), style: UIBarButtonItemStyle.Plain, target: self, action: "clearErrors")
-    }
-    
-    // Need this to prevent runtime error:
-    // fatal error: use of unimplemented initializer 'init(nibName:bundle:)'
-    private override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-        self.queue = PostQueue(client: PPSClient(baseURL: NSURL(string: "http://localhost/"))) // dummy
-        self.songs = []
-        self.clearErrorsButton = UIBarButtonItem()
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -79,7 +67,7 @@ class PostQueueViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(kCellID, forIndexPath: indexPath) as PostQueueTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(kCellID, forIndexPath: indexPath) as! PostQueueTableViewCell
         
         let s = songs[indexPath.row]
         cell.textLabel?.text = s.mediaItem.title
