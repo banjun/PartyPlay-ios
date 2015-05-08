@@ -29,7 +29,7 @@
 		EA9C6912196ADAC1005B52B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68F7196ADAC1005B52B2 /* Foundation.framework */; };
 		EA9C6913196ADAC1005B52B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68FB196ADAC1005B52B2 /* UIKit.framework */; };
 		EA9C691B196ADAC1005B52B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA9C6919196ADAC1005B52B2 /* InfoPlist.strings */; };
-		EA9C691D196ADAC1005B52B2 /* AirHackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C691C196ADAC1005B52B2 /* AirHackTests.m */; };
+		EA9C691D196ADAC1005B52B2 /* PartyPlayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C691C196ADAC1005B52B2 /* PartyPlayTests.m */; };
 		EA9C6927196ADB16005B52B2 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C6926196ADB16005B52B2 /* MediaPlayer.framework */; };
 		EA9C692A196ADF7A005B52B2 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C6929196ADF7A005B52B2 /* PostViewController.m */; };
 		EAA2C1E6197167740031EDF8 /* PPSSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA2C1E5197167740031EDF8 /* PPSSelectViewController.m */; };
@@ -53,7 +53,8 @@
 
 /* Begin PBXFileReference section */
 		1C9F0007486D4D5F904157AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3623BD9117C74807A2880434 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		615645E6D049A2D246F4E832 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6AEAAA8E915D54C62C2897B2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EA3682BA19715AC100E3285B /* BonjourFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonjourFinder.h; sourceTree = "<group>"; };
 		EA3682BB19715AC100E3285B /* BonjourFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BonjourFinder.m; sourceTree = "<group>"; };
 		EA3A547B19CDA75F00DCFDE8 /* PartyPlay-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PartyPlay-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -75,18 +76,18 @@
 		EA9C68F7196ADAC1005B52B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA9C68F9196ADAC1005B52B2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EA9C68FB196ADAC1005B52B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		EA9C68FF196ADAC1005B52B2 /* AirHack-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AirHack-Info.plist"; sourceTree = "<group>"; };
+		EA9C68FF196ADAC1005B52B2 /* PartyPlay-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PartyPlay-Info.plist"; sourceTree = "<group>"; };
 		EA9C6901196ADAC1005B52B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EA9C6903196ADAC1005B52B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EA9C6905196ADAC1005B52B2 /* AirHack-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AirHack-Prefix.pch"; sourceTree = "<group>"; };
+		EA9C6905196ADAC1005B52B2 /* PartyPlay-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PartyPlay-Prefix.pch"; sourceTree = "<group>"; };
 		EA9C6906196ADAC1005B52B2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EA9C6907196ADAC1005B52B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EA9C6909196ADAC1005B52B2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		EA9C690F196ADAC1005B52B2 /* AirHackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirHackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA9C690F196ADAC1005B52B2 /* AirHackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AirHackTests.xctest; path = PartyPlayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA9C6910196ADAC1005B52B2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		EA9C6918196ADAC1005B52B2 /* AirHackTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AirHackTests-Info.plist"; sourceTree = "<group>"; };
+		EA9C6918196ADAC1005B52B2 /* PartyPlayTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PartyPlayTests-Info.plist"; sourceTree = "<group>"; };
 		EA9C691A196ADAC1005B52B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		EA9C691C196ADAC1005B52B2 /* AirHackTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AirHackTests.m; sourceTree = "<group>"; };
+		EA9C691C196ADAC1005B52B2 /* PartyPlayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyPlayTests.m; sourceTree = "<group>"; };
 		EA9C6926196ADB16005B52B2 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		EA9C6928196ADF7A005B52B2 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		EA9C6929196ADF7A005B52B2 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
@@ -131,14 +132,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D44D89F913F1358D80FB5CF9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6AEAAA8E915D54C62C2897B2 /* Pods.debug.xcconfig */,
+				615645E6D049A2D246F4E832 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		EA9C68EB196ADAC1005B52B2 = {
 			isa = PBXGroup;
 			children = (
-				EA9C68FD196ADAC1005B52B2 /* AirHack */,
-				EA9C6916196ADAC1005B52B2 /* AirHackTests */,
+				EA9C68FD196ADAC1005B52B2 /* PartyPlay */,
+				EA9C6916196ADAC1005B52B2 /* PartyPlayTests */,
 				EA9C68F6196ADAC1005B52B2 /* Frameworks */,
 				EA9C68F5196ADAC1005B52B2 /* Products */,
-				3623BD9117C74807A2880434 /* Pods.xcconfig */,
+				D44D89F913F1358D80FB5CF9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,7 +174,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EA9C68FD196ADAC1005B52B2 /* AirHack */ = {
+		EA9C68FD196ADAC1005B52B2 /* PartyPlay */ = {
 			isa = PBXGroup;
 			children = (
 				EA9C6906196ADAC1005B52B2 /* AppDelegate.h */,
@@ -195,35 +205,35 @@
 				EA9C68FE196ADAC1005B52B2 /* Supporting Files */,
 				EA3A547B19CDA75F00DCFDE8 /* PartyPlay-Bridging-Header.h */,
 			);
-			path = AirHack;
+			path = PartyPlay;
 			sourceTree = "<group>";
 		};
 		EA9C68FE196ADAC1005B52B2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EA9C68FF196ADAC1005B52B2 /* AirHack-Info.plist */,
+				EA9C68FF196ADAC1005B52B2 /* PartyPlay-Info.plist */,
 				EA9C6900196ADAC1005B52B2 /* InfoPlist.strings */,
 				EA7F239E1972E04300998614 /* iTunesArtwork */,
 				EA7F239F1972E04300998614 /* iTunesArtwork@2x */,
 				EA9C6903196ADAC1005B52B2 /* main.m */,
-				EA9C6905196ADAC1005B52B2 /* AirHack-Prefix.pch */,
+				EA9C6905196ADAC1005B52B2 /* PartyPlay-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		EA9C6916196ADAC1005B52B2 /* AirHackTests */ = {
+		EA9C6916196ADAC1005B52B2 /* PartyPlayTests */ = {
 			isa = PBXGroup;
 			children = (
-				EA9C691C196ADAC1005B52B2 /* AirHackTests.m */,
+				EA9C691C196ADAC1005B52B2 /* PartyPlayTests.m */,
 				EA9C6917196ADAC1005B52B2 /* Supporting Files */,
 			);
-			path = AirHackTests;
+			path = PartyPlayTests;
 			sourceTree = "<group>";
 		};
 		EA9C6917196ADAC1005B52B2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EA9C6918196ADAC1005B52B2 /* AirHackTests-Info.plist */,
+				EA9C6918196ADAC1005B52B2 /* PartyPlayTests-Info.plist */,
 				EA9C6919196ADAC1005B52B2 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -274,9 +284,9 @@
 			productReference = EA9C68F4196ADAC1005B52B2 /* PartyPlay.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EA9C690E196ADAC1005B52B2 /* AirHackTests */ = {
+		EA9C690E196ADAC1005B52B2 /* PartyPlayTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EA9C6923196ADAC1005B52B2 /* Build configuration list for PBXNativeTarget "AirHackTests" */;
+			buildConfigurationList = EA9C6923196ADAC1005B52B2 /* Build configuration list for PBXNativeTarget "PartyPlayTests" */;
 			buildPhases = (
 				EA9C690B196ADAC1005B52B2 /* Sources */,
 				EA9C690C196ADAC1005B52B2 /* Frameworks */,
@@ -287,7 +297,7 @@
 			dependencies = (
 				EA9C6915196ADAC1005B52B2 /* PBXTargetDependency */,
 			);
-			name = AirHackTests;
+			name = PartyPlayTests;
 			productName = AirHackTests;
 			productReference = EA9C690F196ADAC1005B52B2 /* AirHackTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -306,7 +316,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EA9C68EF196ADAC1005B52B2 /* Build configuration list for PBXProject "AirHack" */;
+			buildConfigurationList = EA9C68EF196ADAC1005B52B2 /* Build configuration list for PBXProject "PartyPlay" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -319,7 +329,7 @@
 			projectRoot = "";
 			targets = (
 				EA9C68F3196ADAC1005B52B2 /* PartyPlay */,
-				EA9C690E196ADAC1005B52B2 /* AirHackTests */,
+				EA9C690E196ADAC1005B52B2 /* PartyPlayTests */,
 			);
 		};
 /* End PBXProject section */
@@ -359,7 +369,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6A5E7456D3CB4D54848EE2DF /* Check Pods Manifest.lock */ = {
@@ -409,7 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA9C691D196ADAC1005B52B2 /* AirHackTests.m in Sources */,
+				EA9C691D196ADAC1005B52B2 /* PartyPlayTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,17 +527,17 @@
 		};
 		EA9C6921196ADAC1005B52B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3623BD9117C74807A2880434 /* Pods.xcconfig */;
+			baseConfigurationReference = 6AEAAA8E915D54C62C2897B2 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AirHack/AirHack-Prefix.pch";
-				INFOPLIST_FILE = "AirHack/AirHack-Info.plist";
+				GCC_PREFIX_HEADER = "PartyPlay/PartyPlay-Prefix.pch";
+				INFOPLIST_FILE = "PartyPlay/PartyPlay-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "AirHack/PartyPlay-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "PartyPlay/PartyPlay-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
@@ -535,17 +545,17 @@
 		};
 		EA9C6922196ADAC1005B52B2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3623BD9117C74807A2880434 /* Pods.xcconfig */;
+			baseConfigurationReference = 615645E6D049A2D246F4E832 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AirHack/AirHack-Prefix.pch";
-				INFOPLIST_FILE = "AirHack/AirHack-Info.plist";
+				GCC_PREFIX_HEADER = "PartyPlay/PartyPlay-Prefix.pch";
+				INFOPLIST_FILE = "PartyPlay/PartyPlay-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "AirHack/PartyPlay-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "PartyPlay/PartyPlay-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -593,7 +603,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EA9C68EF196ADAC1005B52B2 /* Build configuration list for PBXProject "AirHack" */ = {
+		EA9C68EF196ADAC1005B52B2 /* Build configuration list for PBXProject "PartyPlay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EA9C691E196ADAC1005B52B2 /* Debug */,
@@ -611,7 +621,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EA9C6923196ADAC1005B52B2 /* Build configuration list for PBXNativeTarget "AirHackTests" */ = {
+		EA9C6923196ADAC1005B52B2 /* Build configuration list for PBXNativeTarget "PartyPlayTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EA9C6924196ADAC1005B52B2 /* Debug */,
