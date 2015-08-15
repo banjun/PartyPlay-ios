@@ -13,6 +13,11 @@
 		EAFD0A8C1B7F610A009A918F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFD0A8A1B7F610A009A918F /* LaunchScreen.storyboard */; };
 		EAFD0A971B7F610B009A918F /* PartyPlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0A961B7F610B009A918F /* PartyPlayTests.swift */; };
 		EAFD0AA21B7F610B009A918F /* PartyPlayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AA11B7F610B009A918F /* PartyPlayUITests.swift */; };
+		EAFD0AB61B7F61E6009A918F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AB51B7F61E6009A918F /* AppDelegate.swift */; };
+		EAFD0AB81B7F61E6009A918F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFD0AB71B7F61E6009A918F /* Assets.xcassets */; };
+		EAFD0ABB1B7F61E6009A918F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFD0AB91B7F61E6009A918F /* MainMenu.xib */; };
+		EAFD0AC61B7F61E6009A918F /* PartyPlay_osxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AC51B7F61E6009A918F /* PartyPlay_osxTests.swift */; };
+		EAFD0AD11B7F61E6009A918F /* PartyPlay_osxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AD01B7F61E6009A918F /* PartyPlay_osxUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +35,20 @@
 			remoteGlobalIDString = EAFD0A7D1B7F610A009A918F;
 			remoteInfo = PartyPlay;
 		};
+		EAFD0AC21B7F61E6009A918F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAFD0A761B7F610A009A918F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAFD0AB21B7F61E6009A918F;
+			remoteInfo = "PartyPlay-osx";
+		};
+		EAFD0ACD1B7F61E6009A918F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAFD0A761B7F610A009A918F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAFD0AB21B7F61E6009A918F;
+			remoteInfo = "PartyPlay-osx";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +64,17 @@
 		EAFD0A9D1B7F610B009A918F /* PartyPlayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PartyPlayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFD0AA11B7F610B009A918F /* PartyPlayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPlayUITests.swift; sourceTree = "<group>"; };
 		EAFD0AA31B7F610B009A918F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAFD0AB31B7F61E6009A918F /* PartyPlay-osx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PartyPlay-osx.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAFD0AB51B7F61E6009A918F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EAFD0AB71B7F61E6009A918F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EAFD0ABA1B7F61E6009A918F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		EAFD0ABC1B7F61E6009A918F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAFD0AC11B7F61E6009A918F /* PartyPlay-osxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PartyPlay-osxTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAFD0AC51B7F61E6009A918F /* PartyPlay_osxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPlay_osxTests.swift; sourceTree = "<group>"; };
+		EAFD0AC71B7F61E6009A918F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAFD0ACC1B7F61E6009A918F /* PartyPlay-osxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PartyPlay-osxUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAFD0AD01B7F61E6009A918F /* PartyPlay_osxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPlay_osxUITests.swift; sourceTree = "<group>"; };
+		EAFD0AD21B7F61E6009A918F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +99,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EAFD0AB01B7F61E6009A918F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0ABE1B7F61E6009A918F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0AC91B7F61E6009A918F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +129,9 @@
 				EAFD0A801B7F610A009A918F /* PartyPlay */,
 				EAFD0A951B7F610B009A918F /* PartyPlayTests */,
 				EAFD0AA01B7F610B009A918F /* PartyPlayUITests */,
+				EAFD0AB41B7F61E6009A918F /* PartyPlay-osx */,
+				EAFD0AC41B7F61E6009A918F /* PartyPlay-osxTests */,
+				EAFD0ACF1B7F61E6009A918F /* PartyPlay-osxUITests */,
 				EAFD0A7F1B7F610A009A918F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +142,9 @@
 				EAFD0A7E1B7F610A009A918F /* PartyPlay.app */,
 				EAFD0A921B7F610B009A918F /* PartyPlayTests.xctest */,
 				EAFD0A9D1B7F610B009A918F /* PartyPlayUITests.xctest */,
+				EAFD0AB31B7F61E6009A918F /* PartyPlay-osx.app */,
+				EAFD0AC11B7F61E6009A918F /* PartyPlay-osxTests.xctest */,
+				EAFD0ACC1B7F61E6009A918F /* PartyPlay-osxUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,6 +177,35 @@
 				EAFD0AA31B7F610B009A918F /* Info.plist */,
 			);
 			path = PartyPlayUITests;
+			sourceTree = "<group>";
+		};
+		EAFD0AB41B7F61E6009A918F /* PartyPlay-osx */ = {
+			isa = PBXGroup;
+			children = (
+				EAFD0AB51B7F61E6009A918F /* AppDelegate.swift */,
+				EAFD0AB71B7F61E6009A918F /* Assets.xcassets */,
+				EAFD0AB91B7F61E6009A918F /* MainMenu.xib */,
+				EAFD0ABC1B7F61E6009A918F /* Info.plist */,
+			);
+			path = "PartyPlay-osx";
+			sourceTree = "<group>";
+		};
+		EAFD0AC41B7F61E6009A918F /* PartyPlay-osxTests */ = {
+			isa = PBXGroup;
+			children = (
+				EAFD0AC51B7F61E6009A918F /* PartyPlay_osxTests.swift */,
+				EAFD0AC71B7F61E6009A918F /* Info.plist */,
+			);
+			path = "PartyPlay-osxTests";
+			sourceTree = "<group>";
+		};
+		EAFD0ACF1B7F61E6009A918F /* PartyPlay-osxUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EAFD0AD01B7F61E6009A918F /* PartyPlay_osxUITests.swift */,
+				EAFD0AD21B7F61E6009A918F /* Info.plist */,
+			);
+			path = "PartyPlay-osxUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +264,59 @@
 			productReference = EAFD0A9D1B7F610B009A918F /* PartyPlayUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		EAFD0AB21B7F61E6009A918F /* PartyPlay-osx */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAFD0AD31B7F61E6009A918F /* Build configuration list for PBXNativeTarget "PartyPlay-osx" */;
+			buildPhases = (
+				EAFD0AAF1B7F61E6009A918F /* Sources */,
+				EAFD0AB01B7F61E6009A918F /* Frameworks */,
+				EAFD0AB11B7F61E6009A918F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PartyPlay-osx";
+			productName = "PartyPlay-osx";
+			productReference = EAFD0AB31B7F61E6009A918F /* PartyPlay-osx.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EAFD0AC01B7F61E6009A918F /* PartyPlay-osxTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAFD0AD61B7F61E6009A918F /* Build configuration list for PBXNativeTarget "PartyPlay-osxTests" */;
+			buildPhases = (
+				EAFD0ABD1B7F61E6009A918F /* Sources */,
+				EAFD0ABE1B7F61E6009A918F /* Frameworks */,
+				EAFD0ABF1B7F61E6009A918F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EAFD0AC31B7F61E6009A918F /* PBXTargetDependency */,
+			);
+			name = "PartyPlay-osxTests";
+			productName = "PartyPlay-osxTests";
+			productReference = EAFD0AC11B7F61E6009A918F /* PartyPlay-osxTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EAFD0ACB1B7F61E6009A918F /* PartyPlay-osxUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAFD0AD91B7F61E6009A918F /* Build configuration list for PBXNativeTarget "PartyPlay-osxUITests" */;
+			buildPhases = (
+				EAFD0AC81B7F61E6009A918F /* Sources */,
+				EAFD0AC91B7F61E6009A918F /* Frameworks */,
+				EAFD0ACA1B7F61E6009A918F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EAFD0ACE1B7F61E6009A918F /* PBXTargetDependency */,
+			);
+			name = "PartyPlay-osxUITests";
+			productName = "PartyPlay-osxUITests";
+			productReference = EAFD0ACC1B7F61E6009A918F /* PartyPlay-osxUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -198,6 +337,17 @@
 						CreatedOnToolsVersion = 7.0;
 						TestTargetID = EAFD0A7D1B7F610A009A918F;
 					};
+					EAFD0AB21B7F61E6009A918F = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					EAFD0AC01B7F61E6009A918F = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = EAFD0AB21B7F61E6009A918F;
+					};
+					EAFD0ACB1B7F61E6009A918F = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = EAFD0AB21B7F61E6009A918F;
+					};
 				};
 			};
 			buildConfigurationList = EAFD0A791B7F610A009A918F /* Build configuration list for PBXProject "PartyPlay" */;
@@ -216,6 +366,9 @@
 				EAFD0A7D1B7F610A009A918F /* PartyPlay */,
 				EAFD0A911B7F610B009A918F /* PartyPlayTests */,
 				EAFD0A9C1B7F610B009A918F /* PartyPlayUITests */,
+				EAFD0AB21B7F61E6009A918F /* PartyPlay-osx */,
+				EAFD0AC01B7F61E6009A918F /* PartyPlay-osxTests */,
+				EAFD0ACB1B7F61E6009A918F /* PartyPlay-osxUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -238,6 +391,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		EAFD0A9B1B7F610B009A918F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0AB11B7F61E6009A918F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAFD0AB81B7F61E6009A918F /* Assets.xcassets in Resources */,
+				EAFD0ABB1B7F61E6009A918F /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0ABF1B7F61E6009A918F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0ACA1B7F61E6009A918F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -272,6 +448,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EAFD0AAF1B7F61E6009A918F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAFD0AB61B7F61E6009A918F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0ABD1B7F61E6009A918F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAFD0AC61B7F61E6009A918F /* PartyPlay_osxTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0AC81B7F61E6009A918F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAFD0AD11B7F61E6009A918F /* PartyPlay_osxUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -285,6 +485,16 @@
 			target = EAFD0A7D1B7F610A009A918F /* PartyPlay */;
 			targetProxy = EAFD0A9E1B7F610B009A918F /* PBXContainerItemProxy */;
 		};
+		EAFD0AC31B7F61E6009A918F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EAFD0AB21B7F61E6009A918F /* PartyPlay-osx */;
+			targetProxy = EAFD0AC21B7F61E6009A918F /* PBXContainerItemProxy */;
+		};
+		EAFD0ACE1B7F61E6009A918F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EAFD0AB21B7F61E6009A918F /* PartyPlay-osx */;
+			targetProxy = EAFD0ACD1B7F61E6009A918F /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -294,6 +504,14 @@
 				EAFD0A8B1B7F610A009A918F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		EAFD0AB91B7F61E6009A918F /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EAFD0ABA1B7F61E6009A918F /* Base */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -454,6 +672,96 @@
 			};
 			name = Release;
 		};
+		EAFD0AD41B7F61E6009A918F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "PartyPlay-osx/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.codefirst.PartyPlay-osx";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		EAFD0AD51B7F61E6009A918F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "PartyPlay-osx/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.codefirst.PartyPlay-osx";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		EAFD0AD71B7F61E6009A918F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "PartyPlay-osxTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.codefirst.PartyPlay-osxTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PartyPlay-osx.app/Contents/MacOS/PartyPlay-osx";
+			};
+			name = Debug;
+		};
+		EAFD0AD81B7F61E6009A918F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "PartyPlay-osxTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.codefirst.PartyPlay-osxTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PartyPlay-osx.app/Contents/MacOS/PartyPlay-osx";
+			};
+			name = Release;
+		};
+		EAFD0ADA1B7F61E6009A918F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "PartyPlay-osxUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.codefirst.PartyPlay-osxUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = "PartyPlay-osx";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		EAFD0ADB1B7F61E6009A918F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "PartyPlay-osxUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.codefirst.PartyPlay-osxUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = "PartyPlay-osx";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -487,6 +795,30 @@
 			buildConfigurations = (
 				EAFD0AAD1B7F610B009A918F /* Debug */,
 				EAFD0AAE1B7F610B009A918F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EAFD0AD31B7F61E6009A918F /* Build configuration list for PBXNativeTarget "PartyPlay-osx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAFD0AD41B7F61E6009A918F /* Debug */,
+				EAFD0AD51B7F61E6009A918F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EAFD0AD61B7F61E6009A918F /* Build configuration list for PBXNativeTarget "PartyPlay-osxTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAFD0AD71B7F61E6009A918F /* Debug */,
+				EAFD0AD81B7F61E6009A918F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EAFD0AD91B7F61E6009A918F /* Build configuration list for PBXNativeTarget "PartyPlay-osxUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAFD0ADA1B7F61E6009A918F /* Debug */,
+				EAFD0ADB1B7F61E6009A918F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
