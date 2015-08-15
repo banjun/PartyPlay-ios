@@ -19,6 +19,12 @@
 		EAFD0ABB1B7F61E6009A918F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFD0AB91B7F61E6009A918F /* MainMenu.xib */; };
 		EAFD0AC61B7F61E6009A918F /* PartyPlay_osxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AC51B7F61E6009A918F /* PartyPlay_osxTests.swift */; };
 		EAFD0AD11B7F61E6009A918F /* PartyPlay_osxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AD01B7F61E6009A918F /* PartyPlay_osxUITests.swift */; };
+		EAFD0AE01B7F6411009A918F /* PartyPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADD1B7F6411009A918F /* PartyPlay.swift */; };
+		EAFD0AE11B7F6411009A918F /* PartyPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADD1B7F6411009A918F /* PartyPlay.swift */; };
+		EAFD0AE21B7F6411009A918F /* PartyPlayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADE1B7F6411009A918F /* PartyPlayClient.swift */; };
+		EAFD0AE31B7F6411009A918F /* PartyPlayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADE1B7F6411009A918F /* PartyPlayClient.swift */; };
+		EAFD0AE41B7F6411009A918F /* PartyPlayServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */; };
+		EAFD0AE51B7F6411009A918F /* PartyPlayServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +85,9 @@
 		EAFD0ACC1B7F61E6009A918F /* PartyPlay-osxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PartyPlay-osxUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFD0AD01B7F61E6009A918F /* PartyPlay_osxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPlay_osxUITests.swift; sourceTree = "<group>"; };
 		EAFD0AD21B7F61E6009A918F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAFD0ADD1B7F6411009A918F /* PartyPlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlay.swift; sourceTree = "<group>"; };
+		EAFD0ADE1B7F6411009A918F /* PartyPlayClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlayClient.swift; sourceTree = "<group>"; };
+		EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlayServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +157,7 @@
 		EAFD0A751B7F610A009A918F = {
 			isa = PBXGroup;
 			children = (
+				EAFD0ADC1B7F6411009A918F /* Core */,
 				EAFD0A801B7F610A009A918F /* PartyPlay */,
 				EAFD0A951B7F610B009A918F /* PartyPlayTests */,
 				EAFD0AA01B7F610B009A918F /* PartyPlayUITests */,
@@ -230,6 +240,16 @@
 				EAFD0AD21B7F61E6009A918F /* Info.plist */,
 			);
 			path = "PartyPlay-osxUITests";
+			sourceTree = "<group>";
+		};
+		EAFD0ADC1B7F6411009A918F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				EAFD0ADD1B7F6411009A918F /* PartyPlay.swift */,
+				EAFD0ADE1B7F6411009A918F /* PartyPlayClient.swift */,
+				EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -502,6 +522,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAFD0AE01B7F6411009A918F /* PartyPlay.swift in Sources */,
+				EAFD0AE21B7F6411009A918F /* PartyPlayClient.swift in Sources */,
+				EAFD0AE41B7F6411009A918F /* PartyPlayServer.swift in Sources */,
 				EAFD0A841B7F610A009A918F /* ViewController.swift in Sources */,
 				EAFD0A821B7F610A009A918F /* AppDelegate.swift in Sources */,
 			);
@@ -527,6 +550,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAFD0AE11B7F6411009A918F /* PartyPlay.swift in Sources */,
+				EAFD0AE51B7F6411009A918F /* PartyPlayServer.swift in Sources */,
+				EAFD0AE31B7F6411009A918F /* PartyPlayClient.swift in Sources */,
 				EAFD0AB61B7F61E6009A918F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
