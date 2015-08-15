@@ -9,17 +9,20 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        
+        title = kAppName
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-
-
+    
+    override func loadView() {
+        super.loadView()
+        
+        view.backgroundColor = Appearance.backgroundColor
+    }
 }
-

@@ -25,6 +25,8 @@
 		EAFD0AE31B7F6411009A918F /* PartyPlayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADE1B7F6411009A918F /* PartyPlayClient.swift */; };
 		EAFD0AE41B7F6411009A918F /* PartyPlayServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */; };
 		EAFD0AE51B7F6411009A918F /* PartyPlayServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */; };
+		EAFD0AE71B7F6485009A918F /* Appearnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AE61B7F6485009A918F /* Appearnce.swift */; };
+		EAFD0AE81B7F6485009A918F /* Appearnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AE61B7F6485009A918F /* Appearnce.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,7 @@
 		EAFD0ADD1B7F6411009A918F /* PartyPlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlay.swift; sourceTree = "<group>"; };
 		EAFD0ADE1B7F6411009A918F /* PartyPlayClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlayClient.swift; sourceTree = "<group>"; };
 		EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlayServer.swift; sourceTree = "<group>"; };
+		EAFD0AE61B7F6485009A918F /* Appearnce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearnce.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				EAFD0A811B7F610A009A918F /* AppDelegate.swift */,
+				EAFD0AE61B7F6485009A918F /* Appearnce.swift */,
 				EAFD0A831B7F610A009A918F /* ViewController.swift */,
 				EAFD0A881B7F610A009A918F /* Assets.xcassets */,
 				EAFD0A8A1B7F610A009A918F /* LaunchScreen.storyboard */,
@@ -527,6 +531,7 @@
 				EAFD0AE41B7F6411009A918F /* PartyPlayServer.swift in Sources */,
 				EAFD0A841B7F610A009A918F /* ViewController.swift in Sources */,
 				EAFD0A821B7F610A009A918F /* AppDelegate.swift in Sources */,
+				EAFD0AE71B7F6485009A918F /* Appearnce.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAFD0AE11B7F6411009A918F /* PartyPlay.swift in Sources */,
+				EAFD0AE81B7F6485009A918F /* Appearnce.swift in Sources */,
 				EAFD0AE51B7F6411009A918F /* PartyPlayServer.swift in Sources */,
 				EAFD0AE31B7F6411009A918F /* PartyPlayClient.swift in Sources */,
 				EAFD0AB61B7F61E6009A918F /* AppDelegate.swift in Sources */,
