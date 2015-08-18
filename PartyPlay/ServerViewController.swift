@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import NorthLayout
 
 
 class ServerViewController: UIViewController {
-    let server: PartyPlayServer
+    let server = PartyPlayServer(name: UIDevice.currentDevice().name)
+    
+    private let connectionStatusLabel = UILabel()
     
     init() {
-        server = PartyPlayServer(name: UIDevice.currentDevice().name)
-        
         super.init(nibName: nil, bundle: nil)
         
         title = NSLocalizedString("Party Play Server", comment: "")
@@ -28,9 +29,16 @@ class ServerViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
+        edgesForExtendedLayout = .None
         view.backgroundColor = Appearance.backgroundColor
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: LocalizedString.shutdown, style: .Plain, target: self, action: "shutdown:")
+        
+        let autolayout = view.northLayoutFormat(["p": 8], [
+            "status": connectionStatusLabel,
+            ])
+        autolayout("H:|-p-[status]-p-|")
+        autolayout("V:|-p-[status]")
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -40,7 +48,8 @@ class ServerViewController: UIViewController {
     }
     
     private func onServerStateChange() {
-        NSLog("%@", "server.peers = \(server.peers)")
+        let numberOfPeers = server.peers.reduce(0, combine: {$0 + $1.count})
+        connectionStatusLabel.text = String(format: LocalizedString.nPeersCurrentlyConnected, arguments: [numberOfPeers])
     }
     
     @IBAction private func shutdown(sender: AnyObject?) {

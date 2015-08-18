@@ -17,4 +17,5 @@ struct LocalizedString {
     static let cancel = NSLocalizedString("Cancel", comment: "")
     static let shutdown = NSLocalizedString("Close", comment: "")
     static let confirmShutdown = NSLocalizedString("Closing will end party playing.", comment: "")
+    static let nPeersCurrentlyConnected = NSLocalizedString("%d peers currently connected.", comment: "")
 }
