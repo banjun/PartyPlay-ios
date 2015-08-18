@@ -18,7 +18,7 @@ class ServerViewController: UIViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
         
-        title = NSLocalizedString("Party Play Server", comment: "")
+        title = LocalizedString.titleServer
         server.onStateChange = onServerStateChange
     }
 

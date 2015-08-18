@@ -12,7 +12,7 @@ import MultipeerConnectivity
 
 class PartyPlayClient: NSObject {
     private let session: MCSession
-    private let server: MCPeerID
+    let server: MCPeerID
     var serverStateOnSession = MCSessionState.NotConnected
     
     init(session: MCSession, server: MCPeerID) {

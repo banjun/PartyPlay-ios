@@ -100,7 +100,10 @@ class ViewController: UITableViewController {
         
         switch Section(rawValue: indexPath.section)! {
         case .NearbyServers:
-            break // TODO: push view controller
+            let session = browser.sessions[indexPath.row]
+            guard let server = session.server else { break }
+            let vc = ClientViewController(client: PartyPlayClient(session: session, server: server))
+            navigationController?.pushViewController(vc, animated: true)
         case .BecomeAServer:
             let ac = UIAlertController(title: nil, message: LocalizedString.confirmBecomeAServer, preferredStyle: .ActionSheet)
             ac.addAction(UIAlertAction(title: LocalizedString.becomeAServer, style: .Default) { _ in

@@ -10,6 +10,7 @@
 		584EB8244DA00E78CC6BD97A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 957FCCC2EDB8E9E49884ED6E /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EA2A85DC1B83765000060F83 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A85DB1B83765000060F83 /* ServerViewController.swift */; };
 		EA2A85DE1B83794C00060F83 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A85DD1B83794C00060F83 /* String.swift */; };
+		EAAB7D9C1B838047005F8DF0 /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAB7D9B1B838047005F8DF0 /* ClientViewController.swift */; };
 		EAFD0A821B7F610A009A918F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0A811B7F610A009A918F /* AppDelegate.swift */; };
 		EAFD0A841B7F610A009A918F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0A831B7F610A009A918F /* ViewController.swift */; };
 		EAFD0A891B7F610A009A918F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFD0A881B7F610A009A918F /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 		957FCCC2EDB8E9E49884ED6E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2A85DB1B83765000060F83 /* ServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
 		EA2A85DD1B83794C00060F83 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		EAAB7D9B1B838047005F8DF0 /* ClientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
 		EAFD0A7E1B7F610A009A918F /* PartyPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartyPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFD0A811B7F610A009A918F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFD0A831B7F610A009A918F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				EA2A85DD1B83794C00060F83 /* String.swift */,
 				EAFD0A831B7F610A009A918F /* ViewController.swift */,
 				EA2A85DB1B83765000060F83 /* ServerViewController.swift */,
+				EAAB7D9B1B838047005F8DF0 /* ClientViewController.swift */,
 				EAFD0A881B7F610A009A918F /* Assets.xcassets */,
 				EAFD0A8A1B7F610A009A918F /* LaunchScreen.storyboard */,
 				EAFD0A8D1B7F610B009A918F /* Info.plist */,
@@ -540,6 +543,7 @@
 				EAFD0AE01B7F6411009A918F /* PartyPlay.swift in Sources */,
 				EAFD0AE21B7F6411009A918F /* PartyPlayClient.swift in Sources */,
 				EAFD0AEA1B7F6851009A918F /* PartyPlayServiceBrowser.swift in Sources */,
+				EAAB7D9C1B838047005F8DF0 /* ClientViewController.swift in Sources */,
 				EA2A85DE1B83794C00060F83 /* String.swift in Sources */,
 				EA2A85DC1B83765000060F83 /* ServerViewController.swift in Sources */,
 				EAFD0AE41B7F6411009A918F /* PartyPlayServer.swift in Sources */,

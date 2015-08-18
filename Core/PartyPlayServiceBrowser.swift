@@ -77,13 +77,19 @@ extension PartyPlayServiceBrowser: MCNearbyServiceBrowserDelegate {
     func browser(browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         dispatch_async(dispatch_get_main_queue()) {
             if !peerID.isServer { return }
-            NSLog("%@", "PartyPlayServiceBrowser found server: \(peerID). auto-connect.")
+            NSLog("%@", "PartyPlayServiceBrowser found server: \(peerID)")
             
-            let session = MCSession(peer: self.myPeerID)
-            session.delegate = self
-            self.sessions.append(session)
-            
-            browser.invitePeer(peerID, toSession: session, withContext: nil, timeout: 30)
+            if self.sessions.indexOf({ s in
+                s.server?.displayName == peerID.displayName
+            }) == nil {
+                NSLog("%@", "new peer detected. auto-connect.")
+                
+                let session = MCSession(peer: self.myPeerID)
+                session.delegate = self
+                self.sessions.append(session)
+                
+                browser.invitePeer(peerID, toSession: session, withContext: nil, timeout: 30)
+            }
         }
     }
     
