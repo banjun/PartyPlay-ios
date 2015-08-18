@@ -33,3 +33,15 @@ extension MCPeerID {
         return displayName
     }
 }
+
+
+extension MCSession {
+    var server: MCPeerID? {
+        return connectedPeers.filter{$0.isServer}.first
+    }
+    
+    var clients: [MCPeerID] {
+        return connectedPeers.filter{$0.isClient}
+    }
+}
+

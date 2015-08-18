@@ -10,24 +10,30 @@ import Foundation
 import MultipeerConnectivity
 
 
-class PartyPlayServer: NSObject {    
-    private let session: MCSession
+class PartyPlayServer: NSObject {
+    private let myPeerID: MCPeerID
+    private var sessions = [MCSession]()
     private let advertiser: MCNearbyServiceAdvertiser
     
-    var peers: [MCPeerID] { return session.connectedPeers }
+    var peers: [[MCPeerID]] { return sessions.map{$0.connectedPeers} }
     var onStateChange: ((Void) -> Void)?
     
     init(name: String, onStateChange: ((Void) -> Void)? = nil) {
-        session = MCSession(peer: MCPeerID(displayName: PartyPlay.serverPrefix + name))
-        advertiser = MCNearbyServiceAdvertiser(peer: session.myPeerID, discoveryInfo: nil, serviceType: PartyPlay.serviceType)
+        myPeerID = MCPeerID(displayName: PartyPlay.serverPrefix + name)
+        advertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: nil, serviceType: PartyPlay.serviceType)
         super.init()
-        session.delegate = self
         advertiser.delegate = self
         self.onStateChange = onStateChange
     }
     
     func start() {
         advertiser.startAdvertisingPeer()
+    }
+    
+    func stop() {
+        advertiser.stopAdvertisingPeer()
+        sessions.forEach{$0.disconnect()}
+        sessions.removeAll()
     }
 }
 
@@ -36,7 +42,10 @@ class PartyPlayServer: NSObject {
 extension PartyPlayServer: MCSessionDelegate {
     func session(session: MCSession, peer peerID: MCPeerID, didChangeState state: MCSessionState) {
         dispatch_async(dispatch_get_main_queue()) {
-            NSLog("%@", "Server: peer = \(peerID), state = \(state.rawValue). total peers = \(self.peers.count)")
+            if state == .NotConnected, let index = self.sessions.indexOf(session) {
+                self.sessions.removeAtIndex(index)
+            }
+            NSLog("%@", "Server: peer = \(peerID), state = \(state.rawValue). total peers = \(self.peers)")
             self.onStateChange?()
         }
     }
@@ -62,8 +71,14 @@ extension PartyPlayServer: MCSessionDelegate {
 // MARK: MCNearbyServiceAdvertiserDelegate
 extension PartyPlayServer: MCNearbyServiceAdvertiserDelegate {
     func advertiser(advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: NSData?, invitationHandler: (Bool, MCSession) -> Void) {
-        NSLog("%@", "incoming invitation request from \(peerID). auto-accept.")
-        invitationHandler(true, session)
+        dispatch_async(dispatch_get_main_queue()) {
+            NSLog("%@", "incoming invitation request from \(peerID). auto-accept with new session.")
+            
+            let session = MCSession(peer: self.myPeerID)
+            session.delegate = self
+            self.sessions.append(session)
+            invitationHandler(true, session)
+        }
     }
     
     func advertiser(advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: NSError) {

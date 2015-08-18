@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		584EB8244DA00E78CC6BD97A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 957FCCC2EDB8E9E49884ED6E /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EA2A85DC1B83765000060F83 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A85DB1B83765000060F83 /* ServerViewController.swift */; };
+		EA2A85DE1B83794C00060F83 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A85DD1B83794C00060F83 /* String.swift */; };
 		EAFD0A821B7F610A009A918F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0A811B7F610A009A918F /* AppDelegate.swift */; };
 		EAFD0A841B7F610A009A918F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0A831B7F610A009A918F /* ViewController.swift */; };
 		EAFD0A891B7F610A009A918F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFD0A881B7F610A009A918F /* Assets.xcassets */; };
@@ -27,6 +29,8 @@
 		EAFD0AE51B7F6411009A918F /* PartyPlayServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */; };
 		EAFD0AE71B7F6485009A918F /* Appearnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AE61B7F6485009A918F /* Appearnce.swift */; };
 		EAFD0AE81B7F6485009A918F /* Appearnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AE61B7F6485009A918F /* Appearnce.swift */; };
+		EAFD0AEA1B7F6851009A918F /* PartyPlayServiceBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AE91B7F6851009A918F /* PartyPlayServiceBrowser.swift */; };
+		EAFD0AEB1B7F6851009A918F /* PartyPlayServiceBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AE91B7F6851009A918F /* PartyPlayServiceBrowser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +68,8 @@
 		294A75EA0460D1AB0A556609 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6A59B67B894F4081A47AB163 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		957FCCC2EDB8E9E49884ED6E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA2A85DB1B83765000060F83 /* ServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
+		EA2A85DD1B83794C00060F83 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EAFD0A7E1B7F610A009A918F /* PartyPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartyPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFD0A811B7F610A009A918F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFD0A831B7F610A009A918F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +97,7 @@
 		EAFD0ADE1B7F6411009A918F /* PartyPlayClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlayClient.swift; sourceTree = "<group>"; };
 		EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlayServer.swift; sourceTree = "<group>"; };
 		EAFD0AE61B7F6485009A918F /* Appearnce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearnce.swift; sourceTree = "<group>"; };
+		EAFD0AE91B7F6851009A918F /* PartyPlayServiceBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlayServiceBrowser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,7 +198,9 @@
 			children = (
 				EAFD0A811B7F610A009A918F /* AppDelegate.swift */,
 				EAFD0AE61B7F6485009A918F /* Appearnce.swift */,
+				EA2A85DD1B83794C00060F83 /* String.swift */,
 				EAFD0A831B7F610A009A918F /* ViewController.swift */,
+				EA2A85DB1B83765000060F83 /* ServerViewController.swift */,
 				EAFD0A881B7F610A009A918F /* Assets.xcassets */,
 				EAFD0A8A1B7F610A009A918F /* LaunchScreen.storyboard */,
 				EAFD0A8D1B7F610B009A918F /* Info.plist */,
@@ -250,8 +259,9 @@
 			isa = PBXGroup;
 			children = (
 				EAFD0ADD1B7F6411009A918F /* PartyPlay.swift */,
-				EAFD0ADE1B7F6411009A918F /* PartyPlayClient.swift */,
 				EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */,
+				EAFD0AE91B7F6851009A918F /* PartyPlayServiceBrowser.swift */,
+				EAFD0ADE1B7F6411009A918F /* PartyPlayClient.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -374,6 +384,7 @@
 		EAFD0A761B7F610A009A918F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = banjun;
 				TargetAttributes = {
@@ -528,6 +539,9 @@
 			files = (
 				EAFD0AE01B7F6411009A918F /* PartyPlay.swift in Sources */,
 				EAFD0AE21B7F6411009A918F /* PartyPlayClient.swift in Sources */,
+				EAFD0AEA1B7F6851009A918F /* PartyPlayServiceBrowser.swift in Sources */,
+				EA2A85DE1B83794C00060F83 /* String.swift in Sources */,
+				EA2A85DC1B83765000060F83 /* ServerViewController.swift in Sources */,
 				EAFD0AE41B7F6411009A918F /* PartyPlayServer.swift in Sources */,
 				EAFD0A841B7F610A009A918F /* ViewController.swift in Sources */,
 				EAFD0A821B7F610A009A918F /* AppDelegate.swift in Sources */,
@@ -560,6 +574,7 @@
 				EAFD0AE51B7F6411009A918F /* PartyPlayServer.swift in Sources */,
 				EAFD0AE31B7F6411009A918F /* PartyPlayClient.swift in Sources */,
 				EAFD0AB61B7F61E6009A918F /* AppDelegate.swift in Sources */,
+				EAFD0AEB1B7F6851009A918F /* PartyPlayServiceBrowser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
