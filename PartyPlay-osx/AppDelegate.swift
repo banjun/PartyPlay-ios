@@ -7,21 +7,27 @@
 //
 
 import Cocoa
+import NorthLayout
+
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
-
+    let mainViewController = MainViewController()
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        // Insert code here to initialize your application
+        if let cv = window.contentView {
+            let autolayout = cv.northLayoutFormat([:],[
+            "main": mainViewController.view
+                ])
+            autolayout("H:|[main]|")
+            autolayout("V:|[main]|")
+        }
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }
-
-
 }
 

@@ -6,12 +6,27 @@
 //  Copyright © 2015 banjun. All rights reserved.
 //
 
-import UIKit
-
-
-private func hsb(h: Int, _ s: Int, _ b: Int) -> UIColor {
-    return UIColor(hue: CGFloat(h) / 360, saturation: CGFloat(s) / 100, brightness: CGFloat(b) / 100, alpha: CGFloat(1))
-}
+#if os(iOS)
+    import UIKit
+    
+    private func hsb(h: Int, _ s: Int, _ b: Int) -> UIColor {
+        return UIColor(hue: CGFloat(h) / 360, saturation: CGFloat(s) / 100, brightness: CGFloat(b) / 100, alpha: CGFloat(1))
+    }
+#elseif os(OSX)
+    import AppKit
+    
+    private func rgb(r: Int, _ g: Int, _ b: Int) -> NSColor {
+        return NSColor(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(1))
+    }
+    
+    private func gray(y: Int) -> NSColor {
+        return rgb(y, y, y)
+    }
+    
+    private func hsb(h: Int, _ s: Int, _ b: Int) -> NSColor {
+        return NSColor(hue: CGFloat(h) / 360, saturation: CGFloat(s) / 100, brightness: CGFloat(b) / 100, alpha: CGFloat(1))
+    }
+#endif
 
 
 struct Appearance {
@@ -20,11 +35,15 @@ struct Appearance {
 
     static let tintColor = honokaOrange
     static let darkTextColor = honokaOrangeBlack
-    static let lightTextColor = UIColor.whiteColor()
-    static let backgroundColor = UIColor.whiteColor()
+    static let whiteColor = gray(255)
+    static let lightTextColor = whiteColor
+    static let backgroundColor = whiteColor
     
     static func install() {
-        UINavigationBar.appearance().tintColor = darkTextColor
-        UINavigationBar.appearance().barTintColor = honokaOrange
+        #if os(iOS)
+            UINavigationBar.appearance().tintColor = darkTextColor
+            UINavigationBar.appearance().barTintColor = honokaOrange
+        #elseif os(OSX)
+        #endif
     }
 }

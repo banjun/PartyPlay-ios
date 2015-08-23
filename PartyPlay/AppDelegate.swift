@@ -9,9 +9,6 @@
 import UIKit
 
 
-let kAppName = "Party Play"
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?

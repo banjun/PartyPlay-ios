@@ -10,6 +10,8 @@ import Foundation
 
 
 struct LocalizedString {
+    static let appName = "Party Play"
+    
     static let nearbyServers = NSLocalizedString("Nearby Servers", comment: "")
     static let noServersNearby = NSLocalizedString("No Servers Nearby", comment: "")
     static let becomeAServer = NSLocalizedString("Become a Server", comment: "")
