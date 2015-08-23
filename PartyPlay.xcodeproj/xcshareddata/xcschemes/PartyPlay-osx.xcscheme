@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EAFD0A7D1B7F610A009A918F"
-               BuildableName = "PartyPlay.app"
-               BlueprintName = "PartyPlay"
+               BlueprintIdentifier = "EAFD0AB21B7F61E6009A918F"
+               BuildableName = "PartyPlay-osx.app"
+               BlueprintName = "PartyPlay-osx"
                ReferencedContainer = "container:PartyPlay.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EAFD0A911B7F610B009A918F"
-               BuildableName = "PartyPlayTests.xctest"
-               BlueprintName = "PartyPlayTests"
+               BlueprintIdentifier = "EAFD0AC01B7F61E6009A918F"
+               BuildableName = "PartyPlay-osxTests.xctest"
+               BlueprintName = "PartyPlay-osxTests"
                ReferencedContainer = "container:PartyPlay.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EAFD0A9C1B7F610B009A918F"
-               BuildableName = "PartyPlayUITests.xctest"
-               BlueprintName = "PartyPlayUITests"
+               BlueprintIdentifier = "EAFD0ACB1B7F61E6009A918F"
+               BuildableName = "PartyPlay-osxUITests.xctest"
+               BlueprintName = "PartyPlay-osxUITests"
                ReferencedContainer = "container:PartyPlay.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -52,9 +52,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EAFD0A7D1B7F610A009A918F"
-            BuildableName = "PartyPlay.app"
-            BlueprintName = "PartyPlay"
+            BlueprintIdentifier = "EAFD0AB21B7F61E6009A918F"
+            BuildableName = "PartyPlay-osx.app"
+            BlueprintName = "PartyPlay-osx"
             ReferencedContainer = "container:PartyPlay.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -75,9 +75,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EAFD0A7D1B7F610A009A918F"
-            BuildableName = "PartyPlay.app"
-            BlueprintName = "PartyPlay"
+            BlueprintIdentifier = "EAFD0AB21B7F61E6009A918F"
+            BuildableName = "PartyPlay-osx.app"
+            BlueprintName = "PartyPlay-osx"
             ReferencedContainer = "container:PartyPlay.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -94,9 +94,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EAFD0A7D1B7F610A009A918F"
-            BuildableName = "PartyPlay.app"
-            BlueprintName = "PartyPlay"
+            BlueprintIdentifier = "EAFD0AB21B7F61E6009A918F"
+            BuildableName = "PartyPlay-osx.app"
+            BlueprintName = "PartyPlay-osx"
             ReferencedContainer = "container:PartyPlay.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

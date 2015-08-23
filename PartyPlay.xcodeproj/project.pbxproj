@@ -7,360 +7,543 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A808F1F0315413CB2EA3E09 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9F0007486D4D5F904157AD /* libPods.a */; };
-		EA3682BC19715AC100E3285B /* BonjourFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3682BB19715AC100E3285B /* BonjourFinder.m */; };
-		EA3A547D19CDA76000DCFDE8 /* PostQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3A547C19CDA76000DCFDE8 /* PostQueue.swift */; };
-		EA54723B197258C10023AE3D /* PPSSong.m in Sources */ = {isa = PBXBuildFile; fileRef = EA54723A197258C10023AE3D /* PPSSong.m */; };
-		EA54723E197259070023AE3D /* PPSNowPlaying.m in Sources */ = {isa = PBXBuildFile; fileRef = EA54723D197259070023AE3D /* PPSNowPlaying.m */; };
-		EA716A0619721A1200834939 /* PlayingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA716A0519721A1200834939 /* PlayingsViewController.m */; };
-		EA7F23961972C1AF00998614 /* CenteringView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F23951972C1AF00998614 /* CenteringView.m */; };
-		EA7F23991972D62700998614 /* Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7F23981972D62700998614 /* Appearance.m */; };
-		EA7F23A01972E04300998614 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = EA7F239E1972E04300998614 /* iTunesArtwork */; };
-		EA7F23A11972E04300998614 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = EA7F239F1972E04300998614 /* iTunesArtwork@2x */; };
-		EA97A62819CDD85C00959966 /* PostQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA97A62719CDD85C00959966 /* PostQueueViewController.swift */; };
-		EA9AA4051AFD039900CAB060 /* SafeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9AA4041AFD039900CAB060 /* SafeTableViewController.swift */; };
-		EA9C68F8196ADAC1005B52B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68F7196ADAC1005B52B2 /* Foundation.framework */; };
-		EA9C68FA196ADAC1005B52B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68F9196ADAC1005B52B2 /* CoreGraphics.framework */; };
-		EA9C68FC196ADAC1005B52B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68FB196ADAC1005B52B2 /* UIKit.framework */; };
-		EA9C6902196ADAC1005B52B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA9C6900196ADAC1005B52B2 /* InfoPlist.strings */; };
-		EA9C6904196ADAC1005B52B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C6903196ADAC1005B52B2 /* main.m */; };
-		EA9C6908196ADAC1005B52B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C6907196ADAC1005B52B2 /* AppDelegate.m */; };
-		EA9C690A196ADAC1005B52B2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA9C6909196ADAC1005B52B2 /* Images.xcassets */; };
-		EA9C6911196ADAC1005B52B2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C6910196ADAC1005B52B2 /* XCTest.framework */; };
-		EA9C6912196ADAC1005B52B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68F7196ADAC1005B52B2 /* Foundation.framework */; };
-		EA9C6913196ADAC1005B52B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C68FB196ADAC1005B52B2 /* UIKit.framework */; };
-		EA9C691B196ADAC1005B52B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA9C6919196ADAC1005B52B2 /* InfoPlist.strings */; };
-		EA9C691D196ADAC1005B52B2 /* PartyPlayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C691C196ADAC1005B52B2 /* PartyPlayTests.m */; };
-		EA9C6927196ADB16005B52B2 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9C6926196ADB16005B52B2 /* MediaPlayer.framework */; };
-		EA9C692A196ADF7A005B52B2 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C6929196ADF7A005B52B2 /* PostViewController.m */; };
-		EAA2C1E6197167740031EDF8 /* PPSSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA2C1E5197167740031EDF8 /* PPSSelectViewController.m */; };
-		EAA2C1E9197168150031EDF8 /* NSObject+BTKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA2C1E8197168150031EDF8 /* NSObject+BTKUtils.m */; };
-		EAAA769019726658004FFCA6 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAA768F19726658004FFCA6 /* UIImage+ImageEffects.m */; };
-		EAD7AE261971904B005F981C /* PPSLocalSong.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7AE251971904B005F981C /* PPSLocalSong.m */; };
-		EAD7AE2A1971AC0F005F981C /* Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7AE291971AC0F005F981C /* Functional.m */; };
-		EAD7AE2D1971BB9E005F981C /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD7AE2C1971BB9E005F981C /* WebViewController.m */; };
-		EADD7B0019CEC06A00793814 /* PPSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD7AFF19CEC06A00793814 /* PPSClient.swift */; };
+		6BF2526B06AAB3FB0A7A4C0F /* Pods_PartyPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9565EF043D5C05B274816321 /* Pods_PartyPlay.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D5342AAD3D1D67AFC121CDFB /* Pods_PartyPlay_osx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93ED9053558CB0A5C37B0DB /* Pods_PartyPlay_osx.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EA2A85DC1B83765000060F83 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A85DB1B83765000060F83 /* ServerViewController.swift */; };
+		EA3D76E11B89B597001DAAAF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D76E01B89B597001DAAAF /* MainViewController.swift */; };
+		EA3D76E81B8A00F7001DAAAF /* Appearnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D76E61B8A00F7001DAAAF /* Appearnce.swift */; };
+		EA3D76E91B8A00F7001DAAAF /* Appearnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D76E61B8A00F7001DAAAF /* Appearnce.swift */; };
+		EA3D76EA1B8A00F7001DAAAF /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D76E71B8A00F7001DAAAF /* String.swift */; };
+		EA3D76EB1B8A00F7001DAAAF /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D76E71B8A00F7001DAAAF /* String.swift */; };
+		EAAB7D9C1B838047005F8DF0 /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAB7D9B1B838047005F8DF0 /* ClientViewController.swift */; };
+		EAFD0A821B7F610A009A918F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0A811B7F610A009A918F /* AppDelegate.swift */; };
+		EAFD0A841B7F610A009A918F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0A831B7F610A009A918F /* ViewController.swift */; };
+		EAFD0A891B7F610A009A918F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFD0A881B7F610A009A918F /* Assets.xcassets */; };
+		EAFD0A8C1B7F610A009A918F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFD0A8A1B7F610A009A918F /* LaunchScreen.storyboard */; };
+		EAFD0A971B7F610B009A918F /* PartyPlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0A961B7F610B009A918F /* PartyPlayTests.swift */; };
+		EAFD0AA21B7F610B009A918F /* PartyPlayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AA11B7F610B009A918F /* PartyPlayUITests.swift */; };
+		EAFD0AB61B7F61E6009A918F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AB51B7F61E6009A918F /* AppDelegate.swift */; };
+		EAFD0AB81B7F61E6009A918F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFD0AB71B7F61E6009A918F /* Assets.xcassets */; };
+		EAFD0ABB1B7F61E6009A918F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAFD0AB91B7F61E6009A918F /* MainMenu.xib */; };
+		EAFD0AC61B7F61E6009A918F /* PartyPlay_osxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AC51B7F61E6009A918F /* PartyPlay_osxTests.swift */; };
+		EAFD0AD11B7F61E6009A918F /* PartyPlay_osxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AD01B7F61E6009A918F /* PartyPlay_osxUITests.swift */; };
+		EAFD0AE01B7F6411009A918F /* PartyPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADD1B7F6411009A918F /* PartyPlay.swift */; };
+		EAFD0AE11B7F6411009A918F /* PartyPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADD1B7F6411009A918F /* PartyPlay.swift */; };
+		EAFD0AE21B7F6411009A918F /* PartyPlayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADE1B7F6411009A918F /* PartyPlayClient.swift */; };
+		EAFD0AE31B7F6411009A918F /* PartyPlayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADE1B7F6411009A918F /* PartyPlayClient.swift */; };
+		EAFD0AE41B7F6411009A918F /* PartyPlayServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */; };
+		EAFD0AE51B7F6411009A918F /* PartyPlayServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */; };
+		EAFD0AEA1B7F6851009A918F /* PartyPlayServiceBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AE91B7F6851009A918F /* PartyPlayServiceBrowser.swift */; };
+		EAFD0AEB1B7F6851009A918F /* PartyPlayServiceBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AE91B7F6851009A918F /* PartyPlayServiceBrowser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		EA9C6914196ADAC1005B52B2 /* PBXContainerItemProxy */ = {
+		EAFD0A931B7F610B009A918F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = EA9C68EC196ADAC1005B52B2 /* Project object */;
+			containerPortal = EAFD0A761B7F610A009A918F /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = EA9C68F3196ADAC1005B52B2;
-			remoteInfo = AirHack;
+			remoteGlobalIDString = EAFD0A7D1B7F610A009A918F;
+			remoteInfo = PartyPlay;
+		};
+		EAFD0A9E1B7F610B009A918F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAFD0A761B7F610A009A918F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAFD0A7D1B7F610A009A918F;
+			remoteInfo = PartyPlay;
+		};
+		EAFD0AC21B7F61E6009A918F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAFD0A761B7F610A009A918F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAFD0AB21B7F61E6009A918F;
+			remoteInfo = "PartyPlay-osx";
+		};
+		EAFD0ACD1B7F61E6009A918F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAFD0A761B7F610A009A918F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAFD0AB21B7F61E6009A918F;
+			remoteInfo = "PartyPlay-osx";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1C9F0007486D4D5F904157AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		615645E6D049A2D246F4E832 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		6AEAAA8E915D54C62C2897B2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		EA3682BA19715AC100E3285B /* BonjourFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonjourFinder.h; sourceTree = "<group>"; };
-		EA3682BB19715AC100E3285B /* BonjourFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BonjourFinder.m; sourceTree = "<group>"; };
-		EA3A547B19CDA75F00DCFDE8 /* PartyPlay-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PartyPlay-Bridging-Header.h"; sourceTree = "<group>"; };
-		EA3A547C19CDA76000DCFDE8 /* PostQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostQueue.swift; sourceTree = "<group>"; };
-		EA547239197258C10023AE3D /* PPSSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSSong.h; sourceTree = "<group>"; };
-		EA54723A197258C10023AE3D /* PPSSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSSong.m; sourceTree = "<group>"; };
-		EA54723C197259070023AE3D /* PPSNowPlaying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSNowPlaying.h; sourceTree = "<group>"; };
-		EA54723D197259070023AE3D /* PPSNowPlaying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSNowPlaying.m; sourceTree = "<group>"; };
-		EA716A0419721A1200834939 /* PlayingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingsViewController.h; sourceTree = "<group>"; };
-		EA716A0519721A1200834939 /* PlayingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingsViewController.m; sourceTree = "<group>"; };
-		EA7F23941972C1AF00998614 /* CenteringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenteringView.h; sourceTree = "<group>"; };
-		EA7F23951972C1AF00998614 /* CenteringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenteringView.m; sourceTree = "<group>"; };
-		EA7F23971972D62700998614 /* Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appearance.h; sourceTree = "<group>"; };
-		EA7F23981972D62700998614 /* Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appearance.m; sourceTree = "<group>"; };
-		EA7F239E1972E04300998614 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = "partyplay-icons/iTunesArtwork"; sourceTree = SOURCE_ROOT; };
-		EA7F239F1972E04300998614 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iTunesArtwork@2x"; path = "partyplay-icons/iTunesArtwork@2x"; sourceTree = SOURCE_ROOT; };
-		EA97A62719CDD85C00959966 /* PostQueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostQueueViewController.swift; sourceTree = "<group>"; };
-		EA9AA4041AFD039900CAB060 /* SafeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeTableViewController.swift; sourceTree = "<group>"; };
-		EA9C68F4196ADAC1005B52B2 /* PartyPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartyPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA9C68F7196ADAC1005B52B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		EA9C68F9196ADAC1005B52B2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		EA9C68FB196ADAC1005B52B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		EA9C68FF196ADAC1005B52B2 /* PartyPlay-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PartyPlay-Info.plist"; sourceTree = "<group>"; };
-		EA9C6901196ADAC1005B52B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		EA9C6903196ADAC1005B52B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EA9C6905196ADAC1005B52B2 /* PartyPlay-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PartyPlay-Prefix.pch"; sourceTree = "<group>"; };
-		EA9C6906196ADAC1005B52B2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		EA9C6907196ADAC1005B52B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EA9C6909196ADAC1005B52B2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		EA9C690F196ADAC1005B52B2 /* PartyPlayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PartyPlayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA9C6910196ADAC1005B52B2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		EA9C6918196ADAC1005B52B2 /* PartyPlayTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PartyPlayTests-Info.plist"; sourceTree = "<group>"; };
-		EA9C691A196ADAC1005B52B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		EA9C691C196ADAC1005B52B2 /* PartyPlayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyPlayTests.m; sourceTree = "<group>"; };
-		EA9C6926196ADB16005B52B2 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		EA9C6928196ADF7A005B52B2 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
-		EA9C6929196ADF7A005B52B2 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
-		EAA2C1E4197167740031EDF8 /* PPSSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSSelectViewController.h; sourceTree = "<group>"; };
-		EAA2C1E5197167740031EDF8 /* PPSSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSSelectViewController.m; sourceTree = "<group>"; };
-		EAA2C1E7197168150031EDF8 /* NSObject+BTKUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BTKUtils.h"; sourceTree = "<group>"; };
-		EAA2C1E8197168150031EDF8 /* NSObject+BTKUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BTKUtils.m"; sourceTree = "<group>"; };
-		EAAA768E19726658004FFCA6 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
-		EAAA768F19726658004FFCA6 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
-		EAD7AE241971904B005F981C /* PPSLocalSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSLocalSong.h; sourceTree = "<group>"; };
-		EAD7AE251971904B005F981C /* PPSLocalSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSLocalSong.m; sourceTree = "<group>"; };
-		EAD7AE281971AC0F005F981C /* Functional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functional.h; sourceTree = "<group>"; };
-		EAD7AE291971AC0F005F981C /* Functional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Functional.m; sourceTree = "<group>"; };
-		EAD7AE2B1971BB9E005F981C /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		EAD7AE2C1971BB9E005F981C /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
-		EADD7AFF19CEC06A00793814 /* PPSClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PPSClient.swift; sourceTree = "<group>"; };
+		2D6D3F162FE7ECCBC9BC425E /* Pods-PartyPlay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PartyPlay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PartyPlay/Pods-PartyPlay.debug.xcconfig"; sourceTree = "<group>"; };
+		31DA921EF4691340BC589D0E /* Pods-PartyPlay-osx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PartyPlay-osx.release.xcconfig"; path = "Pods/Target Support Files/Pods-PartyPlay-osx/Pods-PartyPlay-osx.release.xcconfig"; sourceTree = "<group>"; };
+		5E91DE917BD8539CAD99AE4C /* Pods-PartyPlay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PartyPlay.release.xcconfig"; path = "Pods/Target Support Files/Pods-PartyPlay/Pods-PartyPlay.release.xcconfig"; sourceTree = "<group>"; };
+		9565EF043D5C05B274816321 /* Pods_PartyPlay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PartyPlay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		957FCCC2EDB8E9E49884ED6E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B93ED9053558CB0A5C37B0DB /* Pods_PartyPlay_osx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PartyPlay_osx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA7D3102C4C07A69303051DF /* Pods-PartyPlay-osx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PartyPlay-osx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PartyPlay-osx/Pods-PartyPlay-osx.debug.xcconfig"; sourceTree = "<group>"; };
+		EA2A85DB1B83765000060F83 /* ServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
+		EA3D76E01B89B597001DAAAF /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		EA3D76E61B8A00F7001DAAAF /* Appearnce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearnce.swift; sourceTree = "<group>"; };
+		EA3D76E71B8A00F7001DAAAF /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		EAAB7D9B1B838047005F8DF0 /* ClientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
+		EAFD0A7E1B7F610A009A918F /* PartyPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartyPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAFD0A811B7F610A009A918F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EAFD0A831B7F610A009A918F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EAFD0A881B7F610A009A918F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EAFD0A8B1B7F610A009A918F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EAFD0A8D1B7F610B009A918F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAFD0A921B7F610B009A918F /* PartyPlayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PartyPlayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAFD0A961B7F610B009A918F /* PartyPlayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPlayTests.swift; sourceTree = "<group>"; };
+		EAFD0A981B7F610B009A918F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAFD0A9D1B7F610B009A918F /* PartyPlayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PartyPlayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAFD0AA11B7F610B009A918F /* PartyPlayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPlayUITests.swift; sourceTree = "<group>"; };
+		EAFD0AA31B7F610B009A918F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAFD0AB31B7F61E6009A918F /* PartyPlay-osx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PartyPlay-osx.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAFD0AB51B7F61E6009A918F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EAFD0AB71B7F61E6009A918F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EAFD0ABA1B7F61E6009A918F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		EAFD0ABC1B7F61E6009A918F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAFD0AC11B7F61E6009A918F /* PartyPlay-osxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PartyPlay-osxTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAFD0AC51B7F61E6009A918F /* PartyPlay_osxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPlay_osxTests.swift; sourceTree = "<group>"; };
+		EAFD0AC71B7F61E6009A918F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAFD0ACC1B7F61E6009A918F /* PartyPlay-osxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PartyPlay-osxUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAFD0AD01B7F61E6009A918F /* PartyPlay_osxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPlay_osxUITests.swift; sourceTree = "<group>"; };
+		EAFD0AD21B7F61E6009A918F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAFD0ADD1B7F6411009A918F /* PartyPlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlay.swift; sourceTree = "<group>"; };
+		EAFD0ADE1B7F6411009A918F /* PartyPlayClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlayClient.swift; sourceTree = "<group>"; };
+		EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlayServer.swift; sourceTree = "<group>"; };
+		EAFD0AE91B7F6851009A918F /* PartyPlayServiceBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlayServiceBrowser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EA9C68F1196ADAC1005B52B2 /* Frameworks */ = {
+		EAFD0A7B1B7F610A009A918F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA9C6927196ADB16005B52B2 /* MediaPlayer.framework in Frameworks */,
-				EA9C68FA196ADAC1005B52B2 /* CoreGraphics.framework in Frameworks */,
-				EA9C68FC196ADAC1005B52B2 /* UIKit.framework in Frameworks */,
-				EA9C68F8196ADAC1005B52B2 /* Foundation.framework in Frameworks */,
-				4A808F1F0315413CB2EA3E09 /* libPods.a in Frameworks */,
+				6BF2526B06AAB3FB0A7A4C0F /* Pods_PartyPlay.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EA9C690C196ADAC1005B52B2 /* Frameworks */ = {
+		EAFD0A8F1B7F610B009A918F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA9C6911196ADAC1005B52B2 /* XCTest.framework in Frameworks */,
-				EA9C6913196ADAC1005B52B2 /* UIKit.framework in Frameworks */,
-				EA9C6912196ADAC1005B52B2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0A9A1B7F610B009A918F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0AB01B7F61E6009A918F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5342AAD3D1D67AFC121CDFB /* Pods_PartyPlay_osx.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0ABE1B7F61E6009A918F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0AC91B7F61E6009A918F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D44D89F913F1358D80FB5CF9 /* Pods */ = {
+		204AC6F6CB95063E576D1651 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6AEAAA8E915D54C62C2897B2 /* Pods.debug.xcconfig */,
-				615645E6D049A2D246F4E832 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		EA9C68EB196ADAC1005B52B2 = {
-			isa = PBXGroup;
-			children = (
-				EA9C68FD196ADAC1005B52B2 /* PartyPlay */,
-				EA9C6916196ADAC1005B52B2 /* PartyPlayTests */,
-				EA9C68F6196ADAC1005B52B2 /* Frameworks */,
-				EA9C68F5196ADAC1005B52B2 /* Products */,
-				D44D89F913F1358D80FB5CF9 /* Pods */,
-			);
-			sourceTree = "<group>";
-		};
-		EA9C68F5196ADAC1005B52B2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				EA9C68F4196ADAC1005B52B2 /* PartyPlay.app */,
-				EA9C690F196ADAC1005B52B2 /* PartyPlayTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		EA9C68F6196ADAC1005B52B2 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				EA9C6926196ADB16005B52B2 /* MediaPlayer.framework */,
-				EA9C68F7196ADAC1005B52B2 /* Foundation.framework */,
-				EA9C68F9196ADAC1005B52B2 /* CoreGraphics.framework */,
-				EA9C68FB196ADAC1005B52B2 /* UIKit.framework */,
-				EA9C6910196ADAC1005B52B2 /* XCTest.framework */,
-				1C9F0007486D4D5F904157AD /* libPods.a */,
+				957FCCC2EDB8E9E49884ED6E /* Pods.framework */,
+				9565EF043D5C05B274816321 /* Pods_PartyPlay.framework */,
+				B93ED9053558CB0A5C37B0DB /* Pods_PartyPlay_osx.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EA9C68FD196ADAC1005B52B2 /* PartyPlay */ = {
+		5E8B37BBD5FC8F068AE3807B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EA9C6906196ADAC1005B52B2 /* AppDelegate.h */,
-				EA9C6907196ADAC1005B52B2 /* AppDelegate.m */,
-				EA7F23971972D62700998614 /* Appearance.h */,
-				EA7F23981972D62700998614 /* Appearance.m */,
-				EA9C6928196ADF7A005B52B2 /* PostViewController.h */,
-				EA9C6929196ADF7A005B52B2 /* PostViewController.m */,
-				EA3A547C19CDA76000DCFDE8 /* PostQueue.swift */,
-				EA97A62719CDD85C00959966 /* PostQueueViewController.swift */,
-				EAA2C1E4197167740031EDF8 /* PPSSelectViewController.h */,
-				EAA2C1E5197167740031EDF8 /* PPSSelectViewController.m */,
-				EA716A0419721A1200834939 /* PlayingsViewController.h */,
-				EA716A0519721A1200834939 /* PlayingsViewController.m */,
-				EAD7AE27197190AA005F981C /* Party Play Service Client */,
-				EA3682BA19715AC100E3285B /* BonjourFinder.h */,
-				EA3682BB19715AC100E3285B /* BonjourFinder.m */,
-				EA7F23941972C1AF00998614 /* CenteringView.h */,
-				EA7F23951972C1AF00998614 /* CenteringView.m */,
-				EAD7AE2B1971BB9E005F981C /* WebViewController.h */,
-				EAD7AE2C1971BB9E005F981C /* WebViewController.m */,
-				EAA2C1E7197168150031EDF8 /* NSObject+BTKUtils.h */,
-				EAA2C1E8197168150031EDF8 /* NSObject+BTKUtils.m */,
-				EAD7AE281971AC0F005F981C /* Functional.h */,
-				EAD7AE291971AC0F005F981C /* Functional.m */,
-				EAAA76911972665C004FFCA6 /* Apple Sample Code */,
-				EA9AA4041AFD039900CAB060 /* SafeTableViewController.swift */,
-				EA9C6909196ADAC1005B52B2 /* Images.xcassets */,
-				EA9C68FE196ADAC1005B52B2 /* Supporting Files */,
-				EA3A547B19CDA75F00DCFDE8 /* PartyPlay-Bridging-Header.h */,
+				DA7D3102C4C07A69303051DF /* Pods-PartyPlay-osx.debug.xcconfig */,
+				31DA921EF4691340BC589D0E /* Pods-PartyPlay-osx.release.xcconfig */,
+				2D6D3F162FE7ECCBC9BC425E /* Pods-PartyPlay.debug.xcconfig */,
+				5E91DE917BD8539CAD99AE4C /* Pods-PartyPlay.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EA3D76E51B8A00F7001DAAAF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				EA3D76E61B8A00F7001DAAAF /* Appearnce.swift */,
+				EA3D76E71B8A00F7001DAAAF /* String.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		EAFD0A751B7F610A009A918F = {
+			isa = PBXGroup;
+			children = (
+				EAFD0ADC1B7F6411009A918F /* Core */,
+				EA3D76E51B8A00F7001DAAAF /* Common */,
+				EAFD0A801B7F610A009A918F /* PartyPlay */,
+				EAFD0A951B7F610B009A918F /* PartyPlayTests */,
+				EAFD0AA01B7F610B009A918F /* PartyPlayUITests */,
+				EAFD0AB41B7F61E6009A918F /* PartyPlay-osx */,
+				EAFD0AC41B7F61E6009A918F /* PartyPlay-osxTests */,
+				EAFD0ACF1B7F61E6009A918F /* PartyPlay-osxUITests */,
+				EAFD0A7F1B7F610A009A918F /* Products */,
+				5E8B37BBD5FC8F068AE3807B /* Pods */,
+				204AC6F6CB95063E576D1651 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EAFD0A7F1B7F610A009A918F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EAFD0A7E1B7F610A009A918F /* PartyPlay.app */,
+				EAFD0A921B7F610B009A918F /* PartyPlayTests.xctest */,
+				EAFD0A9D1B7F610B009A918F /* PartyPlayUITests.xctest */,
+				EAFD0AB31B7F61E6009A918F /* PartyPlay-osx.app */,
+				EAFD0AC11B7F61E6009A918F /* PartyPlay-osxTests.xctest */,
+				EAFD0ACC1B7F61E6009A918F /* PartyPlay-osxUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EAFD0A801B7F610A009A918F /* PartyPlay */ = {
+			isa = PBXGroup;
+			children = (
+				EAFD0A811B7F610A009A918F /* AppDelegate.swift */,
+				EAFD0A831B7F610A009A918F /* ViewController.swift */,
+				EA2A85DB1B83765000060F83 /* ServerViewController.swift */,
+				EAAB7D9B1B838047005F8DF0 /* ClientViewController.swift */,
+				EAFD0A881B7F610A009A918F /* Assets.xcassets */,
+				EAFD0A8A1B7F610A009A918F /* LaunchScreen.storyboard */,
+				EAFD0A8D1B7F610B009A918F /* Info.plist */,
 			);
 			path = PartyPlay;
 			sourceTree = "<group>";
 		};
-		EA9C68FE196ADAC1005B52B2 /* Supporting Files */ = {
+		EAFD0A951B7F610B009A918F /* PartyPlayTests */ = {
 			isa = PBXGroup;
 			children = (
-				EA9C68FF196ADAC1005B52B2 /* PartyPlay-Info.plist */,
-				EA9C6900196ADAC1005B52B2 /* InfoPlist.strings */,
-				EA7F239E1972E04300998614 /* iTunesArtwork */,
-				EA7F239F1972E04300998614 /* iTunesArtwork@2x */,
-				EA9C6903196ADAC1005B52B2 /* main.m */,
-				EA9C6905196ADAC1005B52B2 /* PartyPlay-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		EA9C6916196ADAC1005B52B2 /* PartyPlayTests */ = {
-			isa = PBXGroup;
-			children = (
-				EA9C691C196ADAC1005B52B2 /* PartyPlayTests.m */,
-				EA9C6917196ADAC1005B52B2 /* Supporting Files */,
+				EAFD0A961B7F610B009A918F /* PartyPlayTests.swift */,
+				EAFD0A981B7F610B009A918F /* Info.plist */,
 			);
 			path = PartyPlayTests;
 			sourceTree = "<group>";
 		};
-		EA9C6917196ADAC1005B52B2 /* Supporting Files */ = {
+		EAFD0AA01B7F610B009A918F /* PartyPlayUITests */ = {
 			isa = PBXGroup;
 			children = (
-				EA9C6918196ADAC1005B52B2 /* PartyPlayTests-Info.plist */,
-				EA9C6919196ADAC1005B52B2 /* InfoPlist.strings */,
+				EAFD0AA11B7F610B009A918F /* PartyPlayUITests.swift */,
+				EAFD0AA31B7F610B009A918F /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = PartyPlayUITests;
 			sourceTree = "<group>";
 		};
-		EAAA76911972665C004FFCA6 /* Apple Sample Code */ = {
+		EAFD0AB41B7F61E6009A918F /* PartyPlay-osx */ = {
 			isa = PBXGroup;
 			children = (
-				EAAA768E19726658004FFCA6 /* UIImage+ImageEffects.h */,
-				EAAA768F19726658004FFCA6 /* UIImage+ImageEffects.m */,
+				EAFD0AB51B7F61E6009A918F /* AppDelegate.swift */,
+				EA3D76E01B89B597001DAAAF /* MainViewController.swift */,
+				EAFD0AB71B7F61E6009A918F /* Assets.xcassets */,
+				EAFD0AB91B7F61E6009A918F /* MainMenu.xib */,
+				EAFD0ABC1B7F61E6009A918F /* Info.plist */,
 			);
-			name = "Apple Sample Code";
+			path = "PartyPlay-osx";
 			sourceTree = "<group>";
 		};
-		EAD7AE27197190AA005F981C /* Party Play Service Client */ = {
+		EAFD0AC41B7F61E6009A918F /* PartyPlay-osxTests */ = {
 			isa = PBXGroup;
 			children = (
-				EADD7AFF19CEC06A00793814 /* PPSClient.swift */,
-				EA547239197258C10023AE3D /* PPSSong.h */,
-				EA54723A197258C10023AE3D /* PPSSong.m */,
-				EA54723C197259070023AE3D /* PPSNowPlaying.h */,
-				EA54723D197259070023AE3D /* PPSNowPlaying.m */,
-				EAD7AE241971904B005F981C /* PPSLocalSong.h */,
-				EAD7AE251971904B005F981C /* PPSLocalSong.m */,
+				EAFD0AC51B7F61E6009A918F /* PartyPlay_osxTests.swift */,
+				EAFD0AC71B7F61E6009A918F /* Info.plist */,
 			);
-			name = "Party Play Service Client";
+			path = "PartyPlay-osxTests";
+			sourceTree = "<group>";
+		};
+		EAFD0ACF1B7F61E6009A918F /* PartyPlay-osxUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EAFD0AD01B7F61E6009A918F /* PartyPlay_osxUITests.swift */,
+				EAFD0AD21B7F61E6009A918F /* Info.plist */,
+			);
+			path = "PartyPlay-osxUITests";
+			sourceTree = "<group>";
+		};
+		EAFD0ADC1B7F6411009A918F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				EAFD0ADD1B7F6411009A918F /* PartyPlay.swift */,
+				EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */,
+				EAFD0AE91B7F6851009A918F /* PartyPlayServiceBrowser.swift */,
+				EAFD0ADE1B7F6411009A918F /* PartyPlayClient.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EA9C68F3196ADAC1005B52B2 /* PartyPlay */ = {
+		EAFD0A7D1B7F610A009A918F /* PartyPlay */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EA9C6920196ADAC1005B52B2 /* Build configuration list for PBXNativeTarget "PartyPlay" */;
+			buildConfigurationList = EAFD0AA61B7F610B009A918F /* Build configuration list for PBXNativeTarget "PartyPlay" */;
 			buildPhases = (
-				6A5E7456D3CB4D54848EE2DF /* Check Pods Manifest.lock */,
-				EA9C68F0196ADAC1005B52B2 /* Sources */,
-				EA9C68F1196ADAC1005B52B2 /* Frameworks */,
-				EA9C68F2196ADAC1005B52B2 /* Resources */,
-				191D755F724B406F9E904C54 /* Copy Pods Resources */,
+				8835D3D450E084A5019467CD /* Check Pods Manifest.lock */,
+				EAFD0A7A1B7F610A009A918F /* Sources */,
+				EAFD0A7B1B7F610A009A918F /* Frameworks */,
+				EAFD0A7C1B7F610A009A918F /* Resources */,
+				37DD6CBECA715A83A126518E /* Embed Pods Frameworks */,
+				57BF89E50C4491907374417D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = PartyPlay;
-			productName = AirHack;
-			productReference = EA9C68F4196ADAC1005B52B2 /* PartyPlay.app */;
+			productName = PartyPlay;
+			productReference = EAFD0A7E1B7F610A009A918F /* PartyPlay.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EA9C690E196ADAC1005B52B2 /* PartyPlayTests */ = {
+		EAFD0A911B7F610B009A918F /* PartyPlayTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EA9C6923196ADAC1005B52B2 /* Build configuration list for PBXNativeTarget "PartyPlayTests" */;
+			buildConfigurationList = EAFD0AA91B7F610B009A918F /* Build configuration list for PBXNativeTarget "PartyPlayTests" */;
 			buildPhases = (
-				EA9C690B196ADAC1005B52B2 /* Sources */,
-				EA9C690C196ADAC1005B52B2 /* Frameworks */,
-				EA9C690D196ADAC1005B52B2 /* Resources */,
+				EAFD0A8E1B7F610B009A918F /* Sources */,
+				EAFD0A8F1B7F610B009A918F /* Frameworks */,
+				EAFD0A901B7F610B009A918F /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				EA9C6915196ADAC1005B52B2 /* PBXTargetDependency */,
+				EAFD0A941B7F610B009A918F /* PBXTargetDependency */,
 			);
 			name = PartyPlayTests;
-			productName = AirHackTests;
-			productReference = EA9C690F196ADAC1005B52B2 /* PartyPlayTests.xctest */;
+			productName = PartyPlayTests;
+			productReference = EAFD0A921B7F610B009A918F /* PartyPlayTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EAFD0A9C1B7F610B009A918F /* PartyPlayUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAFD0AAC1B7F610B009A918F /* Build configuration list for PBXNativeTarget "PartyPlayUITests" */;
+			buildPhases = (
+				EAFD0A991B7F610B009A918F /* Sources */,
+				EAFD0A9A1B7F610B009A918F /* Frameworks */,
+				EAFD0A9B1B7F610B009A918F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EAFD0A9F1B7F610B009A918F /* PBXTargetDependency */,
+			);
+			name = PartyPlayUITests;
+			productName = PartyPlayUITests;
+			productReference = EAFD0A9D1B7F610B009A918F /* PartyPlayUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		EAFD0AB21B7F61E6009A918F /* PartyPlay-osx */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAFD0AD31B7F61E6009A918F /* Build configuration list for PBXNativeTarget "PartyPlay-osx" */;
+			buildPhases = (
+				723B3A39D9A21B344804476E /* Check Pods Manifest.lock */,
+				EAFD0AAF1B7F61E6009A918F /* Sources */,
+				EAFD0AB01B7F61E6009A918F /* Frameworks */,
+				EAFD0AB11B7F61E6009A918F /* Resources */,
+				22E690DF45B3F5CEF57508D5 /* Embed Pods Frameworks */,
+				D175C6536D5182B19C97E576 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PartyPlay-osx";
+			productName = "PartyPlay-osx";
+			productReference = EAFD0AB31B7F61E6009A918F /* PartyPlay-osx.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EAFD0AC01B7F61E6009A918F /* PartyPlay-osxTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAFD0AD61B7F61E6009A918F /* Build configuration list for PBXNativeTarget "PartyPlay-osxTests" */;
+			buildPhases = (
+				EAFD0ABD1B7F61E6009A918F /* Sources */,
+				EAFD0ABE1B7F61E6009A918F /* Frameworks */,
+				EAFD0ABF1B7F61E6009A918F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EAFD0AC31B7F61E6009A918F /* PBXTargetDependency */,
+			);
+			name = "PartyPlay-osxTests";
+			productName = "PartyPlay-osxTests";
+			productReference = EAFD0AC11B7F61E6009A918F /* PartyPlay-osxTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EAFD0ACB1B7F61E6009A918F /* PartyPlay-osxUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAFD0AD91B7F61E6009A918F /* Build configuration list for PBXNativeTarget "PartyPlay-osxUITests" */;
+			buildPhases = (
+				EAFD0AC81B7F61E6009A918F /* Sources */,
+				EAFD0AC91B7F61E6009A918F /* Frameworks */,
+				EAFD0ACA1B7F61E6009A918F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EAFD0ACE1B7F61E6009A918F /* PBXTargetDependency */,
+			);
+			name = "PartyPlay-osxUITests";
+			productName = "PartyPlay-osxUITests";
+			productReference = EAFD0ACC1B7F61E6009A918F /* PartyPlay-osxUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		EA9C68EC196ADAC1005B52B2 /* Project object */ = {
+		EAFD0A761B7F610A009A918F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = banjun;
 				TargetAttributes = {
-					EA9C690E196ADAC1005B52B2 = {
-						TestTargetID = EA9C68F3196ADAC1005B52B2;
+					EAFD0A7D1B7F610A009A918F = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					EAFD0A911B7F610B009A918F = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = EAFD0A7D1B7F610A009A918F;
+					};
+					EAFD0A9C1B7F610B009A918F = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = EAFD0A7D1B7F610A009A918F;
+					};
+					EAFD0AB21B7F61E6009A918F = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					EAFD0AC01B7F61E6009A918F = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = EAFD0AB21B7F61E6009A918F;
+					};
+					EAFD0ACB1B7F61E6009A918F = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = EAFD0AB21B7F61E6009A918F;
 					};
 				};
 			};
-			buildConfigurationList = EA9C68EF196ADAC1005B52B2 /* Build configuration list for PBXProject "PartyPlay" */;
+			buildConfigurationList = EAFD0A791B7F610A009A918F /* Build configuration list for PBXProject "PartyPlay" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
-			mainGroup = EA9C68EB196ADAC1005B52B2;
-			productRefGroup = EA9C68F5196ADAC1005B52B2 /* Products */;
+			mainGroup = EAFD0A751B7F610A009A918F;
+			productRefGroup = EAFD0A7F1B7F610A009A918F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EA9C68F3196ADAC1005B52B2 /* PartyPlay */,
-				EA9C690E196ADAC1005B52B2 /* PartyPlayTests */,
+				EAFD0A7D1B7F610A009A918F /* PartyPlay */,
+				EAFD0A911B7F610B009A918F /* PartyPlayTests */,
+				EAFD0A9C1B7F610B009A918F /* PartyPlayUITests */,
+				EAFD0AB21B7F61E6009A918F /* PartyPlay-osx */,
+				EAFD0AC01B7F61E6009A918F /* PartyPlay-osxTests */,
+				EAFD0ACB1B7F61E6009A918F /* PartyPlay-osxUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		EA9C68F2196ADAC1005B52B2 /* Resources */ = {
+		EAFD0A7C1B7F610A009A918F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA7F23A11972E04300998614 /* iTunesArtwork@2x in Resources */,
-				EA9C6902196ADAC1005B52B2 /* InfoPlist.strings in Resources */,
-				EA7F23A01972E04300998614 /* iTunesArtwork in Resources */,
-				EA9C690A196ADAC1005B52B2 /* Images.xcassets in Resources */,
+				EAFD0A8C1B7F610A009A918F /* LaunchScreen.storyboard in Resources */,
+				EAFD0A891B7F610A009A918F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EA9C690D196ADAC1005B52B2 /* Resources */ = {
+		EAFD0A901B7F610B009A918F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA9C691B196ADAC1005B52B2 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0A9B1B7F610B009A918F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0AB11B7F61E6009A918F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAFD0AB81B7F61E6009A918F /* Assets.xcassets in Resources */,
+				EAFD0ABB1B7F61E6009A918F /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0ABF1B7F61E6009A918F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0ACA1B7F61E6009A918F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		191D755F724B406F9E904C54 /* Copy Pods Resources */ = {
+		22E690DF45B3F5CEF57508D5 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PartyPlay-osx/Pods-PartyPlay-osx-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		37DD6CBECA715A83A126518E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PartyPlay/Pods-PartyPlay-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57BF89E50C4491907374417D /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -372,10 +555,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PartyPlay/Pods-PartyPlay-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6A5E7456D3CB4D54848EE2DF /* Check Pods Manifest.lock */ = {
+		723B3A39D9A21B344804476E /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -390,74 +573,149 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		8835D3D450E084A5019467CD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D175C6536D5182B19C97E576 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PartyPlay-osx/Pods-PartyPlay-osx-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		EA9C68F0196ADAC1005B52B2 /* Sources */ = {
+		EAFD0A7A1B7F610A009A918F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA9C6908196ADAC1005B52B2 /* AppDelegate.m in Sources */,
-				EAD7AE2D1971BB9E005F981C /* WebViewController.m in Sources */,
-				EA7F23961972C1AF00998614 /* CenteringView.m in Sources */,
-				EAAA769019726658004FFCA6 /* UIImage+ImageEffects.m in Sources */,
-				EADD7B0019CEC06A00793814 /* PPSClient.swift in Sources */,
-				EA3682BC19715AC100E3285B /* BonjourFinder.m in Sources */,
-				EA9AA4051AFD039900CAB060 /* SafeTableViewController.swift in Sources */,
-				EAA2C1E6197167740031EDF8 /* PPSSelectViewController.m in Sources */,
-				EA9C6904196ADAC1005B52B2 /* main.m in Sources */,
-				EA7F23991972D62700998614 /* Appearance.m in Sources */,
-				EA9C692A196ADF7A005B52B2 /* PostViewController.m in Sources */,
-				EA54723E197259070023AE3D /* PPSNowPlaying.m in Sources */,
-				EAD7AE261971904B005F981C /* PPSLocalSong.m in Sources */,
-				EA716A0619721A1200834939 /* PlayingsViewController.m in Sources */,
-				EAD7AE2A1971AC0F005F981C /* Functional.m in Sources */,
-				EA54723B197258C10023AE3D /* PPSSong.m in Sources */,
-				EAA2C1E9197168150031EDF8 /* NSObject+BTKUtils.m in Sources */,
-				EA97A62819CDD85C00959966 /* PostQueueViewController.swift in Sources */,
-				EA3A547D19CDA76000DCFDE8 /* PostQueue.swift in Sources */,
+				EAFD0AE01B7F6411009A918F /* PartyPlay.swift in Sources */,
+				EAFD0AE21B7F6411009A918F /* PartyPlayClient.swift in Sources */,
+				EAFD0AEA1B7F6851009A918F /* PartyPlayServiceBrowser.swift in Sources */,
+				EAAB7D9C1B838047005F8DF0 /* ClientViewController.swift in Sources */,
+				EA3D76E81B8A00F7001DAAAF /* Appearnce.swift in Sources */,
+				EA3D76EA1B8A00F7001DAAAF /* String.swift in Sources */,
+				EA2A85DC1B83765000060F83 /* ServerViewController.swift in Sources */,
+				EAFD0AE41B7F6411009A918F /* PartyPlayServer.swift in Sources */,
+				EAFD0A841B7F610A009A918F /* ViewController.swift in Sources */,
+				EAFD0A821B7F610A009A918F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EA9C690B196ADAC1005B52B2 /* Sources */ = {
+		EAFD0A8E1B7F610B009A918F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA9C691D196ADAC1005B52B2 /* PartyPlayTests.m in Sources */,
+				EAFD0A971B7F610B009A918F /* PartyPlayTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0A991B7F610B009A918F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAFD0AA21B7F610B009A918F /* PartyPlayUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0AAF1B7F61E6009A918F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA3D76E11B89B597001DAAAF /* MainViewController.swift in Sources */,
+				EAFD0AE11B7F6411009A918F /* PartyPlay.swift in Sources */,
+				EA3D76EB1B8A00F7001DAAAF /* String.swift in Sources */,
+				EA3D76E91B8A00F7001DAAAF /* Appearnce.swift in Sources */,
+				EAFD0AE51B7F6411009A918F /* PartyPlayServer.swift in Sources */,
+				EAFD0AE31B7F6411009A918F /* PartyPlayClient.swift in Sources */,
+				EAFD0AB61B7F61E6009A918F /* AppDelegate.swift in Sources */,
+				EAFD0AEB1B7F6851009A918F /* PartyPlayServiceBrowser.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0ABD1B7F61E6009A918F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAFD0AC61B7F61E6009A918F /* PartyPlay_osxTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFD0AC81B7F61E6009A918F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAFD0AD11B7F61E6009A918F /* PartyPlay_osxUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		EA9C6915196ADAC1005B52B2 /* PBXTargetDependency */ = {
+		EAFD0A941B7F610B009A918F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EA9C68F3196ADAC1005B52B2 /* PartyPlay */;
-			targetProxy = EA9C6914196ADAC1005B52B2 /* PBXContainerItemProxy */;
+			target = EAFD0A7D1B7F610A009A918F /* PartyPlay */;
+			targetProxy = EAFD0A931B7F610B009A918F /* PBXContainerItemProxy */;
+		};
+		EAFD0A9F1B7F610B009A918F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EAFD0A7D1B7F610A009A918F /* PartyPlay */;
+			targetProxy = EAFD0A9E1B7F610B009A918F /* PBXContainerItemProxy */;
+		};
+		EAFD0AC31B7F61E6009A918F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EAFD0AB21B7F61E6009A918F /* PartyPlay-osx */;
+			targetProxy = EAFD0AC21B7F61E6009A918F /* PBXContainerItemProxy */;
+		};
+		EAFD0ACE1B7F61E6009A918F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EAFD0AB21B7F61E6009A918F /* PartyPlay-osx */;
+			targetProxy = EAFD0ACD1B7F61E6009A918F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		EA9C6900196ADAC1005B52B2 /* InfoPlist.strings */ = {
+		EAFD0A8A1B7F610A009A918F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				EA9C6901196ADAC1005B52B2 /* en */,
+				EAFD0A8B1B7F610A009A918F /* Base */,
 			);
-			name = InfoPlist.strings;
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		EA9C6919196ADAC1005B52B2 /* InfoPlist.strings */ = {
+		EAFD0AB91B7F61E6009A918F /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				EA9C691A196ADAC1005B52B2 /* en */,
+				EAFD0ABA1B7F61E6009A918F /* Base */,
 			);
-			name = InfoPlist.strings;
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		EA9C691E196ADAC1005B52B2 /* Debug */ = {
+		EAFD0AA41B7F610B009A918F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -472,31 +730,37 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		EA9C691F196ADAC1005B52B2 /* Release */ = {
+		EAFD0AA51B7F610B009A918F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -511,130 +775,262 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COPY_PHASE_STRIP = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		EA9C6921196ADAC1005B52B2 /* Debug */ = {
+		EAFD0AA71B7F610B009A918F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AEAAA8E915D54C62C2897B2 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 2D6D3F162FE7ECCBC9BC425E /* Pods-PartyPlay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ENABLE_MODULES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PartyPlay/PartyPlay-Prefix.pch";
-				INFOPLIST_FILE = "PartyPlay/PartyPlay-Info.plist";
+				INFOPLIST_FILE = PartyPlay/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.codefirst.PartyPlay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "PartyPlay/PartyPlay-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
-		EA9C6922196ADAC1005B52B2 /* Release */ = {
+		EAFD0AA81B7F610B009A918F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 615645E6D049A2D246F4E832 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 5E91DE917BD8539CAD99AE4C /* Pods-PartyPlay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ENABLE_MODULES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PartyPlay/PartyPlay-Prefix.pch";
-				INFOPLIST_FILE = "PartyPlay/PartyPlay-Info.plist";
+				INFOPLIST_FILE = PartyPlay/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.codefirst.PartyPlay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "PartyPlay/PartyPlay-Bridging-Header.h";
-				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
-		EA9C6924196ADAC1005B52B2 /* Debug */ = {
+		EAFD0AAA1B7F610B009A918F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PartyPlay.app/PartyPlay";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PartyPlay/PartyPlay-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "PartyPlay/PartyPlay-Info.plist";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PartyPlayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.codefirst.PartyPlayTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PartyPlay.app/PartyPlay";
 			};
 			name = Debug;
 		};
-		EA9C6925196ADAC1005B52B2 /* Release */ = {
+		EAFD0AAB1B7F610B009A918F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PartyPlay.app/PartyPlay";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PartyPlay/PartyPlay-Prefix.pch";
-				INFOPLIST_FILE = "PartyPlay/PartyPlay-Info.plist";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PartyPlayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.codefirst.PartyPlayTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PartyPlay.app/PartyPlay";
+			};
+			name = Release;
+		};
+		EAFD0AAD1B7F610B009A918F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PartyPlayUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.codefirst.PartyPlayUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PartyPlay;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		EAFD0AAE1B7F610B009A918F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PartyPlayUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.codefirst.PartyPlayUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PartyPlay;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+		EAFD0AD41B7F61E6009A918F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA7D3102C4C07A69303051DF /* Pods-PartyPlay-osx.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "PartyPlay-osx/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.codefirst.PartyPlay-osx";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		EAFD0AD51B7F61E6009A918F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31DA921EF4691340BC589D0E /* Pods-PartyPlay-osx.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "PartyPlay-osx/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.codefirst.PartyPlay-osx";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		EAFD0AD71B7F61E6009A918F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "PartyPlay-osxTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.codefirst.PartyPlay-osxTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PartyPlay-osx.app/Contents/MacOS/PartyPlay-osx";
+			};
+			name = Debug;
+		};
+		EAFD0AD81B7F61E6009A918F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "PartyPlay-osxTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.codefirst.PartyPlay-osxTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PartyPlay-osx.app/Contents/MacOS/PartyPlay-osx";
+			};
+			name = Release;
+		};
+		EAFD0ADA1B7F61E6009A918F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "PartyPlay-osxUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.codefirst.PartyPlay-osxUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = "PartyPlay-osx";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		EAFD0ADB1B7F61E6009A918F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "PartyPlay-osxUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.codefirst.PartyPlay-osxUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = "PartyPlay-osx";
+				USES_XCTRUNNER = YES;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EA9C68EF196ADAC1005B52B2 /* Build configuration list for PBXProject "PartyPlay" */ = {
+		EAFD0A791B7F610A009A918F /* Build configuration list for PBXProject "PartyPlay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EA9C691E196ADAC1005B52B2 /* Debug */,
-				EA9C691F196ADAC1005B52B2 /* Release */,
+				EAFD0AA41B7F610B009A918F /* Debug */,
+				EAFD0AA51B7F610B009A918F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EA9C6920196ADAC1005B52B2 /* Build configuration list for PBXNativeTarget "PartyPlay" */ = {
+		EAFD0AA61B7F610B009A918F /* Build configuration list for PBXNativeTarget "PartyPlay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EA9C6921196ADAC1005B52B2 /* Debug */,
-				EA9C6922196ADAC1005B52B2 /* Release */,
+				EAFD0AA71B7F610B009A918F /* Debug */,
+				EAFD0AA81B7F610B009A918F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EA9C6923196ADAC1005B52B2 /* Build configuration list for PBXNativeTarget "PartyPlayTests" */ = {
+		EAFD0AA91B7F610B009A918F /* Build configuration list for PBXNativeTarget "PartyPlayTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EA9C6924196ADAC1005B52B2 /* Debug */,
-				EA9C6925196ADAC1005B52B2 /* Release */,
+				EAFD0AAA1B7F610B009A918F /* Debug */,
+				EAFD0AAB1B7F610B009A918F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAFD0AAC1B7F610B009A918F /* Build configuration list for PBXNativeTarget "PartyPlayUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAFD0AAD1B7F610B009A918F /* Debug */,
+				EAFD0AAE1B7F610B009A918F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAFD0AD31B7F61E6009A918F /* Build configuration list for PBXNativeTarget "PartyPlay-osx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAFD0AD41B7F61E6009A918F /* Debug */,
+				EAFD0AD51B7F61E6009A918F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAFD0AD61B7F61E6009A918F /* Build configuration list for PBXNativeTarget "PartyPlay-osxTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAFD0AD71B7F61E6009A918F /* Debug */,
+				EAFD0AD81B7F61E6009A918F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAFD0AD91B7F61E6009A918F /* Build configuration list for PBXNativeTarget "PartyPlay-osxUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAFD0ADA1B7F61E6009A918F /* Debug */,
+				EAFD0ADB1B7F61E6009A918F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = EA9C68EC196ADAC1005B52B2 /* Project object */;
+	rootObject = EAFD0A761B7F610A009A918F /* Project object */;
 }
