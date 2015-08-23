@@ -10,9 +10,11 @@
 		6BF2526B06AAB3FB0A7A4C0F /* Pods_PartyPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9565EF043D5C05B274816321 /* Pods_PartyPlay.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		D5342AAD3D1D67AFC121CDFB /* Pods_PartyPlay_osx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93ED9053558CB0A5C37B0DB /* Pods_PartyPlay_osx.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EA2A85DC1B83765000060F83 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A85DB1B83765000060F83 /* ServerViewController.swift */; };
-		EA2A85DE1B83794C00060F83 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A85DD1B83794C00060F83 /* String.swift */; };
 		EA3D76E11B89B597001DAAAF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D76E01B89B597001DAAAF /* MainViewController.swift */; };
-		EA3D76E41B89BF7A001DAAAF /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A85DD1B83794C00060F83 /* String.swift */; };
+		EA3D76E81B8A00F7001DAAAF /* Appearnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D76E61B8A00F7001DAAAF /* Appearnce.swift */; };
+		EA3D76E91B8A00F7001DAAAF /* Appearnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D76E61B8A00F7001DAAAF /* Appearnce.swift */; };
+		EA3D76EA1B8A00F7001DAAAF /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D76E71B8A00F7001DAAAF /* String.swift */; };
+		EA3D76EB1B8A00F7001DAAAF /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D76E71B8A00F7001DAAAF /* String.swift */; };
 		EAAB7D9C1B838047005F8DF0 /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAB7D9B1B838047005F8DF0 /* ClientViewController.swift */; };
 		EAFD0A821B7F610A009A918F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0A811B7F610A009A918F /* AppDelegate.swift */; };
 		EAFD0A841B7F610A009A918F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0A831B7F610A009A918F /* ViewController.swift */; };
@@ -31,8 +33,6 @@
 		EAFD0AE31B7F6411009A918F /* PartyPlayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADE1B7F6411009A918F /* PartyPlayClient.swift */; };
 		EAFD0AE41B7F6411009A918F /* PartyPlayServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */; };
 		EAFD0AE51B7F6411009A918F /* PartyPlayServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */; };
-		EAFD0AE71B7F6485009A918F /* Appearnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AE61B7F6485009A918F /* Appearnce.swift */; };
-		EAFD0AE81B7F6485009A918F /* Appearnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AE61B7F6485009A918F /* Appearnce.swift */; };
 		EAFD0AEA1B7F6851009A918F /* PartyPlayServiceBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AE91B7F6851009A918F /* PartyPlayServiceBrowser.swift */; };
 		EAFD0AEB1B7F6851009A918F /* PartyPlayServiceBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFD0AE91B7F6851009A918F /* PartyPlayServiceBrowser.swift */; };
 /* End PBXBuildFile section */
@@ -77,8 +77,9 @@
 		B93ED9053558CB0A5C37B0DB /* Pods_PartyPlay_osx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PartyPlay_osx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA7D3102C4C07A69303051DF /* Pods-PartyPlay-osx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PartyPlay-osx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PartyPlay-osx/Pods-PartyPlay-osx.debug.xcconfig"; sourceTree = "<group>"; };
 		EA2A85DB1B83765000060F83 /* ServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
-		EA2A85DD1B83794C00060F83 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EA3D76E01B89B597001DAAAF /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		EA3D76E61B8A00F7001DAAAF /* Appearnce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearnce.swift; sourceTree = "<group>"; };
+		EA3D76E71B8A00F7001DAAAF /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EAAB7D9B1B838047005F8DF0 /* ClientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
 		EAFD0A7E1B7F610A009A918F /* PartyPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartyPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFD0A811B7F610A009A918F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -106,7 +107,6 @@
 		EAFD0ADD1B7F6411009A918F /* PartyPlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlay.swift; sourceTree = "<group>"; };
 		EAFD0ADE1B7F6411009A918F /* PartyPlayClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlayClient.swift; sourceTree = "<group>"; };
 		EAFD0ADF1B7F6411009A918F /* PartyPlayServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlayServer.swift; sourceTree = "<group>"; };
-		EAFD0AE61B7F6485009A918F /* Appearnce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearnce.swift; sourceTree = "<group>"; };
 		EAFD0AE91B7F6851009A918F /* PartyPlayServiceBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyPlayServiceBrowser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -179,10 +179,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		EA3D76E51B8A00F7001DAAAF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				EA3D76E61B8A00F7001DAAAF /* Appearnce.swift */,
+				EA3D76E71B8A00F7001DAAAF /* String.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		EAFD0A751B7F610A009A918F = {
 			isa = PBXGroup;
 			children = (
 				EAFD0ADC1B7F6411009A918F /* Core */,
+				EA3D76E51B8A00F7001DAAAF /* Common */,
 				EAFD0A801B7F610A009A918F /* PartyPlay */,
 				EAFD0A951B7F610B009A918F /* PartyPlayTests */,
 				EAFD0AA01B7F610B009A918F /* PartyPlayUITests */,
@@ -212,8 +222,6 @@
 			isa = PBXGroup;
 			children = (
 				EAFD0A811B7F610A009A918F /* AppDelegate.swift */,
-				EAFD0AE61B7F6485009A918F /* Appearnce.swift */,
-				EA2A85DD1B83794C00060F83 /* String.swift */,
 				EAFD0A831B7F610A009A918F /* ViewController.swift */,
 				EA2A85DB1B83765000060F83 /* ServerViewController.swift */,
 				EAAB7D9B1B838047005F8DF0 /* ClientViewController.swift */,
@@ -606,12 +614,12 @@
 				EAFD0AE21B7F6411009A918F /* PartyPlayClient.swift in Sources */,
 				EAFD0AEA1B7F6851009A918F /* PartyPlayServiceBrowser.swift in Sources */,
 				EAAB7D9C1B838047005F8DF0 /* ClientViewController.swift in Sources */,
-				EA2A85DE1B83794C00060F83 /* String.swift in Sources */,
+				EA3D76E81B8A00F7001DAAAF /* Appearnce.swift in Sources */,
+				EA3D76EA1B8A00F7001DAAAF /* String.swift in Sources */,
 				EA2A85DC1B83765000060F83 /* ServerViewController.swift in Sources */,
 				EAFD0AE41B7F6411009A918F /* PartyPlayServer.swift in Sources */,
 				EAFD0A841B7F610A009A918F /* ViewController.swift in Sources */,
 				EAFD0A821B7F610A009A918F /* AppDelegate.swift in Sources */,
-				EAFD0AE71B7F6485009A918F /* Appearnce.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,8 +645,8 @@
 			files = (
 				EA3D76E11B89B597001DAAAF /* MainViewController.swift in Sources */,
 				EAFD0AE11B7F6411009A918F /* PartyPlay.swift in Sources */,
-				EAFD0AE81B7F6485009A918F /* Appearnce.swift in Sources */,
-				EA3D76E41B89BF7A001DAAAF /* String.swift in Sources */,
+				EA3D76EB1B8A00F7001DAAAF /* String.swift in Sources */,
+				EA3D76E91B8A00F7001DAAAF /* Appearnce.swift in Sources */,
 				EAFD0AE51B7F6411009A918F /* PartyPlayServer.swift in Sources */,
 				EAFD0AE31B7F6411009A918F /* PartyPlayClient.swift in Sources */,
 				EAFD0AB61B7F61E6009A918F /* AppDelegate.swift in Sources */,
