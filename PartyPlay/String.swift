@@ -22,4 +22,6 @@ struct LocalizedString {
     static let nPeersCurrentlyConnected = NSLocalizedString("%d peers currently connected.", comment: "")
     
     static let titleServer = NSLocalizedString("Party Play Server", comment: "")
+    
+    static let postSongs = NSLocalizedString("Post Songs", comment: "")
 }

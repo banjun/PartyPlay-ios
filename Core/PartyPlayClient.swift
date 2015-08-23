@@ -27,6 +27,16 @@ class PartyPlayClient: NSObject {
             NSLog("cannot send data to peer \(server): \(error.localizedDescription)")
         }
     }
+    
+    func sendSong(fileURL: NSURL, name: String) -> NSProgress? {
+        return session.sendResourceAtURL(fileURL, withName: name, toPeer: server) { error in
+            if let error = error {
+                NSLog("%@", "sendSong(fileURL:_) error: \(error.localizedDescription)")
+            } else {
+                NSLog("%@", "sendSong(fileURL:_) completed")
+            }
+        }
+    }
 }
 
 // MARK: MCSessionDelegate

@@ -15,7 +15,7 @@ class ViewController: UITableViewController {
     init() {
         super.init(style: .Grouped)
         
-        title = kAppName
+        title = LocalizedString.appName
         browser.onStateChange = { [weak self] in
             self?.tableView.reloadData()
         }

@@ -59,11 +59,11 @@ extension PartyPlayServer: MCSessionDelegate {
     }
     
     func session(session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, withProgress progress: NSProgress) {
-        
+        NSLog("%@", "didStartReceivingResourceWithName from \(peerID.displayName): \(resourceName)")
     }
     
     func session(session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, atURL localURL: NSURL, withError error: NSError?) {
-        
+        NSLog("%@", "didFinishReceivingResourceWithName from \(peerID.displayName): \(localURL), error = \(error?.localizedDescription)")
     }
 }
 
