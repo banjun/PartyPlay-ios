@@ -6,7 +6,7 @@
 //  Copyright © 2015 banjun. All rights reserved.
 //
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
     import UIKit
     
     private func rgb(r: Int, _ g: Int, _ b: Int) -> UIColor {

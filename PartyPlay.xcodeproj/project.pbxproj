@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		6BF2526B06AAB3FB0A7A4C0F /* Pods_PartyPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9565EF043D5C05B274816321 /* Pods_PartyPlay.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		D5342AAD3D1D67AFC121CDFB /* Pods_PartyPlay_osx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93ED9053558CB0A5C37B0DB /* Pods_PartyPlay_osx.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EA2297BE1BA0DC1300FD4DE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2297BD1BA0DC1300FD4DE2 /* AppDelegate.swift */; };
+		EA2297C01BA0DC1300FD4DE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2297BF1BA0DC1300FD4DE2 /* ViewController.swift */; };
+		EA2297C51BA0DC1300FD4DE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA2297C41BA0DC1300FD4DE2 /* Assets.xcassets */; };
+		EA2297D01BA0DC1400FD4DE2 /* PartyPlay_tvTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2297CF1BA0DC1400FD4DE2 /* PartyPlay_tvTests.swift */; };
+		EA2297D81BA0DC9400FD4DE2 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		EA2297D91BA0DCE900FD4DE2 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		EA2297E11BA135EB00FD4DE2 /* okaeri.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EA2297E01BA135EB00FD4DE2 /* okaeri.m4a */; };
+		EA2297E21BA1443800FD4DE2 /* Appearnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D76E61B8A00F7001DAAAF /* Appearnce.swift */; };
+		EA2297E31BA1443C00FD4DE2 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D76E71B8A00F7001DAAAF /* String.swift */; };
 		EA2A85DC1B83765000060F83 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A85DB1B83765000060F83 /* ServerViewController.swift */; };
 		EA3D76E11B89B597001DAAAF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D76E01B89B597001DAAAF /* MainViewController.swift */; };
 		EA3D76E81B8A00F7001DAAAF /* Appearnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D76E61B8A00F7001DAAAF /* Appearnce.swift */; };
@@ -38,6 +47,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		EA2297CC1BA0DC1400FD4DE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAFD0A761B7F610A009A918F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA2297BA1BA0DC1300FD4DE2;
+			remoteInfo = "PartyPlay-tv";
+		};
 		EAFD0A931B7F610B009A918F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EAFD0A761B7F610A009A918F /* Project object */;
@@ -76,6 +92,15 @@
 		957FCCC2EDB8E9E49884ED6E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B93ED9053558CB0A5C37B0DB /* Pods_PartyPlay_osx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PartyPlay_osx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA7D3102C4C07A69303051DF /* Pods-PartyPlay-osx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PartyPlay-osx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PartyPlay-osx/Pods-PartyPlay-osx.debug.xcconfig"; sourceTree = "<group>"; };
+		EA2297BB1BA0DC1300FD4DE2 /* PartyPlay-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PartyPlay-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA2297BD1BA0DC1300FD4DE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EA2297BF1BA0DC1300FD4DE2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EA2297C41BA0DC1300FD4DE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EA2297C61BA0DC1300FD4DE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA2297CB1BA0DC1300FD4DE2 /* PartyPlay-tvTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PartyPlay-tvTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA2297CF1BA0DC1400FD4DE2 /* PartyPlay_tvTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyPlay_tvTests.swift; sourceTree = "<group>"; };
+		EA2297D11BA0DC1400FD4DE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA2297E01BA135EB00FD4DE2 /* okaeri.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = okaeri.m4a; sourceTree = "<group>"; };
 		EA2A85DB1B83765000060F83 /* ServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
 		EA3D76E01B89B597001DAAAF /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EA3D76E61B8A00F7001DAAAF /* Appearnce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearnce.swift; sourceTree = "<group>"; };
@@ -111,6 +136,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EA2297B81BA0DC1300FD4DE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA2297C81BA0DC1300FD4DE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EAFD0A7B1B7F610A009A918F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -179,6 +218,27 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		EA2297BC1BA0DC1300FD4DE2 /* PartyPlay-tv */ = {
+			isa = PBXGroup;
+			children = (
+				EA2297BD1BA0DC1300FD4DE2 /* AppDelegate.swift */,
+				EA2297BF1BA0DC1300FD4DE2 /* ViewController.swift */,
+				EA2297E01BA135EB00FD4DE2 /* okaeri.m4a */,
+				EA2297C41BA0DC1300FD4DE2 /* Assets.xcassets */,
+				EA2297C61BA0DC1300FD4DE2 /* Info.plist */,
+			);
+			path = "PartyPlay-tv";
+			sourceTree = "<group>";
+		};
+		EA2297CE1BA0DC1400FD4DE2 /* PartyPlay-tvTests */ = {
+			isa = PBXGroup;
+			children = (
+				EA2297CF1BA0DC1400FD4DE2 /* PartyPlay_tvTests.swift */,
+				EA2297D11BA0DC1400FD4DE2 /* Info.plist */,
+			);
+			path = "PartyPlay-tvTests";
+			sourceTree = "<group>";
+		};
 		EA3D76E51B8A00F7001DAAAF /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +259,8 @@
 				EAFD0AB41B7F61E6009A918F /* PartyPlay-osx */,
 				EAFD0AC41B7F61E6009A918F /* PartyPlay-osxTests */,
 				EAFD0ACF1B7F61E6009A918F /* PartyPlay-osxUITests */,
+				EA2297BC1BA0DC1300FD4DE2 /* PartyPlay-tv */,
+				EA2297CE1BA0DC1400FD4DE2 /* PartyPlay-tvTests */,
 				EAFD0A7F1B7F610A009A918F /* Products */,
 				5E8B37BBD5FC8F068AE3807B /* Pods */,
 				204AC6F6CB95063E576D1651 /* Frameworks */,
@@ -214,6 +276,8 @@
 				EAFD0AB31B7F61E6009A918F /* PartyPlay-osx.app */,
 				EAFD0AC11B7F61E6009A918F /* PartyPlay-osxTests.xctest */,
 				EAFD0ACC1B7F61E6009A918F /* PartyPlay-osxUITests.xctest */,
+				EA2297BB1BA0DC1300FD4DE2 /* PartyPlay-tv.app */,
+				EA2297CB1BA0DC1300FD4DE2 /* PartyPlay-tvTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -294,6 +358,41 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EA2297BA1BA0DC1300FD4DE2 /* PartyPlay-tv */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA2297D61BA0DC1400FD4DE2 /* Build configuration list for PBXNativeTarget "PartyPlay-tv" */;
+			buildPhases = (
+				EA2297B71BA0DC1300FD4DE2 /* Sources */,
+				EA2297B81BA0DC1300FD4DE2 /* Frameworks */,
+				EA2297B91BA0DC1300FD4DE2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PartyPlay-tv";
+			productName = "PartyPlay-tv";
+			productReference = EA2297BB1BA0DC1300FD4DE2 /* PartyPlay-tv.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EA2297CA1BA0DC1300FD4DE2 /* PartyPlay-tvTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA2297D71BA0DC1400FD4DE2 /* Build configuration list for PBXNativeTarget "PartyPlay-tvTests" */;
+			buildPhases = (
+				EA2297C71BA0DC1300FD4DE2 /* Sources */,
+				EA2297C81BA0DC1300FD4DE2 /* Frameworks */,
+				EA2297C91BA0DC1300FD4DE2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA2297CD1BA0DC1400FD4DE2 /* PBXTargetDependency */,
+			);
+			name = "PartyPlay-tvTests";
+			productName = "PartyPlay-tvTests";
+			productReference = EA2297CB1BA0DC1300FD4DE2 /* PartyPlay-tvTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EAFD0A7D1B7F610A009A918F /* PartyPlay */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAFD0AA61B7F610B009A918F /* Build configuration list for PBXNativeTarget "PartyPlay" */;
@@ -416,6 +515,13 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = banjun;
 				TargetAttributes = {
+					EA2297BA1BA0DC1300FD4DE2 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					EA2297CA1BA0DC1300FD4DE2 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = EA2297BA1BA0DC1300FD4DE2;
+					};
 					EAFD0A7D1B7F610A009A918F = {
 						CreatedOnToolsVersion = 7.0;
 					};
@@ -459,11 +565,29 @@
 				EAFD0AB21B7F61E6009A918F /* PartyPlay-osx */,
 				EAFD0AC01B7F61E6009A918F /* PartyPlay-osxTests */,
 				EAFD0ACB1B7F61E6009A918F /* PartyPlay-osxUITests */,
+				EA2297BA1BA0DC1300FD4DE2 /* PartyPlay-tv */,
+				EA2297CA1BA0DC1300FD4DE2 /* PartyPlay-tvTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EA2297B91BA0DC1300FD4DE2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA2297C51BA0DC1300FD4DE2 /* Assets.xcassets in Resources */,
+				EA2297E11BA135EB00FD4DE2 /* okaeri.m4a in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA2297C91BA0DC1300FD4DE2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EAFD0A7C1B7F610A009A918F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -606,6 +730,27 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EA2297B71BA0DC1300FD4DE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA2297E31BA1443C00FD4DE2 /* String.swift in Sources */,
+				EA2297C01BA0DC1300FD4DE2 /* ViewController.swift in Sources */,
+				EA2297E21BA1443800FD4DE2 /* Appearnce.swift in Sources */,
+				EA2297BE1BA0DC1300FD4DE2 /* AppDelegate.swift in Sources */,
+				EA2297D91BA0DCE900FD4DE2 /* (null) in Sources */,
+				EA2297D81BA0DC9400FD4DE2 /* (null) in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA2297C71BA0DC1300FD4DE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA2297D01BA0DC1400FD4DE2 /* PartyPlay_tvTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EAFD0A7A1B7F610A009A918F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -673,6 +818,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		EA2297CD1BA0DC1400FD4DE2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA2297BA1BA0DC1300FD4DE2 /* PartyPlay-tv */;
+			targetProxy = EA2297CC1BA0DC1400FD4DE2 /* PBXContainerItemProxy */;
+		};
 		EAFD0A941B7F610B009A918F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EAFD0A7D1B7F610A009A918F /* PartyPlay */;
@@ -715,6 +865,64 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		EA2297D21BA0DC1400FD4DE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = "PartyPlay-tv/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.codefirst.PartyPlay-tv";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		EA2297D31BA0DC1400FD4DE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = "PartyPlay-tv/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.codefirst.PartyPlay-tv";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		EA2297D41BA0DC1400FD4DE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "PartyPlay-tvTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.codefirst.PartyPlay-tvTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PartyPlay-tv.app/PartyPlay-tv";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		EA2297D51BA0DC1400FD4DE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "PartyPlay-tvTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.codefirst.PartyPlay-tvTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PartyPlay-tv.app/PartyPlay-tv";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
 		EAFD0AA41B7F610B009A918F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -967,6 +1175,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EA2297D61BA0DC1400FD4DE2 /* Build configuration list for PBXNativeTarget "PartyPlay-tv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA2297D21BA0DC1400FD4DE2 /* Debug */,
+				EA2297D31BA0DC1400FD4DE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA2297D71BA0DC1400FD4DE2 /* Build configuration list for PBXNativeTarget "PartyPlay-tvTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA2297D41BA0DC1400FD4DE2 /* Debug */,
+				EA2297D51BA0DC1400FD4DE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EAFD0A791B7F610A009A918F /* Build configuration list for PBXProject "PartyPlay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
