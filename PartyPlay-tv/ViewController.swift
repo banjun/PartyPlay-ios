@@ -134,8 +134,8 @@ class ViewController: UIViewController {
     
     private func updateTimeLabels() {
         guard let duration = player.currentItem?.duration,
-            let timePlayed = CMTime?.Some(player.currentTime()) where CMTIME_IS_NUMERIC(timePlayed),
-            let timeRemaining = CMTime?.Some(duration - timePlayed) where CMTIME_IS_NUMERIC(timeRemaining) else {
+            let timePlayed = CMTime?.Some(player.currentTime()) where CMTIME_IS_NUMERIC(timePlayed) && timePlayed.seconds >= 0,
+            let timeRemaining = CMTime?.Some(duration - timePlayed) where CMTIME_IS_NUMERIC(timeRemaining) && timeRemaining.seconds >= 0 else {
                 self.timePlayedLabel.text = nil
                 self.timeRemainingLabel.text = nil
                 return
