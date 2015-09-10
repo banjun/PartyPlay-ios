@@ -8,7 +8,6 @@
 
 import UIKit
 import AVKit
-import MediaPlayer
 
 
 class ViewController: UIViewController {
@@ -17,12 +16,18 @@ class ViewController: UIViewController {
     let titleLabel = UILabel()
     let artistLabel = UILabel()
     let albumLabel = UILabel()
+    let timePlayedLabel = UILabel()
+    let timeRemainingLabel = UILabel()
     let artworkView = UIImageView(image: nil)
     
     init() {
         super.init(nibName: nil, bundle: nil)
         
         title = LocalizedString.titleServer
+        
+        player.addPeriodicTimeObserverForInterval(CMTime(seconds: 1, preferredTimescale: 1), queue: dispatch_get_main_queue(), usingBlock: { _ in
+            self.updateTimeLabels()
+        })
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -44,12 +49,16 @@ class ViewController: UIViewController {
         artistLabel.numberOfLines = 2
         albumLabel.font = UIFont.systemFontOfSize(54)
         albumLabel.adjustsFontSizeToFitWidth = true
+        timePlayedLabel.font = UIFont.monospacedDigitSystemFontOfSize(36, weight: UIFontWeightSemibold)
+        timeRemainingLabel.font = timePlayedLabel.font
         artworkView.contentMode = .ScaleAspectFit
         
         let views: [String: UIView] = [
             "title": titleLabel,
             "artist": artistLabel,
             "album": albumLabel,
+            "timePlayed": timePlayedLabel,
+            "timeRemaining": timeRemainingLabel,
             "artwork": artworkView,
         ]
         for (_, v) in views {
@@ -65,8 +74,11 @@ class ViewController: UIViewController {
         autolayout("H:[artwork]-p-[title]-lp-|")
         autolayout("H:[artwork]-p-[artist]-lp-|")
         autolayout("H:[artwork]-p-[album]-lp-|")
+        autolayout("H:[artwork]-p-[timePlayed]-(>=p)-[timeRemaining]-lp-|")
         autolayout("V:|-lp-[artwork]-lp-|")
-        autolayout("V:|-lp-[title]-[artist]-[album]-(>=lp)-|")
+        autolayout("V:|-lp-[title]-[artist]-[album]")
+        autolayout("V:[album]-(>=p)-[timePlayed]-lp-|")
+        autolayout("V:[album]-(>=p)-[timeRemaining]-lp-|")
         
         view.addConstraint(NSLayoutConstraint(item: artworkView, attribute: .Width, relatedBy: .Equal, toItem: artworkView, attribute: .Height, multiplier: 1, constant: 0))
     }
@@ -74,40 +86,68 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        
-        
         // simulate once store a posted audio file to tmp and use it
         let dummyFileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("okaeri", ofType: "m4a")!)
         let tmpFileURL = NSURL(fileURLWithPath: NSTemporaryDirectory() + "/audio.m4a")
         let _ = try? NSFileManager.defaultManager().copyItemAtURL(dummyFileURL, toURL: tmpFileURL)
         
-        let asset = AVAsset(URL: tmpFileURL)
-        for item in asset.commonMetadata {
-            NSLog("%@", "item[\(item.commonKey)], dataType = \(item.dataType)")
-            switch item.commonKey {
-            case AVMetadataCommonKeyTitle?:
-                titleLabel.text = item.stringValue
-            case AVMetadataCommonKeyArtist?:
-                artistLabel.text = item.stringValue
-            case AVMetadataCommonKeyAlbumName?:
-                albumLabel.text = item.stringValue
-            case AVMetadataCommonKeyArtwork?:
-                if let data = item.dataValue {
-                    artworkView.image = UIImage(data: data)
+        addAudioFileToPlaylist(tmpFileURL)
+    }
+    
+    private func addAudioFileToPlaylist(file: NSURL) {
+        player.insertItem(AVPlayerItem(URL: file), afterItem: nil)
+        if player.rate == 0.0 {
+            player.play()
+            updateViews()
+        }
+    }
+    
+    private func updateViews() {
+        if let item = player.currentItem {
+            let asset = item.asset
+            for metadataItem in asset.commonMetadata {
+                NSLog("%@", "item[\(metadataItem.commonKey)], dataType = \(metadataItem.dataType)")
+                switch metadataItem.commonKey {
+                case AVMetadataCommonKeyTitle?:
+                    titleLabel.text = metadataItem.stringValue
+                case AVMetadataCommonKeyArtist?:
+                    artistLabel.text = metadataItem.stringValue
+                case AVMetadataCommonKeyAlbumName?:
+                    albumLabel.text = metadataItem.stringValue
+                case AVMetadataCommonKeyArtwork?:
+                    if let data = metadataItem.dataValue {
+                        artworkView.image = UIImage(data: data)
+                    }
+                default:
+                    break
                 }
-            default:
-                break
             }
+        } else {
+            titleLabel.text = "No Music to Play"
+            artistLabel.text = nil
+            albumLabel.text = nil
+            artworkView.image = nil
         }
         
+        updateTimeLabels()
+    }
+    
+    private func updateTimeLabels() {
+        guard let duration = player.currentItem?.duration,
+            let timePlayed = CMTime?.Some(player.currentTime()) where CMTIME_IS_NUMERIC(timePlayed),
+            let timeRemaining = CMTime?.Some(duration - timePlayed) where CMTIME_IS_NUMERIC(timeRemaining) else {
+                self.timePlayedLabel.text = nil
+                self.timeRemainingLabel.text = nil
+                return
+        }
         
-        player.insertItem(AVPlayerItem(URL: tmpFileURL), afterItem: nil)
+        let minutesPlayed = Int(floor(timePlayed.seconds / 60))
+        let secondsPlayed = Int(floor(timePlayed.seconds % 60))
+        self.timePlayedLabel.text = String(format: "%d:%02d", arguments: [minutesPlayed, secondsPlayed])
         
-//        let pc = AVPlayerViewController()
-//        pc.player = player
-//        navigationController?.pushViewController(pc, animated: true)
-        
-        player.play()
+        let minutesRemaining = Int(floor(timeRemaining.seconds / 60))
+        let secondsRemaining = Int(floor(timeRemaining.seconds % 60))
+        self.timeRemainingLabel.text = String(format: "-%d:%02d", arguments: [minutesRemaining, secondsRemaining])
     }
 }
 
