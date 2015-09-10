@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     
     let titleLabel = UILabel()
     let artistLabel = UILabel()
+    let albumLabel = UILabel()
     let artworkView = UIImageView(image: nil)
     
     init() {
@@ -37,15 +38,18 @@ class ViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: LocalizedString.shutdown, style: .Plain, target: self, action: "shutdown:")
         
         titleLabel.font = UIFont.boldSystemFontOfSize(72)
-        titleLabel.adjustsFontSizeToFitWidth = true  // not work in Xcode 7.1b1
-        artistLabel.font = UIFont.systemFontOfSize(72)
-        artistLabel.adjustsFontSizeToFitWidth = true // not work in Xcode 7.1b1
+        titleLabel.adjustsFontSizeToFitWidth = true
+        artistLabel.font = UIFont.systemFontOfSize(54)
+        artistLabel.adjustsFontSizeToFitWidth = true
         artistLabel.numberOfLines = 2
+        albumLabel.font = UIFont.systemFontOfSize(54)
+        albumLabel.adjustsFontSizeToFitWidth = true
         artworkView.contentMode = .ScaleAspectFit
         
         let views: [String: UIView] = [
             "title": titleLabel,
             "artist": artistLabel,
+            "album": albumLabel,
             "artwork": artworkView,
         ]
         for (_, v) in views {
@@ -60,8 +64,9 @@ class ViewController: UIViewController {
         autolayout("H:|-lp-[artwork]")
         autolayout("H:[artwork]-p-[title]-lp-|")
         autolayout("H:[artwork]-p-[artist]-lp-|")
+        autolayout("H:[artwork]-p-[album]-lp-|")
         autolayout("V:|-lp-[artwork]-lp-|")
-        autolayout("V:|-lp-[title]-[artist]-(>=lp)-|")
+        autolayout("V:|-lp-[title]-[artist]-[album]-(>=lp)-|")
         
         view.addConstraint(NSLayoutConstraint(item: artworkView, attribute: .Width, relatedBy: .Equal, toItem: artworkView, attribute: .Height, multiplier: 1, constant: 0))
     }
@@ -76,7 +81,7 @@ class ViewController: UIViewController {
         let tmpFileURL = NSURL(fileURLWithPath: NSTemporaryDirectory() + "/audio.m4a")
         let _ = try? NSFileManager.defaultManager().copyItemAtURL(dummyFileURL, toURL: tmpFileURL)
         
-        let asset = AVAsset(URL: dummyFileURL)
+        let asset = AVAsset(URL: tmpFileURL)
         for item in asset.commonMetadata {
             NSLog("%@", "item[\(item.commonKey)], dataType = \(item.dataType)")
             switch item.commonKey {
@@ -84,6 +89,8 @@ class ViewController: UIViewController {
                 titleLabel.text = item.stringValue
             case AVMetadataCommonKeyArtist?:
                 artistLabel.text = item.stringValue
+            case AVMetadataCommonKeyAlbumName?:
+                albumLabel.text = item.stringValue
             case AVMetadataCommonKeyArtwork?:
                 if let data = item.dataValue {
                     artworkView.image = UIImage(data: data)
