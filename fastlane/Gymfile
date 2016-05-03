@@ -1,0 +1,3 @@
+scheme "PartyPlay"
+# sdk "iphoneos9.0"
+output_directory "./"
