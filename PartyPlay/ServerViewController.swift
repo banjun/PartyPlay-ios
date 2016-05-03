@@ -8,10 +8,12 @@
 
 import UIKit
 import NorthLayout
+import AVKit
+import AVFoundation
 
 
 class ServerViewController: UIViewController {
-    let server = PartyPlayServer(name: UIDevice.currentDevice().name)
+    let server = PartyPlayServeriOS(name: UIDevice.currentDevice().name)
     
     private let connectionStatusLabel = UILabel()
     
@@ -20,6 +22,7 @@ class ServerViewController: UIViewController {
         
         title = LocalizedString.titleServer
         server.onStateChange = onServerStateChange
+        server.onReceiveResource = onReceiveResource
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -52,6 +55,18 @@ class ServerViewController: UIViewController {
         connectionStatusLabel.text = String(format: LocalizedString.nPeersCurrentlyConnected, arguments: [numberOfPeers])
     }
     
+    private func onReceiveResource(localURL: NSURL) {
+        if self !== navigationController?.topViewController {
+            navigationController?.popToViewController(self, animated: false)
+        }
+        
+        let pvc = AVPlayerViewController()
+        let player = AVPlayer(URL: localURL)
+        pvc.player = player
+        navigationController?.pushViewController(pvc, animated: true)
+        player.play()
+    }
+    
     @IBAction private func shutdown(sender: AnyObject?) {
         let ac = UIAlertController(title: nil, message: LocalizedString.confirmShutdown, preferredStyle: .ActionSheet)
         ac.addAction(UIAlertAction(title: LocalizedString.shutdown, style: .Destructive) { _ in
@@ -62,3 +77,19 @@ class ServerViewController: UIViewController {
         presentViewController(ac, animated: true, completion: nil)
     }
 }
+
+
+import MultipeerConnectivity
+class PartyPlayServeriOS: PartyPlayServer {
+    var onReceiveResource: (NSURL -> Void)?
+    
+    override func session(session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, atURL localURL: NSURL, withError error: NSError?) {
+        super.session(session, didFinishReceivingResourceWithName: resourceName, fromPeer: peerID, atURL: localURL, withError: error)
+        dispatch_async(dispatch_get_main_queue()) {
+            let m4aURL = localURL.URLByAppendingPathExtension("m4a") // FIXME:
+            let _ = try? NSFileManager.defaultManager().moveItemAtURL(localURL, toURL: m4aURL)
+            self.onReceiveResource?(m4aURL)
+        }
+    }
+}
+
