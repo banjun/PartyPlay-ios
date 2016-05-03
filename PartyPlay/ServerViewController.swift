@@ -16,6 +16,8 @@ class ServerViewController: UIViewController {
     let server = PartyPlayServeriOS(name: UIDevice.currentDevice().name)
     
     private let connectionStatusLabel = UILabel()
+    private let artworkView = UIImageView(frame: .zero)
+    private let titleLabel = UILabel()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -37,11 +39,39 @@ class ServerViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: LocalizedString.shutdown, style: .Plain, target: self, action: "shutdown:")
         
+        toolbarItems = [
+            UIBarButtonItem(title: "Pause", style: .Plain, target: self, action: #selector(pause)),
+            UIBarButtonItem(title: "Play", style: .Plain, target: self, action: #selector(play)),
+            UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: #selector(next)),
+            ]
+        
+        connectionStatusLabel.numberOfLines = 0
+        titleLabel.numberOfLines = 0
+        titleLabel.textAlignment = .Center
+        if #available(iOS 9.0, *) {
+            titleLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleTitle1)
+        }
+        artworkView.contentMode = .ScaleAspectFit
+        
         let autolayout = view.northLayoutFormat(["p": 8], [
             "status": connectionStatusLabel,
+            "artwork": artworkView,
+            "title": titleLabel,
             ])
         autolayout("H:|-p-[status]-p-|")
-        autolayout("V:|-p-[status]")
+        autolayout("H:|-p-[artwork]-p-|")
+        autolayout("H:|-p-[title]-p-|")
+        autolayout("V:|-p-[status]-p-[artwork]-p-[title]-p-|")
+        
+        titleLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, forAxis: .Vertical)
+        titleLabel.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: .Vertical)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setToolbarHidden(false, animated: animated)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -52,19 +82,45 @@ class ServerViewController: UIViewController {
     
     private func onServerStateChange() {
         let numberOfPeers = server.peers.reduce(0, combine: {$0 + $1.count})
-        connectionStatusLabel.text = String(format: LocalizedString.nPeersCurrentlyConnected, arguments: [numberOfPeers])
+        connectionStatusLabel.text = String(format: LocalizedString.nPeersCurrentlyConnected, arguments: [numberOfPeers]) + "\n \(player.items().count) songs queued."
     }
     
+    private let player = AVQueuePlayer(items: [])
+    
     private func onReceiveResource(localURL: NSURL) {
-        if self !== navigationController?.topViewController {
-            navigationController?.popToViewController(self, animated: false)
+        player.addPeriodicTimeObserverForInterval(CMTime(seconds: 1, preferredTimescale: 600), queue: dispatch_get_main_queue()) { time in
+            let metadata = self.player.currentItem?.asset.commonMetadata
+            if let title = metadata?.filter({$0.commonKey == "title"}).first?.value as? String {
+                self.titleLabel.text = title
+            } else {
+                self.titleLabel.text = "----"
+            }
+            if let artwork = metadata?.filter({$0.commonKey == "artwork"}).first?.value as? NSData {
+                self.artworkView.image = UIImage(data: artwork)
+            }
+            self.onServerStateChange()
         }
         
-        let pvc = AVPlayerViewController()
-        let player = AVPlayer(URL: localURL)
-        pvc.player = player
-        navigationController?.pushViewController(pvc, animated: true)
+        let item = AVPlayerItem(URL: localURL)
+        player.insertItem(item, afterItem: nil)
+        
+        if player.rate == 0 {
+            player.play()
+        }
+        
+        onServerStateChange()
+    }
+    
+    @objc private func play() {
         player.play()
+    }
+    
+    @objc private func pause() {
+        player.pause()
+    }
+    
+    @objc private func next() {
+        player.advanceToNextItem()
     }
     
     @IBAction private func shutdown(sender: AnyObject?) {
