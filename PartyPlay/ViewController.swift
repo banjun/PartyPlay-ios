@@ -106,6 +106,8 @@ class ViewController: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
         case .BecomeAServer:
             let ac = UIAlertController(title: nil, message: LocalizedString.confirmBecomeAServer, preferredStyle: .ActionSheet)
+            ac.popoverPresentationController?.sourceView = tableView
+            ac.popoverPresentationController?.sourceRect = tableView.rectForRowAtIndexPath(indexPath)
             ac.addAction(UIAlertAction(title: LocalizedString.becomeAServer, style: .Default) { _ in
                 let svc = ServerViewController()
                 let nc = UINavigationController(rootViewController: svc)
