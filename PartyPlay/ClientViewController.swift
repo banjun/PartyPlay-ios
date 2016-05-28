@@ -19,7 +19,7 @@ class ClientViewController: UIViewController {
     private lazy var postButton: UIButton = {
         let b = Appearance.createButton()
         b.setTitle(LocalizedString.postSongs, forState: .Normal)
-        b.addTarget(self, action: "post:", forControlEvents: .TouchUpInside)
+        b.addTarget(self, action: #selector(showMediaPicker), forControlEvents: .TouchUpInside)
         return b
     }()
     
@@ -48,20 +48,48 @@ class ClientViewController: UIViewController {
         autolayout("V:|-p-[post]")
     }
     
-    @IBAction private func post(sender: AnyObject?) {
-        let player = MPMusicPlayerController.systemMusicPlayer()
-        if  let mediaItem = player.nowPlayingItem,
-            let assetURL = mediaItem.assetURL,
-            let session = AVAssetExportSession(asset: AVAsset(URL: assetURL), presetName: AVAssetExportPresetAppleM4A),
-            let fileType = session.supportedFileTypes.first {
-                session.outputFileType = fileType
-                let tmpFileURL = NSURL(fileURLWithPath: "\(NSTemporaryDirectory())/export.m4a")
-                do { try NSFileManager.defaultManager().removeItemAtURL(tmpFileURL) } catch _ {}
-                session.outputURL = tmpFileURL
-                session.exportAsynchronouslyWithCompletionHandler {
-                    NSLog("%@", "session completed with status = \(session.status.rawValue), error = \(session.error)")
-                    self.client.sendSong(tmpFileURL, name: mediaItem.title ?? "unknown")
-                }
+    @objc private func showMediaPicker() {
+        let pc = MPMediaPickerController(mediaTypes: .Music)
+        pc.delegate = self
+        if #available(iOS 9.2, *) {
+            pc.showsItemsWithProtectedAssets = false
         }
+        pc.showsCloudItems = false
+        presentViewController(pc, animated: true, completion: nil)
+    }
+    
+    func post(mediaItem: MPMediaItem) {
+        guard let assetURL = mediaItem.assetURL,
+            let session = AVAssetExportSession(asset: AVAsset(URL: assetURL), presetName: AVAssetExportPresetAppleM4A),
+            let fileType = session.supportedFileTypes.first else {
+                NSLog("cannot post mediaItem: \(mediaItem)")
+                return
+        }
+        
+        session.outputFileType = fileType
+        let tmpFileURL = NSURL(fileURLWithPath: "\(NSTemporaryDirectory())/export.m4a")
+        let _ = try? NSFileManager.defaultManager().removeItemAtURL(tmpFileURL)
+        session.outputURL = tmpFileURL
+        session.exportAsynchronouslyWithCompletionHandler {
+            NSLog("%@", "session completed with status = \(session.status.rawValue), error = \(session.error)")
+            self.client.sendSong(tmpFileURL, name: mediaItem.title ?? "unknown")
+        }
+    }
+}
+
+
+extension ClientViewController: MPMediaPickerControllerDelegate {
+    func mediaPicker(mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
+        NSLog("%@", "didPickMediaItems: \(mediaItemCollection)")
+        guard let mediaItem = mediaItemCollection.representativeItem else {
+            return
+        }
+        dismissViewControllerAnimated(true) {
+            self.post(mediaItem)
+        }
+    }
+    
+    func mediaPickerDidCancel(mediaPicker: MPMediaPickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
