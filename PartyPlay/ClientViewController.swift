@@ -47,7 +47,7 @@ class ClientViewController: UIViewController {
         autolayout("V:|-p-[post]")
     }
     
-    @IBAction private func post(sender: AnyObject?) {
+    @IBAction private func post(_ sender: AnyObject?) {
         let player = MPMusicPlayerController.systemMusicPlayer()
         if  let mediaItem = player.nowPlayingItem,
             let assetURL = mediaItem.assetURL,

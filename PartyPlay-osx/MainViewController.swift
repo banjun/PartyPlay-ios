@@ -40,7 +40,7 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
         autolayout("V:[server]-p-|")
     }
     
-    @IBAction private func becomeAServer(sender: AnyObject?) {
+    @IBAction private func becomeAServer(_ sender: AnyObject?) {
         server = PartyPlayServer(name: ProcessInfo().hostName, onStateChange: onServerStateChange)
         server?.start()
         NSLog("%@", "starting server \(server)")

@@ -85,7 +85,7 @@ class ViewController: UITableViewController {
             let session = browser.sessions[indexPath.row]
             cell.textLabel?.text = session.server?.displayNameWithoutPrefix ?? "Connecting to server..."
             // cell.detailTextLabel?.text = "\(session.clients.count) clients: " + ", ".join(session.clients.map({$0.displayNameWithoutPrefix}))
-            cell.accessoryType = .disclosureIndicator
+            cell.accessoryType = .detailDisclosureButton
         case .BecomeAServer:
             cell.textLabel?.text = LocalizedString.becomeAServer
             cell.textLabel?.textAlignment = .center

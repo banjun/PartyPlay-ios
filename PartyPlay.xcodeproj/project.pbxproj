@@ -13,8 +13,8 @@
 		EA2297C01BA0DC1300FD4DE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2297BF1BA0DC1300FD4DE2 /* ViewController.swift */; };
 		EA2297C51BA0DC1300FD4DE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA2297C41BA0DC1300FD4DE2 /* Assets.xcassets */; };
 		EA2297D01BA0DC1400FD4DE2 /* PartyPlay_tvTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2297CF1BA0DC1400FD4DE2 /* PartyPlay_tvTests.swift */; };
-		EA2297D81BA0DC9400FD4DE2 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		EA2297D91BA0DCE900FD4DE2 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		EA2297D81BA0DC9400FD4DE2 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		EA2297D91BA0DCE900FD4DE2 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		EA2297E11BA135EB00FD4DE2 /* okaeri.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EA2297E01BA135EB00FD4DE2 /* okaeri.m4a */; };
 		EA2297E21BA1443800FD4DE2 /* Appearnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D76E61B8A00F7001DAAAF /* Appearnce.swift */; };
 		EA2297E31BA1443C00FD4DE2 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3D76E71B8A00F7001DAAAF /* String.swift */; };
@@ -752,8 +752,8 @@
 				EA2297C01BA0DC1300FD4DE2 /* ViewController.swift in Sources */,
 				EA2297E21BA1443800FD4DE2 /* Appearnce.swift in Sources */,
 				EA2297BE1BA0DC1300FD4DE2 /* AppDelegate.swift in Sources */,
-				EA2297D91BA0DCE900FD4DE2 /* BuildFile in Sources */,
-				EA2297D81BA0DC9400FD4DE2 /* BuildFile in Sources */,
+				EA2297D91BA0DCE900FD4DE2 /* (null) in Sources */,
+				EA2297D81BA0DC9400FD4DE2 /* (null) in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

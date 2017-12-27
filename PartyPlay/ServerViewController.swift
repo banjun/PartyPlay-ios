@@ -51,7 +51,7 @@ class ServerViewController: UIViewController {
         connectionStatusLabel.text = String(format: LocalizedString.nPeersCurrentlyConnected, arguments: [numberOfPeers])
     }
     
-    @IBAction private func shutdown(sender: AnyObject?) {
+    @IBAction private func shutdown(_ sender: AnyObject?) {
         let ac = UIAlertController(title: nil, message: LocalizedString.confirmShutdown, preferredStyle: .actionSheet)
         ac.addAction(UIAlertAction(title: LocalizedString.shutdown, style: .destructive) { _ in
             self.server.stop()
