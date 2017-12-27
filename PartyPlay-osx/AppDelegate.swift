@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var window: NSWindow!
     let mainViewController = MainViewController()
 
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ notification: Notification) {
         if let cv = window.contentView {
             let autolayout = cv.northLayoutFormat([:],[
             "main": mainViewController.view

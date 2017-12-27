@@ -87,14 +87,14 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         
         // simulate once store a posted audio file to tmp and use it
-        let dummyFileURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("okaeri", ofType: "m4a")!)
-        let tmpFileURL = NSURL(fileURLWithPath: NSTemporaryDirectory() + "/audio.m4a")
+        let dummyFileURL = URL(fileURLWithPath: NSBundle.mainBundle().pathForResource("okaeri", ofType: "m4a")!)
+        let tmpFileURL = URL(fileURLWithPath: NSTemporaryDirectory() + "/audio.m4a")
         let _ = try? NSFileManager.defaultManager().copyItemAtURL(dummyFileURL, toURL: tmpFileURL)
         
         addAudioFileToPlaylist(tmpFileURL)
     }
     
-    private func addAudioFileToPlaylist(file: NSURL) {
+    private func addAudioFileToPlaylist(file: URL) {
         player.insertItem(AVPlayerItem(URL: file), afterItem: nil)
         if player.rate == 0.0 {
             player.play()

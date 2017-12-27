@@ -13,23 +13,23 @@ import MultipeerConnectivity
 class PartyPlayClient: NSObject {
     private let session: MCSession
     let server: MCPeerID
-    var serverStateOnSession = MCSessionState.NotConnected
+    var serverStateOnSession = MCSessionState.notConnected
     
     init(session: MCSession, server: MCPeerID) {
         self.session = session
         self.server = server
     }
     
-    func send(data: NSData) {
+    func send(data: Data) {
         do {
-            try session.sendData(data, toPeers: [server], withMode: .Reliable)
+            try session.send(data, toPeers: [server], with: .reliable)
         } catch let error as NSError {
             NSLog("cannot send data to peer \(server): \(error.localizedDescription)")
         }
     }
     
-    func sendSong(fileURL: NSURL, name: String) -> NSProgress? {
-        return session.sendResourceAtURL(fileURL, withName: name, toPeer: server) { error in
+    func sendSong(fileURL: URL, name: String) -> Progress? {
+        return session.sendResource(at: fileURL, withName: name, toPeer: server) { error in
             if let error = error {
                 NSLog("%@", "sendSong(fileURL:_) error: \(error.localizedDescription)")
             } else {
@@ -41,7 +41,7 @@ class PartyPlayClient: NSObject {
 
 // MARK: MCSessionDelegate
 extension PartyPlayClient: MCSessionDelegate {
-    func session(session: MCSession, peer peerID: MCPeerID, didChangeState state: MCSessionState) {
+    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         if peerID == server {
             serverStateOnSession = state
             NSLog("%@", "server state changed to \(serverStateOnSession).")
@@ -49,19 +49,19 @@ extension PartyPlayClient: MCSessionDelegate {
         }
     }
     
-    func session(session: MCSession, didReceiveData data: NSData, fromPeer peerID: MCPeerID) {
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         
     }
     
-    func session(session: MCSession, didReceiveStream stream: NSInputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
         
     }
     
-    func session(session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, withProgress progress: NSProgress) {
+    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
         
     }
     
-    func session(session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, atURL localURL: NSURL, withError error: NSError?) {
+    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
         
     }
 }

@@ -9,29 +9,29 @@
 #if os(iOS) || os(tvOS)
     import UIKit
     
-    private func rgb(r: Int, _ g: Int, _ b: Int) -> UIColor {
+    private func rgb(_ r: Int, _ g: Int, _ b: Int) -> UIColor {
         return UIColor(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(1))
     }
     
-    private func gray(y: Int) -> UIColor {
+    private func gray(_ y: Int) -> UIColor {
         return rgb(y, y, y)
     }
     
-    private func hsb(h: Int, _ s: Int, _ b: Int) -> UIColor {
+    private func hsb(_ h: Int, _ s: Int, _ b: Int) -> UIColor {
         return UIColor(hue: CGFloat(h) / 360, saturation: CGFloat(s) / 100, brightness: CGFloat(b) / 100, alpha: CGFloat(1))
     }
 #elseif os(OSX)
     import AppKit
     
-    private func rgb(r: Int, _ g: Int, _ b: Int) -> NSColor {
+    private func rgb(_ r: Int, _ g: Int, _ b: Int) -> NSColor {
         return NSColor(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(1))
     }
     
-    private func gray(y: Int) -> NSColor {
+    private func gray(_ y: Int) -> NSColor {
         return rgb(y, y, y)
     }
     
-    private func hsb(h: Int, _ s: Int, _ b: Int) -> NSColor {
+    private func hsb(_ h: Int, _ s: Int, _ b: Int) -> NSColor {
         return NSColor(hue: CGFloat(h) / 360, saturation: CGFloat(s) / 100, brightness: CGFloat(b) / 100, alpha: CGFloat(1))
     }
 #endif
@@ -53,15 +53,15 @@ struct Appearance {
         #if os(iOS)
             UINavigationBar.appearance().tintColor = darkTextColor
             UINavigationBar.appearance().barTintColor = honokaOrange
-            UINavigationBar.appearance().translucent = false
+            UINavigationBar.appearance().isTranslucent = false
         #elseif os(OSX)
         #endif
     }
     
     #if os(iOS)
     static func createButton() -> UIButton {
-        let b = UIButton(type: .System)
-        b.setTitleColor(lightTextColor, forState: .Normal)
+        let b = UIButton(type: .system)
+        b.setTitleColor(lightTextColor, for: .normal)
         b.backgroundColor = tintColor
         b.layer.cornerRadius = cornderRadius
         b.layer.masksToBounds = true

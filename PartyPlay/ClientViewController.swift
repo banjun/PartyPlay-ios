@@ -18,8 +18,8 @@ class ClientViewController: UIViewController {
     
     private lazy var postButton: UIButton = {
         let b = Appearance.createButton()
-        b.setTitle(LocalizedString.postSongs, forState: .Normal)
-        b.addTarget(self, action: "post:", forControlEvents: .TouchUpInside)
+        b.setTitle(LocalizedString.postSongs, for: .normal)
+        b.addTarget(self, action: Selector(("post:")), for: .touchUpInside)
         return b
     }()
     
@@ -38,7 +38,6 @@ class ClientViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        edgesForExtendedLayout = .None
         view.backgroundColor = Appearance.backgroundColor
         
         let autolayout = view.northLayoutFormat(["p": 20], [
@@ -52,15 +51,15 @@ class ClientViewController: UIViewController {
         let player = MPMusicPlayerController.systemMusicPlayer()
         if  let mediaItem = player.nowPlayingItem,
             let assetURL = mediaItem.assetURL,
-            let session = AVAssetExportSession(asset: AVAsset(URL: assetURL), presetName: AVAssetExportPresetAppleM4A),
+            let session = AVAssetExportSession(asset: AVAsset(url: assetURL), presetName: AVAssetExportPresetAppleM4A),
             let fileType = session.supportedFileTypes.first {
                 session.outputFileType = fileType
-                let tmpFileURL = NSURL(fileURLWithPath: "\(NSTemporaryDirectory())/export.m4a")
-                do { try NSFileManager.defaultManager().removeItemAtURL(tmpFileURL) } catch _ {}
+                let tmpFileURL = URL(fileURLWithPath: "\(NSTemporaryDirectory())/export.m4a")
+            do { try FileManager.default.removeItem(at: tmpFileURL) } catch _ {}
                 session.outputURL = tmpFileURL
-                session.exportAsynchronouslyWithCompletionHandler {
+            session.exportAsynchronously {
                     NSLog("%@", "session completed with status = \(session.status.rawValue), error = \(session.error)")
-                    self.client.sendSong(tmpFileURL, name: mediaItem.title ?? "unknown")
+                    self.client.sendSong(fileURL: tmpFileURL, name: mediaItem.title ?? "unknown")
                 }
         }
     }

@@ -13,12 +13,12 @@ import NorthLayout
 class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
     let becomeAServerButton: NSButton = {
         let b = NSButton()
-        b.bezelStyle = .RegularSquareBezelStyle
+        b.bezelStyle = .regularSquare
         b.attributedTitle = NSAttributedString(string: LocalizedString.becomeAServer, attributes: [
             NSForegroundColorAttributeName: Appearance.tintColor,
             NSParagraphStyleAttributeName: {
                 let p = NSMutableParagraphStyle()
-                p.alignment = .Center
+                p.alignment = .center
                 return p
                 }(),
             ])
@@ -31,7 +31,7 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
         view = NSView()
         
         becomeAServerButton.target = self
-        becomeAServerButton.action = "becomeAServer:"
+        becomeAServerButton.action = Selector(("becomeAServer:"))
         
         let autolayout = view.northLayoutFormat(["p": 20], [
             "server": becomeAServerButton,
@@ -41,11 +41,11 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
     }
     
     @IBAction private func becomeAServer(sender: AnyObject?) {
-        server = PartyPlayServer(name: NSProcessInfo().hostName, onStateChange: onServerStateChange)
+        server = PartyPlayServer(name: ProcessInfo().hostName, onStateChange: onServerStateChange)
         server?.start()
         NSLog("%@", "starting server \(server)")
         becomeAServerButton.title = "Server Started"
-        becomeAServerButton.enabled = false
+        becomeAServerButton.isEnabled = false
     }
     
     private func onServerStateChange() {
@@ -53,7 +53,7 @@ class MainViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
             becomeAServerButton.title = "\(server.peers.count) peers connected"
         } else {
             becomeAServerButton.title = LocalizedString.becomeAServer
-            becomeAServerButton.enabled = true
+            becomeAServerButton.isEnabled = true
         }
     }
 }

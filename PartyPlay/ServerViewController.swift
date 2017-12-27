@@ -11,7 +11,7 @@ import NorthLayout
 
 
 class ServerViewController: UIViewController {
-    let server = PartyPlayServer(name: UIDevice.currentDevice().name)
+    let server = PartyPlayServer(name: UIDevice.current.name)
     
     private let connectionStatusLabel = UILabel()
     
@@ -29,10 +29,9 @@ class ServerViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        edgesForExtendedLayout = .None
         view.backgroundColor = Appearance.backgroundColor
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: LocalizedString.shutdown, style: .Plain, target: self, action: "shutdown:")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: LocalizedString.shutdown, style: .plain, target: self, action: Selector(("shutdown:")))
         
         let autolayout = view.northLayoutFormat(["p": 8], [
             "status": connectionStatusLabel,
@@ -41,24 +40,24 @@ class ServerViewController: UIViewController {
         autolayout("V:|-p-[status]")
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         server.start()
     }
     
     private func onServerStateChange() {
-        let numberOfPeers = server.peers.reduce(0, combine: {$0 + $1.count})
+        let numberOfPeers = server.peers.reduce(0, {$0 + $1.count})
         connectionStatusLabel.text = String(format: LocalizedString.nPeersCurrentlyConnected, arguments: [numberOfPeers])
     }
     
     @IBAction private func shutdown(sender: AnyObject?) {
-        let ac = UIAlertController(title: nil, message: LocalizedString.confirmShutdown, preferredStyle: .ActionSheet)
-        ac.addAction(UIAlertAction(title: LocalizedString.shutdown, style: .Destructive) { _ in
+        let ac = UIAlertController(title: nil, message: LocalizedString.confirmShutdown, preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: LocalizedString.shutdown, style: .destructive) { _ in
             self.server.stop()
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
             })
-        ac.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
-        presentViewController(ac, animated: true, completion: nil)
+        ac.addAction(UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: nil))
+        present(ac, animated: true, completion: nil)
     }
 }

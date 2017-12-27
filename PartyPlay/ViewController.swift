@@ -10,10 +10,10 @@ import UIKit
 
 
 class ViewController: UITableViewController {
-    let browser = PartyPlayServiceBrowser(name: UIDevice.currentDevice().name)
+    let browser = PartyPlayServiceBrowser(name: UIDevice.current.name)
     
     init() {
-        super.init(style: .Grouped)
+        super.init(style: .grouped)
         
         title = LocalizedString.appName
         browser.onStateChange = { [weak self] in
@@ -28,17 +28,17 @@ class ViewController: UITableViewController {
     override func loadView() {
         super.loadView()
         
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Section.NearbyServers.cellID)
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: Section.BecomeAServer.cellID)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Section.NearbyServers.cellID)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Section.BecomeAServer.cellID)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         browser.start()
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         browser.stop()
@@ -58,18 +58,18 @@ class ViewController: UITableViewController {
         }
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Section(rawValue: section)! {
         case .NearbyServers: return browser.sessions.count
         case .BecomeAServer: return 1
         }
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch Section(rawValue: section)! {
         case .NearbyServers where browser.sessions.count > 0: return LocalizedString.nearbyServers
         case .NearbyServers: return LocalizedString.noServersNearby
@@ -77,26 +77,26 @@ class ViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = Section(rawValue: indexPath.section)!
-        let cell = tableView.dequeueReusableCellWithIdentifier(section.cellID, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: section.cellID, for: indexPath as IndexPath)
         switch section {
         case .NearbyServers:
             let session = browser.sessions[indexPath.row]
             cell.textLabel?.text = session.server?.displayNameWithoutPrefix ?? "Connecting to server..."
             // cell.detailTextLabel?.text = "\(session.clients.count) clients: " + ", ".join(session.clients.map({$0.displayNameWithoutPrefix}))
-            cell.accessoryType = .DisclosureIndicator
+            cell.accessoryType = .disclosureIndicator
         case .BecomeAServer:
             cell.textLabel?.text = LocalizedString.becomeAServer
-            cell.textLabel?.textAlignment = .Center
+            cell.textLabel?.textAlignment = .center
             cell.textLabel?.textColor = Appearance.tintColor
             break
         }
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         
         switch Section(rawValue: indexPath.section)! {
         case .NearbyServers:
@@ -105,14 +105,14 @@ class ViewController: UITableViewController {
             let vc = ClientViewController(client: PartyPlayClient(session: session, server: server))
             navigationController?.pushViewController(vc, animated: true)
         case .BecomeAServer:
-            let ac = UIAlertController(title: nil, message: LocalizedString.confirmBecomeAServer, preferredStyle: .ActionSheet)
-            ac.addAction(UIAlertAction(title: LocalizedString.becomeAServer, style: .Default) { _ in
+            let ac = UIAlertController(title: nil, message: LocalizedString.confirmBecomeAServer, preferredStyle: .actionSheet)
+            ac.addAction(UIAlertAction(title: LocalizedString.becomeAServer, style: .default) { _ in
                 let svc = ServerViewController()
                 let nc = UINavigationController(rootViewController: svc)
-                self.presentViewController(nc, animated: true, completion: nil)
+                self.present(nc, animated: true, completion: nil)
                 })
-            ac.addAction(UIAlertAction(title: LocalizedString.cancel, style: .Cancel, handler: nil))
-            presentViewController(ac, animated: true, completion: nil)
+            ac.addAction(UIAlertAction(title: LocalizedString.cancel, style: .cancel, handler: nil))
+            present(ac, animated: true, completion: nil)
         }
     }
 }
